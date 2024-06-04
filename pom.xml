@@ -14,7 +14,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>4.13.1</junit.version>
-    <selenium.version>4.0.0</selenium.version>
+    <selenium.version>4.21.0</selenium.version>
   </properties>
 
   <dependencies>
