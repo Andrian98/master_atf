@@ -2,7 +2,7 @@ package performance.upskilling.atf.hooks;
 
 import org.junit.After;
 import org.junit.Before;
-import performance.upskilling.atf.utils.WebDriverManager;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 
 public class TestHooks {
 

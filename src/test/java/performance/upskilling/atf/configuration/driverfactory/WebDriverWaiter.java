@@ -1,4 +1,4 @@
-package performance.upskilling.atf.utils;
+package performance.upskilling.atf.configuration.driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;

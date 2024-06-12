@@ -1,11 +1,11 @@
-package performance.upskilling.atf.pages;
+package performance.upskilling.atf.ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import performance.upskilling.atf.utils.WebDriverWaiter;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 
 public class LoginPage {
 
