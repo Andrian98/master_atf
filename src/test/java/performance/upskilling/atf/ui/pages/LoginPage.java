@@ -12,9 +12,9 @@ public class LoginPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    By usernameField = By.id("username");
-    By passwordField = By.id("password");
-    By loginButton = By.id("Login");
+    By usernameField = By.name("username");
+    By passwordField = By.name("password");
+    By loginButton = By.tagName("button");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
