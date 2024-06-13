@@ -9,6 +9,16 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
+        <File name="fileLogger" fileName="${basePath}/file.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </File>
+        <File name="errorLog" fileName="${basePath}/error.log">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </File>
+        <File name="LatencyLogger" fileName="${basePath}/latency.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </File>
     </Appenders>
     <Loggers>
 
