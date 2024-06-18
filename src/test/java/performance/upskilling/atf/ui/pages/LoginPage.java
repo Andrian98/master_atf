@@ -21,8 +21,8 @@ public class LoginPage {
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
-    public void navigateToLoginPage() {
-        driver.get("http://172.23.176.163:8200/");
+    public void navigateToLoginPage(String appURL) {
+        driver.get(appURL);
     }
 
     public void enterCredentials(String username, String password) {
@@ -37,8 +37,8 @@ public class LoginPage {
         driver.findElement(loginButton).click();
     }
 
-    public void validateDashboard() {
-        wait.until(ExpectedConditions.urlToBe("http://172.23.176.163:8200/web/index.php/dashboard/index"));
+    public void validateDashboard(String appURL) {
+        wait.until(ExpectedConditions.urlToBe(appURL + "web/index.php/dashboard/index"));
     }
 
 }

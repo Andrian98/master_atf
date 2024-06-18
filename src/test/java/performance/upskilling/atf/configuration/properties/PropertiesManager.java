@@ -30,4 +30,8 @@ public class PropertiesManager {
         return properties.getProperty("Password");
     }
 
+    public static String getAppURL() {
+        return properties.getProperty("app.url");
+    }
+
 }

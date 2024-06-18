@@ -15,10 +15,11 @@ public class LoginSteps {
     LoginPage loginPage = new LoginPage(driver);
     String username = PropertiesManager.getUsername();
     String password = PropertiesManager.getPassword();
+    String appURL = PropertiesManager.getAppURL();
 
     @Given("user is on Home page")
     public void userIsOnHomePage() {
-        loginPage.navigateToLoginPage();
+        loginPage.navigateToLoginPage(appURL);
     }
 
     @When("user enters their credentials")
@@ -33,6 +34,6 @@ public class LoginSteps {
 
     @Then("user is redirected to the dashboard")
     public void userIsRedirectedToTheDashboard() {
-        loginPage.validateDashboard();
+        loginPage.validateDashboard(appURL);
     }
 }
