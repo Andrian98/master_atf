@@ -12,71 +12,66 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 public class UserActionsSteps {
 
     WebDriver driver = WebDriverManager.getDriver();
-    UserActionsStepsImpl loginPage = new UserActionsStepsImpl(driver);
+    UserActionsStepsImpl userActionsStepsImpl = new UserActionsStepsImpl(driver);
     String username = PropertiesManager.getUsername();
     String password = PropertiesManager.getPassword();
     String appURL = PropertiesManager.getAppURL();
+    String appDashboard = PropertiesManager.getAppDashboard();
+    String appBuzzboard = PropertiesManager.getAppBuzzboard();
 
     @Given("user is on Home page")
     public void userIsOnHomePage() {
-        loginPage.navigateToLoginPage(appURL);
+        userActionsStepsImpl.navigateToLoginPage(appURL);
     }
 
     @When("user enters their credentials")
     public void userEntersTheirCredentials() {
-        loginPage.enterCredentials(username, password);
+        userActionsStepsImpl.enterCredentials(username, password);
     }
 
     @And("user clicks Login button")
     public void userClicksLoginButton() {
-        loginPage.clickLoginButton();
+        userActionsStepsImpl.clickLoginButton();
     }
 
     @Then("user is redirected to the dashboard")
     public void userIsRedirectedToTheDashboard() {
-        loginPage.validateDashboard(appURL);
+        userActionsStepsImpl.validateDashboard(appDashboard);
     }
 
     @Given("user is logged in")
     public void user_is_logged_in() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.validateDashboard(appDashboard);
     }
 
-    @When("user clicks {string} meniu")
-    public void user_clicks_meniu(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("user clicks Buzz meniu")
+    public void user_clicks_Buzz_meniu() {
+        userActionsStepsImpl.clickBuzzButton();
     }
 
     @When("user clicks on text input bar")
     public void user_clicks_on_text_input_bar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickPostInput();
     }
 
     @When("user insert the text {string}")
     public void user_insert_the_text(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.insertText(string);
     }
 
-    @When("user clicks {string} button")
-    public void user_clicks_button(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("user clicks Post button")
+    public void user_clicks_Post_button() {
+        userActionsStepsImpl.clickPostButton();
     }
 
     @Then("post is displayed on Buzz Newsfeed")
     public void post_is_displayed_on_buzz_newsfeed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.postValidation();
     }
 
     @Given("user is on Buzz board")
     public void user_is_on_buzz_board() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.validateBuzzboard(appBuzzboard);
     }
 
     @When("user clicks on three dots button")

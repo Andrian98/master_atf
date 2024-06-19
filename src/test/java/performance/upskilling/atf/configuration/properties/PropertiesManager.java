@@ -34,4 +34,12 @@ public class PropertiesManager {
         return properties.getProperty("app.url");
     }
 
+    public static String getAppDashboard(){
+        return properties.getProperty("app.dashboard");
+    }
+
+    public static String getAppBuzzboard(){
+        return properties.getProperty("app.buzzboard");
+    }
+
 }

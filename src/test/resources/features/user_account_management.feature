@@ -8,10 +8,10 @@ Feature: User actions on the application
 
   Scenario: User creates a post
     Given user is logged in
-    When user clicks "Buzz" meniu
+    When user clicks Buzz meniu
     And user clicks on text input bar
     And user insert the text "My ATF is working"
-    And user clicks "Post" button
+    And user clicks Post button
     Then post is displayed on Buzz Newsfeed
 
   Scenario: User deletes a post
