@@ -6,8 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
+import performance.upskilling.atf.ui.steps.UserActionsSteps;
 
-public class LoginPage {
+public class UserActionsStepsImpl {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -16,7 +17,7 @@ public class LoginPage {
     By passwordField = By.name("password");
     By loginButton = By.tagName("button");
 
-    public LoginPage(WebDriver driver) {
+    public UserActionsStepsImpl(WebDriver driver) {
         this.driver = driver;
         wait = WebDriverWaiter.getWaiter(driver);
     }
