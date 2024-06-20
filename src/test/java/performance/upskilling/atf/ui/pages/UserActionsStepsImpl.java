@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
-import performance.upskilling.atf.ui.steps.UserActionsSteps;
 
 public class UserActionsStepsImpl {
 
@@ -23,7 +22,7 @@ public class UserActionsStepsImpl {
     By threeDots = By.xpath("//i[@class='oxd-icon bi-three-dots']");
     By deletePost = By.xpath("//p[text()='Delete Post']");
     By yesDeleteButton = By.xpath("//button[text()=' Yes, Delete ']");
-    By successeMessage = By.xpath("//div[contains(@class,'oxd-toast oxd-toast--success')]");
+    By successMessage = By.xpath("//div[contains(@class,'oxd-toast oxd-toast--success')]");
     By userDropDown = By.className("oxd-userdropdown-name");
     By changePasswordButton = By.xpath("(//a[@class='oxd-userdropdown-link'])[3]");
     By currentPassword = By.xpath("//input[@type='password']");
@@ -139,7 +138,7 @@ public class UserActionsStepsImpl {
     }
 
     public void validationSuccessMessage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(successeMessage));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(successMessage));
     }
 
     public void clickUserDropDown() {

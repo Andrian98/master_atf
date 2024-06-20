@@ -1,7 +1,7 @@
 package performance.upskilling.atf.hooks;
 
-import org.junit.After;
-import org.junit.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 
 public class TestHooks {
@@ -13,6 +13,10 @@ public class TestHooks {
 
     @After
     public void tearDown() {
-        WebDriverManager.quitDriver();
-    }
+//        try {
+//            WebDriverManager.quitDriver();
+//        } catch (Exception e) {
+//            System.err.println("Error closing browser: " + e.getMessage());
+//        }
+    }//end tearDown
 }
