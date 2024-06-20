@@ -42,4 +42,8 @@ public class PropertiesManager {
         return properties.getProperty("app.buzzboard");
     }
 
+    public static String getAppPasswordBoard(){
+        return properties.getProperty("app.updatePassword");
+    }
+
 }

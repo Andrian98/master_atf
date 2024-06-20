@@ -18,6 +18,7 @@ public class UserActionsSteps {
     String appURL = PropertiesManager.getAppURL();
     String appDashboard = PropertiesManager.getAppDashboard();
     String appBuzzboard = PropertiesManager.getAppBuzzboard();
+    String appPasswordBoard = PropertiesManager.getAppPasswordBoard();
 
     @Given("user is on Home page")
     public void userIsOnHomePage() {
@@ -41,7 +42,7 @@ public class UserActionsSteps {
 
     @Given("user is logged in")
     public void user_is_logged_in() {
-        userActionsStepsImpl.validateDashboard(appDashboard);
+        userActionsStepsImpl.userLoggedIn();
     }
 
     @When("user clicks Buzz meniu")
@@ -76,38 +77,37 @@ public class UserActionsSteps {
 
     @When("user clicks on three dots button")
     public void user_clicks_on_three_dots_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickThreeDots();
     }
 
     @When("user clicks on Delete Post option")
     public void user_clicks_on_delete_post_option() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.deletePost();
     }
 
     @When("user clicks Yes,Delete button")
     public void user_clicks_yes_delete_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickYesDelete();
     }
 
     @Then("post is successfully deleted")
     public void post_is_successfully_deleted() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.validationSuccessMessage();
+    }
+
+    @When("user clicks userdropdown meniu")
+    public void user_clicks_userdropdown_meniu() {
+        userActionsStepsImpl.clickUserDropDown();
     }
 
     @When("user clicks Change Password button")
     public void user_clicks_change_password_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickChangePassword();
     }
 
     @When("update password page is displayed")
     public void update_password_page_is_displayed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.validatePasswordBoard(appPasswordBoard);
     }
 
     @When("user clicks on Current Password insert bar")
@@ -158,11 +158,6 @@ public class UserActionsSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-    @When("user clicks userdropdown meniu")
-    public void user_clicks_userdropdown_meniu() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
     @When("user insert old password")
     public void user_insert_old_password() {

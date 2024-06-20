@@ -20,6 +20,17 @@ public class UserActionsStepsImpl {
     By postInput = By.className("oxd-buzz-post-input");
     By postButton = By.xpath("//button[@type='submit']");
     By postValidation = By.xpath("//p[text()='My ATF is working']");
+    By threeDots = By.xpath("//i[@class='oxd-icon bi-three-dots']");
+    By deletePost = By.xpath("//p[text()='Delete Post']");
+    By yesDeleteButton = By.xpath("//button[text()=' Yes, Delete ']");
+    By successeMessage = By.xpath("//div[contains(@class,'oxd-toast oxd-toast--success')]");
+    By userDropDown = By.className("oxd-userdropdown-name");
+    By changePasswordButton = By.xpath("(//a[@class='oxd-userdropdown-link'])[3]");
+    By currentPassword = By.xpath("//input[@class='oxd-input oxd-input--focus']");
+    By password = By.xpath("(//input[@type='password'])[2]");
+    By confirmPassword = By.xpath("(//input[@type='password'])[3]");
+    By saveButton = By.xpath("//button[@type='submit']");
+    By userLoggedIn = By.className("oxd-sidepanel-body");
 
     public UserActionsStepsImpl(WebDriver driver) {
         this.driver = driver;
@@ -71,6 +82,41 @@ public class UserActionsStepsImpl {
 
     public void validateBuzzboard(String appBuzzboard) {
         wait.until(ExpectedConditions.urlToBe(appBuzzboard));
+    }
+
+    public void userLoggedIn(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(userLoggedIn));
+    }
+
+    public void clickThreeDots(){
+        driver.findElement(threeDots).click();
+    }
+
+    public void deletePost(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(deletePost));
+        driver.findElement(deletePost).click();
+    }
+
+    public void clickYesDelete(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(yesDeleteButton));
+        driver.findElement(yesDeleteButton).click();
+    }
+
+    public void validationSuccessMessage(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(successeMessage));
+    }
+
+    public void clickUserDropDown(){
+        driver.findElement(userDropDown).click();
+    }
+
+    public void clickChangePassword(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(changePasswordButton));
+        driver.findElement(changePasswordButton).click();
+    }
+
+    public void validatePasswordBoard(String appPasswordBoard){
+        wait.until(ExpectedConditions.urlToBe(appPasswordBoard));
     }
 
 
