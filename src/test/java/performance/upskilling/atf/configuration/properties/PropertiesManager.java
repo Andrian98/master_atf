@@ -30,4 +30,20 @@ public class PropertiesManager {
         return properties.getProperty("Password");
     }
 
+    public static String getAppURL() {
+        return properties.getProperty("app.url");
+    }
+
+    public static String getAppDashboard(){
+        return properties.getProperty("app.dashboard");
+    }
+
+    public static String getAppBuzzboard(){
+        return properties.getProperty("app.buzzboard");
+    }
+
+    public static String getAppPasswordBoard(){
+        return properties.getProperty("app.updatePassword");
+    }
+
 }
