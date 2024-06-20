@@ -26,15 +26,51 @@ public class UserActionsStepsImpl {
     By successeMessage = By.xpath("//div[contains(@class,'oxd-toast oxd-toast--success')]");
     By userDropDown = By.className("oxd-userdropdown-name");
     By changePasswordButton = By.xpath("(//a[@class='oxd-userdropdown-link'])[3]");
-    By currentPassword = By.xpath("//input[@class='oxd-input oxd-input--focus']");
-    By password = By.xpath("(//input[@type='password'])[2]");
+    By currentPassword = By.xpath("//input[@type='password']");
+    By newPassword = By.xpath("(//input[@type='password'])[2]");
     By confirmPassword = By.xpath("(//input[@type='password'])[3]");
     By saveButton = By.xpath("//button[@type='submit']");
     By userLoggedIn = By.className("oxd-sidepanel-body");
+    By userLoggedOut = By.xpath("//a[@href='/web/index.php/auth/logout']");
 
     public UserActionsStepsImpl(WebDriver driver) {
         this.driver = driver;
         wait = WebDriverWaiter.getWaiter(driver);
+    }
+
+    public void clickLogOutButton(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(userLoggedOut));
+        driver.findElement(userLoggedOut).click();
+    }
+
+    public void clickSaveButton(){
+        driver.findElement(saveButton).click();
+    }
+
+    public void insertConfirmPassword(String newPass){
+        driver.findElement(confirmPassword).sendKeys(newPass);
+    }
+
+    public void clickConfirmPassword(){
+        driver.findElement(confirmPassword).click();
+    }
+
+    public void insertNewPassword(String newPass){
+        driver.findElement(newPassword).sendKeys(newPass);
+    }
+
+    public void clickPasswordField(){
+        driver.findElement(newPassword).click();
+    }
+
+    public void insertOldPassword(String password) {
+        driver.findElement(currentPassword).sendKeys(password);
+    }
+
+
+    public void clickCurrentPasswordField() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(currentPassword));
+        driver.findElement(currentPassword).click();
     }
 
     public void navigateToLoginPage(String appURL) {
@@ -84,38 +120,38 @@ public class UserActionsStepsImpl {
         wait.until(ExpectedConditions.urlToBe(appBuzzboard));
     }
 
-    public void userLoggedIn(){
+    public void userLoggedIn() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(userLoggedIn));
     }
 
-    public void clickThreeDots(){
+    public void clickThreeDots() {
         driver.findElement(threeDots).click();
     }
 
-    public void deletePost(){
+    public void deletePost() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(deletePost));
         driver.findElement(deletePost).click();
     }
 
-    public void clickYesDelete(){
+    public void clickYesDelete() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(yesDeleteButton));
         driver.findElement(yesDeleteButton).click();
     }
 
-    public void validationSuccessMessage(){
+    public void validationSuccessMessage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(successeMessage));
     }
 
-    public void clickUserDropDown(){
+    public void clickUserDropDown() {
         driver.findElement(userDropDown).click();
     }
 
-    public void clickChangePassword(){
+    public void clickChangePassword() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(changePasswordButton));
         driver.findElement(changePasswordButton).click();
     }
 
-    public void validatePasswordBoard(String appPasswordBoard){
+    public void validatePasswordBoard(String appPasswordBoard) {
         wait.until(ExpectedConditions.urlToBe(appPasswordBoard));
     }
 

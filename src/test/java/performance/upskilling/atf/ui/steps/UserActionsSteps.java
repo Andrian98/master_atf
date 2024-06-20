@@ -14,11 +14,12 @@ public class UserActionsSteps {
     WebDriver driver = WebDriverManager.getDriver();
     UserActionsStepsImpl userActionsStepsImpl = new UserActionsStepsImpl(driver);
     String username = PropertiesManager.getUsername();
-    String password = PropertiesManager.getPassword();
+    String oldPassword = PropertiesManager.getPassword();
     String appURL = PropertiesManager.getAppURL();
     String appDashboard = PropertiesManager.getAppDashboard();
     String appBuzzboard = PropertiesManager.getAppBuzzboard();
     String appPasswordBoard = PropertiesManager.getAppPasswordBoard();
+    String newPassword = PropertiesManager.getNewPassword();
 
     @Given("user is on Home page")
     public void userIsOnHomePage() {
@@ -27,7 +28,7 @@ public class UserActionsSteps {
 
     @When("user enters their credentials")
     public void userEntersTheirCredentials() {
-        userActionsStepsImpl.enterCredentials(username, password);
+        userActionsStepsImpl.enterCredentials(username, oldPassword);
     }
 
     @And("user clicks Login button")
@@ -112,80 +113,71 @@ public class UserActionsSteps {
 
     @When("user clicks on Current Password insert bar")
     public void user_clicks_on_current_password_insert_bar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickCurrentPasswordField();
     }
 
     @When("user insert current password")
     public void user_insert_current_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.insertOldPassword(oldPassword);
     }
 
     @When("user clicks on Password insert bar")
     public void user_clicks_on_password_insert_bar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickPasswordField();
     }
 
     @When("user insert new password")
     public void user_insert_new_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.insertNewPassword(newPassword);
     }
 
     @When("user clicks on Confirm Password insert bar")
     public void user_clicks_on_confirm_password_insert_bar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickConfirmPassword();
     }
 
     @When("user insert new password again")
     public void user_insert_new_password_again() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.insertConfirmPassword(newPassword);
     }
 
     @When("user clicks on Save button")
     public void user_clicks_on_save_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickSaveButton();
     }
 
     @Then("password is updated")
     public void password_is_updated() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.validationSuccessMessage();
     }
 
+    @And("user insert current new password")
+    public void user_insert_current_new_password() {
+        userActionsStepsImpl.insertOldPassword(newPassword);
+    }
 
     @When("user insert old password")
     public void user_insert_old_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.insertNewPassword(oldPassword);
     }
 
     @When("user insert old password again")
     public void user_insert_old_password_again() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.insertConfirmPassword(oldPassword);
     }
 
     @Then("old password is restored")
     public void old_password_is_restored() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.validationSuccessMessage();
     }
 
     @When("user clicks Logout button")
     public void user_clicks_logout_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.clickLogOutButton();
     }
 
     @Then("user logged out")
     public void user_logged_out() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        userActionsStepsImpl.navigateToLoginPage(appURL);
     }
 }

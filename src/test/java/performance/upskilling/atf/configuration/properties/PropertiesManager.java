@@ -22,6 +22,10 @@ public class PropertiesManager {
         }
     }
 
+    public static String getNewPassword(){
+        return properties.getProperty("NewPassword");
+    }
+
     public static String getUsername() {
         return properties.getProperty("Username");
     }

@@ -41,7 +41,7 @@ Feature: User actions on the application
     And user clicks Change Password button
     And update password page is displayed
     And user clicks on Current Password insert bar
-    And user insert current password
+    And user insert current new password
     And user clicks on Password insert bar
     And user insert old password
     And user clicks on Confirm Password insert bar
