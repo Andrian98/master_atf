@@ -145,12 +145,12 @@ public class UserActionsStepsImpl {
         driver.findElement(userDropDown).click();
     }
 
-    public void clickChangePassword() {
+    public void clickChangePasswordButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(changePasswordButton));
         driver.findElement(changePasswordButton).click();
     }
 
-    public void validatePasswordBoard(String appPasswordBoard) {
+    public void validateChangePasswordPage(String appPasswordBoard) {
         wait.until(ExpectedConditions.urlToBe(appPasswordBoard));
     }
 

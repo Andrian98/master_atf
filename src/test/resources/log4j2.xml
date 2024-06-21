@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn">
+
     <Properties>
         <Property name="basePath">./logs</Property>
         <Property name="LOG_PATTERN">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1}.%L - %msg%n</Property>
@@ -9,19 +10,36 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-        <File name="fileLogger" fileName="${basePath}/file.log">
+        <RollingFile name="fileLogger" fileName="${basePath}/applog.log"
+                     filePattern="${basePath}/applog-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="${LOG_PATTERN}"/>
-        </File>
-        <File name="errorLog" fileName="${basePath}/error.log">
-            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="${LOG_PATTERN}"/>
-        </File>
-        <File name="LatencyLogger" fileName="${basePath}/latency.log">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
-        </File>
-    </Appenders>
-    <Loggers>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
 
+        <RollingFile name="LatencyLogger" fileName="${basePath}/latency.log"
+                     filePattern="${basePath}/latency-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <RollingFile name="errorLog" fileName="${basePath}/error.log"
+                     filePattern="${basePath}/error-%d{yyyy-MM-dd}.log">
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
         <Logger name="performance.upskilling.atf" level="debug" additivity="true">
             <appender-ref ref="fileLogger" level="debug"/>
             <appender-ref ref="errorLog" level="error"/>
@@ -34,6 +52,6 @@
         <Root level="info" additivity="false">
             <appender-ref ref="console"/>
         </Root>
-
     </Loggers>
+
 </Configuration>

@@ -18,7 +18,7 @@ public class PropertiesManager {
                 logger.error("Error loading properties file: file not found");
             }
         } catch (IOException e) {
-            logger.error("Error loading properties file: " + e.getMessage());
+            logger.error("Error loading properties file: {}", e.getMessage());
         }
     }
 
