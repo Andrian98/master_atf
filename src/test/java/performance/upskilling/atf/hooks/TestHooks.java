@@ -22,13 +22,4 @@ public class TestHooks {
         }
 
     }
-
-    @After
-    public void tearDown() {
-//        try {
-//            WebDriverManager.quitDriver();
-//        } catch (Exception e) {
-//            System.err.println("Error closing browser: " + e.getMessage());
-//        }
-    }//end tearDown
 }
