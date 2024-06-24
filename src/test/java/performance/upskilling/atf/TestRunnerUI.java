@@ -11,19 +11,13 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/resources/features"},
-        glue = {"performance/upskilling/atf/ui", "performance/upskilling/atf/hooks"},
+        glue = {"performance.upskilling.atf.ui", "performance.upskilling.atf.hooks"},
         plugin = {"pretty", "html:target/cucumber-reports"},
-        monochrome = true
+        tags = "@Orange_UI"
 )
 
 public class TestRunnerUI {
 
     private static final Logger logger = LogManager.getLogger(TestRunnerUI.class);
 
-    @AfterClass
-    public static void tearDownAfterAllScenarios() {
-        logger.info("All the scenarios were executed. ");
-        WebDriverManager.quitDriver();
-        logger.debug("Browser is closed.");
-    }
 }
