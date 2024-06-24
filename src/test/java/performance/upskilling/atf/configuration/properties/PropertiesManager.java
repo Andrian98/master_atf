@@ -18,8 +18,12 @@ public class PropertiesManager {
                 logger.error("Error loading properties file: file not found");
             }
         } catch (IOException e) {
-            logger.error("Error loading properties file: " + e.getMessage());
+            logger.error("Error loading properties file: {}", e.getMessage());
         }
+    }
+
+    public static String getNewPassword(){
+        return properties.getProperty("NewPassword");
     }
 
     public static String getUsername() {

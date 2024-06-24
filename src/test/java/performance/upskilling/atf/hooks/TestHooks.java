@@ -1,18 +1,33 @@
 package performance.upskilling.atf.hooks;
 
-import org.junit.After;
-import org.junit.Before;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.Before;
+import org.apache.logging.log4j.LogManager;
+import org.junit.AfterClass;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
+import org.apache.logging.log4j.Logger;
 
 public class TestHooks {
 
+    private static final Logger logger = LogManager.getLogger(TestHooks.class);
+
     @Before
     public void launchBrowser() {
-        WebDriverManager.getDriver();
+        logger.info("Starting the UI test.");
+        try {
+            logger.debug("Starting the browser");
+            WebDriverManager.getDriver();
+            logger.debug("Browser was lunched successfully.");
+        } catch (Exception e) {
+            logger.error("Browser didn't start.", e);
+        }
+
     }
 
-    @After
-    public void tearDown() {
+    @AfterAll
+    public static void tearDownAfterAllScenarios() {
+        logger.info("All the scenarios were executed. ");
         WebDriverManager.quitDriver();
+        logger.debug("Browser is closed.");
     }
 }
