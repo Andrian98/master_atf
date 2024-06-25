@@ -3,7 +3,6 @@ package performance.upskilling.atf.hooks;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import org.apache.logging.log4j.LogManager;
-import org.junit.AfterClass;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 
