@@ -3,32 +3,28 @@ package performance.upskilling.atf;
 
 import org.junit.Before;
 import org.junit.Test;
-import performance.upskilling.atf.api.dtos.requests.UserCreation;
-import performance.upskilling.atf.api.dtos.response.UserCreationResponse;
+import performance.upskilling.atf.api.actions.AdminUserSteps;
+import performance.upskilling.atf.api.dtos.requests.AdminUserRequests;
+import performance.upskilling.atf.api.dtos.response.AdminUserResponse;
 import io.restassured.response.Response;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 public class TestRunnerAPI {
-    private static UserCreation userCreation;
-    private static UserCreationResponse userCreationResponse;
+    private static AdminUserRequests userCreation;
+    private static AdminUserResponse userCreationResponse;
+    private static AdminUserSteps adminUserSteps;
     private static final String adminUser = PropertiesManager.getAdminUser();
     private static final String adminPassword = PropertiesManager.getAdminPassword();
 
 
-
     @Before
     public void setup() {
-        userCreation = new UserCreation();
-        userCreationResponse = new UserCreationResponse();
+        adminUserSteps = new AdminUserSteps();
     }
 
     @Test
     public void testCreateUser() {
-        Response response;
-
-        response = userCreation.loginAsAdmin(adminUser, adminPassword);
-        userCreationResponse.validateLoginAdmin(response);
-//        response = userCreation.createUser("newuser", "newpassword", "newuser@example.com");
-//        userCreationResponse.validateCreatedResponse(response);
+        adminUserSteps.ISendAPostRequestToTheLoginEndpoint(adminUser, adminPassword);
+        adminUserSteps.IAmAnAuthorizedUser();
     }
 }

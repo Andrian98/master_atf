@@ -11,7 +11,8 @@ Feature: User actions on the application
   Scenario: User creates a post
     Given user is logged in
     When user clicks Buzz meniu
-    And user clicks on text input bar
+    Then Buzz page is displayed
+    When user clicks on text input bar
     And user insert the text "My ATF is working"
     And user clicks Post button
     Then post is displayed on Buzz Newsfeed
@@ -21,7 +22,8 @@ Feature: User actions on the application
     Given user is on Buzz board
     When user clicks on three dots button
     And user clicks on Delete Post option
-    And user clicks Yes,Delete button
+    Then top up is displayed
+    When user clicks Yes,Delete button
     Then post is successfully deleted
 
   @Orange_UI
@@ -29,8 +31,8 @@ Feature: User actions on the application
     Given user is logged in
     When user clicks userdropdown meniu
     And user clicks Change Password button
-    And update password page is displayed
-    And user clicks on Current Password insert bar
+    Then update password page is displayed
+    When user clicks on Current Password insert bar
     And user insert current password
     And user clicks on Password insert bar
     And user insert new password
@@ -44,8 +46,8 @@ Feature: User actions on the application
     Given user is logged in
     When user clicks userdropdown meniu
     And user clicks Change Password button
-    And update password page is displayed
-    And user clicks on Current Password insert bar
+    Then update password page is displayed
+    When user clicks on Current Password insert bar
     And user insert current new password
     And user clicks on Password insert bar
     And user insert old password

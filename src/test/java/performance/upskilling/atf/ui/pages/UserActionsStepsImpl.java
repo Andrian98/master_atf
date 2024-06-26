@@ -35,10 +35,17 @@ public class UserActionsStepsImpl {
     By saveButton = By.xpath("//button[@type='submit']");
     By userLoggedIn = By.className("oxd-sidepanel-body");
     By userLoggedOut = By.xpath("//a[@href='/web/index.php/auth/logout']");
+    By validateTopUp = By.xpath("//p[text()='The selected item will be permanently deleted. Are you sure you want to continue?']");
 
     public UserActionsStepsImpl(WebDriver driver) {
         this.driver = driver;
         wait = WebDriverWaiter.getWaiter(driver);
+    }
+
+    public void validateTopUpMessage(){
+        logger.debug("Waiting for the top up message to be displayed");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(validateTopUp));
+        logger.info("Top up message is displayed");
     }
 
     public void clickLogOutButton() {
@@ -97,7 +104,7 @@ public class UserActionsStepsImpl {
         try {
             logger.debug("Clicking Password field");
             driver.findElement(newPassword).click();
-            logger.info("User clicked Password field");
+            logger.info("User clicked Password insert field");
         } catch (Exception e) {
             logger.error("Error clicking Password field: {}", e.getMessage());
         }

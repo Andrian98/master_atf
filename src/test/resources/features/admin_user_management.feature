@@ -2,10 +2,10 @@ Feature: Admin actions on the applications
 
   Scenario: Admin logs in
     Given I am an authorized user
-    When I send a POST request to the /login endpoint with the following credentials
+    When I send a POST request to the login endpoint
       | username | password |
       | admin    | AdminPass1! |
-    Then the response status code is 200
+    Then the response status code is 302
 
     Scenario: Admin create new user
       Given admin is logged in
