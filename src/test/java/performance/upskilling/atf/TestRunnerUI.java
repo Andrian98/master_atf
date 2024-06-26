@@ -2,11 +2,8 @@ package performance.upskilling.atf;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.junit.AfterClass;
 import org.junit.runner.RunWith;
-import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
+
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -17,7 +14,4 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 )
 
 public class TestRunnerUI {
-
-    private static final Logger logger = LogManager.getLogger(TestRunnerUI.class);
-
 }

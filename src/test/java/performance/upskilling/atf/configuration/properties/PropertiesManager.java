@@ -1,6 +1,8 @@
 package performance.upskilling.atf.configuration.properties;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -12,7 +14,7 @@ public class PropertiesManager {
 
     static {
         try (InputStream input = PropertiesManager.class.getClassLoader().getResourceAsStream("properties/test.properties")) {
-            if(input != null){
+            if (input != null) {
                 properties.load(input);
             } else {
                 logger.error("Error loading properties file: file not found");
@@ -22,7 +24,7 @@ public class PropertiesManager {
         }
     }
 
-    public static String getNewPassword(){
+    public static String getNewPassword() {
         return properties.getProperty("NewPassword");
     }
 
@@ -38,16 +40,30 @@ public class PropertiesManager {
         return properties.getProperty("app.url");
     }
 
-    public static String getAppDashboard(){
+    public static String getAppDashboard() {
         return properties.getProperty("app.dashboard");
     }
 
-    public static String getAppBuzzboard(){
+    public static String getAppBuzzboard() {
         return properties.getProperty("app.buzzboard");
     }
 
-    public static String getAppPasswordBoard(){
+    public static String getAppPasswordBoard() {
         return properties.getProperty("app.updatePassword");
     }
+
+    public static String getAdminUser() {
+        return properties.getProperty("AdminUser");
+    }
+
+    public static String getAdminPassword() {
+        return properties.getProperty("AdminPassword");
+    }
+
+    public static String getAppAuth() {
+        return properties.getProperty("app.auth");
+    }
+
+    public static String getAppLogin() {return  properties.getProperty("app.login");}
 
 }

@@ -1,10 +1,11 @@
 Feature: Admin actions on the applications
 
   Scenario: Admin logs in
-    Given admin is on home page
-    When admin enter credentials
-    And admin clicks login button
-    Then admin is redirected to the dashboard
+    Given I am an authorized user
+    When I send a POST request to the login endpoint
+      | username | password |
+      | admin    | AdminPass1! |
+    Then the response status code is 302
 
     Scenario: Admin create new user
       Given admin is logged in
