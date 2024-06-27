@@ -64,6 +64,8 @@ public class PropertiesManager {
         return properties.getProperty("app.auth");
     }
 
-    public static String getAppLogin() {return  properties.getProperty("app.login");}
+    public static String getAppLogin() {
+        return properties.getProperty("app.login");
+    }
 
 }

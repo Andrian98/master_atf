@@ -42,7 +42,7 @@ public class UserActionsStepsImpl {
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
-    public void validateTopUpMessage(){
+    public void validateTopUpMessage() {
         logger.debug("Waiting for the top up message to be displayed");
         wait.until(ExpectedConditions.visibilityOfElementLocated(validateTopUp));
         logger.info("Top up message is displayed");

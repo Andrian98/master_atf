@@ -26,5 +26,6 @@ public class TestRunnerAPI {
     public void testCreateUser() {
         adminUserSteps.ISendAPostRequestToTheLoginEndpoint(adminUser, adminPassword);
         adminUserSteps.IAmAnAuthorizedUser();
+        adminUserSteps.theResponseStatusCodeIs302();
     }
 }

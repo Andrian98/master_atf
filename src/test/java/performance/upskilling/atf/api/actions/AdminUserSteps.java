@@ -7,12 +7,14 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import performance.upskilling.atf.api.dtos.requests.AdminUserRequests;
+import performance.upskilling.atf.api.dtos.response.AdminUserResponse;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 import java.util.Map;
 
 public class AdminUserSteps {
     private static Response authResponse;
+    AdminUserResponse adminUserResponse = new AdminUserResponse();
 
     @Given("I am an authorized user")
     public void IAmAnAuthorizedUser(){
@@ -39,6 +41,7 @@ public class AdminUserSteps {
 
     @Then("the response status code is 302")
     public void theResponseStatusCodeIs302(){
-
+        adminUserResponse.validateLoginAdmin(authResponse);
+        System.out.println("Validated the 302 response");
     }
 }

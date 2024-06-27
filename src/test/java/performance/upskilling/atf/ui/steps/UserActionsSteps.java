@@ -26,7 +26,7 @@ public class UserActionsSteps {
     String newPassword = PropertiesManager.getNewPassword();
 
     @Given("user is on Home page")
-    public void userIsOnHomePage() {
+    public void user_is_on_home_page() {
         userActionsStepsImpl.navigateToLoginPage(appURL);
     }
 
@@ -36,12 +36,12 @@ public class UserActionsSteps {
     }
 
     @And("user clicks Login button")
-    public void userClicksLoginButton() {
+    public void user_clicks_login_button() {
         userActionsStepsImpl.clickLoginButton();
     }
 
     @Then("user is redirected to the dashboard")
-    public void userIsRedirectedToTheDashboard() {
+    public void user_is_redirected_to_the_dashboard() {
         userActionsStepsImpl.validateDashboard(appDashboard);
         logger.info("User is redirected to the dashboard");
     }
@@ -57,7 +57,7 @@ public class UserActionsSteps {
     }
 
     @Then("Buzz page is displayed")
-    public void buzz_page_is_displayed(){
+    public void buzz_page_is_displayed() {
         userActionsStepsImpl.validateBuzzboard(appBuzzboard);
         logger.info("Buzz page is displayed");
     }
@@ -100,7 +100,7 @@ public class UserActionsSteps {
     }
 
     @Then("top up is displayed")
-    public void top_up_is_displayed(){
+    public void top_up_is_displayed() {
         userActionsStepsImpl.validateTopUpMessage();
     }
 
