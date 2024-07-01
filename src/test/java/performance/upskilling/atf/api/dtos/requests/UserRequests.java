@@ -5,12 +5,11 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class AdminUserRequests {
+public class UserRequests {
 
     public static String tokenExtractor() {
         // Set up the base URL for the API
@@ -31,5 +30,14 @@ public class AdminUserRequests {
         }
 
         return tokenValue;
+    }
+
+    public Response createUser(String newUsername, String newPassword, String newEmail) {
+
+        return RestAssured.given()
+                .header("Authorization", "Bearer " + UserRequests.tokenExtractor())
+                .header("Content-Type", "application/json")
+                .body("{\"username\":\"" + newUsername + "\",\"password\":\"" + newPassword + "\",\"email\":\"" + newEmail + "\"}")
+                .post("/users");
     }
 }

@@ -9,7 +9,9 @@ import org.apache.logging.log4j.Logger;
 public class TestHooks {
 
     private static final Logger logger = LogManager.getLogger(TestHooks.class);
-
+    // TODO webdriver in singlton, failfast to stop the test if exception
+    // TODO parametrised the hooks, study in test-materials
+    // TODO remove some of the try/catch if necessary
     @Before
     public void launchBrowser() {
         logger.info("Starting the UI test.");

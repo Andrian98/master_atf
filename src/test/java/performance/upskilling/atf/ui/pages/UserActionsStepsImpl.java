@@ -15,7 +15,8 @@ public class UserActionsStepsImpl {
 
     WebDriver driver;
     WebDriverWait wait;
-
+    // TODO page object model
+    // TODO loggers management
     By usernameField = By.name("username");
     By passwordField = By.name("password");
     By loginButton = By.tagName("button");

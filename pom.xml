@@ -19,6 +19,8 @@
         <cucumber-junit.version>7.0.0</cucumber-junit.version>
         <log4j-core.version>2.23.1</log4j-core.version>
         <rest-assured.version>5.4.0</rest-assured.version>
+        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <java-hamcrest.version>2.2</java-hamcrest.version>
     </properties>
 
     <dependencies>
@@ -27,6 +29,13 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Selenium dependencies for UI testing -->
@@ -60,11 +69,14 @@
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
+            <scope>test</scope>
         </dependency>
+
+        <!-- Hamcrest dependencies -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${java-hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
 

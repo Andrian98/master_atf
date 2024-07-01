@@ -1,4 +1,4 @@
-package performance.upskilling.atf;
+package performance.upskilling.atf.Runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

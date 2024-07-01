@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 public class UserActionsSteps {
 
     private static final Logger logger = LogManager.getLogger(UserActionsSteps.class);
-
+    // TODO add access modifiers put the correct type
     WebDriver driver = WebDriverManager.getDriver();
     UserActionsStepsImpl userActionsStepsImpl = new UserActionsStepsImpl(driver);
     String username = PropertiesManager.getUsername();
@@ -30,6 +30,9 @@ public class UserActionsSteps {
         userActionsStepsImpl.navigateToLoginPage(appURL);
     }
 
+    // TODO to use WHEN instead of the AND
+    // TODO Optimese the methods ex. Click on the button (web element) universal logger
+    // TODO validation with assert
     @When("user enters their credentials")
     public void userEntersTheirCredentials() {
         userActionsStepsImpl.enterCredentials(username, oldPassword);

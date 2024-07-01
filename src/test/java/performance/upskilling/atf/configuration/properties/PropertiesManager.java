@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesManager {
-
+    // TODO Define what proprieties you are calling direct, and what from method here
     private static final Properties properties = new Properties();
     private static final Logger logger = LogManager.getLogger(PropertiesManager.class);
 
@@ -50,14 +50,6 @@ public class PropertiesManager {
 
     public static String getAppPasswordBoard() {
         return properties.getProperty("app.updatePassword");
-    }
-
-    public static String getAdminUser() {
-        return properties.getProperty("AdminUser");
-    }
-
-    public static String getAdminPassword() {
-        return properties.getProperty("AdminPassword");
     }
 
     public static String getAppAuth() {

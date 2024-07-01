@@ -1,12 +1,15 @@
 Feature: User actions on the application
-
+  # use background ex. Given user is logged in  # User logged in with credentials
+  # Define what kind of credentials, put them here in steps
+  # Optimised the scenario according to the functionality
   @Orange_UI
   Scenario: User logs in
     Given user is on Home page
     When user enters their credentials
     And user clicks Login button
     Then user is redirected to the dashboard
-
+  # TODO Fix the structure to be GIVEN and THEN
+  # logged user is on Buzz meniu
   @Orange_UI
   Scenario: User creates a post
     Given user is logged in
