@@ -4,14 +4,9 @@ import io.restassured.response.Response;
 
 public class UserResponse {
 
-    public void validateLoginAdmin(Response response){
-        response.then().statusCode(302);
-        System.out.println("Validated the 302 response");
-    }
+    //TODO to use a parameter on what you waite
+    //TODO validation will be on USerActions using assertions
 
-    public void validateResponse200(Response response) {
-        response.then().statusCode(200);
-        System.out.println("Validated the 200 response");
-    }
+    //TODO In Requests and Response need to be object of the response and requests
 
 }

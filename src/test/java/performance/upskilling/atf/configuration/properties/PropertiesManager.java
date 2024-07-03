@@ -24,40 +24,40 @@ public class PropertiesManager {
         }
     }
 
-    public static String getNewPassword() {
-        return properties.getProperty("NewPassword");
+    public static String getURL(){
+      return   properties.getProperty("url");
     }
 
-    public static String getUsername() {
-        return properties.getProperty("Username");
-    }
+    public static String getLoginURL(){ return properties.getProperty("login.url"); }
 
-    public static String getPassword() {
-        return properties.getProperty("Password");
-    }
+//    public static String getNewPassword() {
+//        return properties.getProperty("NewPassword");
+//    }
 
-    public static String getAppURL() {
-        return properties.getProperty("app.url");
-    }
+    public static String getRegisterURL() { return properties.getProperty("register.url"); }
 
-    public static String getAppDashboard() {
-        return properties.getProperty("app.dashboard");
-    }
-
-    public static String getAppBuzzboard() {
-        return properties.getProperty("app.buzzboard");
-    }
-
-    public static String getAppPasswordBoard() {
-        return properties.getProperty("app.updatePassword");
-    }
-
-    public static String getAppAuth() {
-        return properties.getProperty("app.auth");
-    }
-
-    public static String getAppLogin() {
-        return properties.getProperty("app.login");
-    }
+//    public static String getUsername() {
+//        return properties.getProperty("Username");
+//    }
+//
+//    public static String getPassword() {
+//        return properties.getProperty("Password");
+//    }
+//
+//    public static String getAppURL() {
+//        return properties.getProperty("app.url");
+//    }
+//
+//    public static String getAppDashboard() {
+//        return properties.getProperty("app.dashboard");
+//    }
+//
+//    public static String getAppBuzzboard() {
+//        return properties.getProperty("app.buzzboard");
+//    }
+//
+//    public static String getAppPasswordBoard() {
+//        return properties.getProperty("app.updatePassword");
+//    }
 
 }

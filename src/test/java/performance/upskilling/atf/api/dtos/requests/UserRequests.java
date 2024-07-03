@@ -1,43 +1,33 @@
 package performance.upskilling.atf.api.dtos.requests;
 
-import io.restassured.response.Response;
 import io.restassured.RestAssured;
-import io.restassured.specification.RequestSpecification;
-import performance.upskilling.atf.configuration.properties.PropertiesManager;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.json.JSONObject;
 
 
 public class UserRequests {
 
-    public static String tokenExtractor() {
-        // Set up the base URL for the API
-        RestAssured.baseURI = PropertiesManager.getAppLogin();
-
-        RequestSpecification request = RestAssured.given()
-                .header("Content-Type", "text/plain");
-
-        Response loginResponse = request.get();
-        String htmlResponse = loginResponse.getBody().asString();
-        String regex = ":token=\"&quot;([^\"]+)&quot;\"";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(htmlResponse);
-
-        String tokenValue = null;
-        if (matcher.find()) {
-            tokenValue = matcher.group(1);
-        }
-
-        return tokenValue;
+    public JSONObject getJsonObjectFromResponse(Response response) {
+        String responseBody = response.getBody().asString();
+        return new JSONObject(responseBody);
     }
 
-    public Response createUser(String newUsername, String newPassword, String newEmail) {
+    //TODO Maybe it's need to move in config or utility
+    public static void setRestAssured(String url) {
+        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder()
+                .setBaseUri(url)
+                .setContentType(ContentType.JSON)
+                .setAccept(ContentType.JSON)
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL, true, System.out))
+                .addFilter(new RequestLoggingFilter(LogDetail.ALL, true, System.out));
 
-        return RestAssured.given()
-                .header("Authorization", "Bearer " + UserRequests.tokenExtractor())
-                .header("Content-Type", "application/json")
-                .body("{\"username\":\"" + newUsername + "\",\"password\":\"" + newPassword + "\",\"email\":\"" + newEmail + "\"}")
-                .post("/users");
+        RestAssured.requestSpecification = requestSpecBuilder.build();
+
     }
+
 }

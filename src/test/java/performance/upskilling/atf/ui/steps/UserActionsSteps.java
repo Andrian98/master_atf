@@ -1,5 +1,6 @@
 package performance.upskilling.atf.ui.steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,203 +12,237 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+import java.util.Map;
+
 public class UserActionsSteps {
 
     private static final Logger logger = LogManager.getLogger(UserActionsSteps.class);
     // TODO add access modifiers put the correct type
-    WebDriver driver = WebDriverManager.getDriver();
-    UserActionsStepsImpl userActionsStepsImpl = new UserActionsStepsImpl(driver);
-    String username = PropertiesManager.getUsername();
-    String oldPassword = PropertiesManager.getPassword();
-    String appURL = PropertiesManager.getAppURL();
-    String appDashboard = PropertiesManager.getAppDashboard();
-    String appBuzzboard = PropertiesManager.getAppBuzzboard();
-    String appPasswordBoard = PropertiesManager.getAppPasswordBoard();
-    String newPassword = PropertiesManager.getNewPassword();
-
-    @Given("user is on Home page")
-    public void user_is_on_home_page() {
-        userActionsStepsImpl.navigateToLoginPage(appURL);
-    }
+    public static WebDriver driver = WebDriverManager.getDriver();
+    public static UserActionsStepsImpl userActionsStepsImpl = new UserActionsStepsImpl(driver);
+    public static String registeraURL = PropertiesManager.getRegisterURL();
+//    String appDashboard = PropertiesManager.getAppDashboard();
+//    String appBuzzboard = PropertiesManager.getAppBuzzboard();
+//    String appPasswordBoard = PropertiesManager.getAppPasswordBoard();
+//    String newPassword = PropertiesManager.getNewPassword();
+//    String username = PropertiesManager.getUsername();
+//    String oldPassword = PropertiesManager.getPassword();
 
     // TODO to use WHEN instead of the AND
     // TODO Optimese the methods ex. Click on the button (web element) universal logger
     // TODO validation with assert
-    @When("user enters their credentials")
-    public void userEntersTheirCredentials() {
-        userActionsStepsImpl.enterCredentials(username, oldPassword);
+
+    @Given("user is on registry page")
+    public void userIsOnRegistryPage() {
+        userActionsStepsImpl.registrationPage(registeraURL);
     }
 
-    @And("user clicks Login button")
-    public void user_clicks_login_button() {
-        userActionsStepsImpl.clickLoginButton();
+    @When("user details are sent for registration")
+    public void userDetailsAreSentForRegistration(DataTable dataTable) {
+        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
+        for (Map<String, String> user : data) {
+            String firstName = user.get("First Name");
+            String lastName = user.get("Last Name");
+            String address = user.get("Address");
+            String city = user.get("City");
+            String state = user.get("State");
+            String zipCode = user.get("Zip Code");
+            String ssn = user.get("SSN");
+            String username = user.get("Username");
+            String password = user.get("Password");
+            String confirmPassword = user.get("Confirm");
+
+            userActionsStepsImpl.insertRegisterDetails(firstName, lastName, address, city, state, zipCode, ssn, username, password, confirmPassword);
+        }
     }
 
-    @Then("user is redirected to the dashboard")
-    public void user_is_redirected_to_the_dashboard() {
-        userActionsStepsImpl.validateDashboard(appDashboard);
-        logger.info("User is redirected to the dashboard");
+    @And("user click register button")
+    public void userClickRegisterButton() {
+        userActionsStepsImpl.clickRegisterButton();
     }
 
-    @Given("user is logged in")
-    public void user_is_logged_in() {
-        userActionsStepsImpl.userLoggedIn();
+    @Then("user is successfully registered")
+    public void userIsSuccessfullyRegistered() {
+        userActionsStepsImpl.validateUserCreation();
     }
 
-    @When("user clicks Buzz meniu")
-    public void user_clicks_Buzz_meniu() {
-        userActionsStepsImpl.clickBuzzButton();
-    }
-
-    @Then("Buzz page is displayed")
-    public void buzz_page_is_displayed() {
-        userActionsStepsImpl.validateBuzzboard(appBuzzboard);
-        logger.info("Buzz page is displayed");
-    }
-
-    @When("user clicks on text input bar")
-    public void user_clicks_on_text_input_bar() {
-        userActionsStepsImpl.clickPostInput();
-    }
-
-    @And("user insert the text {string}")
-    public void user_insert_the_text(String string) {
-        userActionsStepsImpl.insertText(string);
-    }
-
-    @And("user clicks Post button")
-    public void user_clicks_Post_button() {
-        userActionsStepsImpl.clickPostButton();
-    }
-
-    @Then("post is displayed on Buzz Newsfeed")
-    public void post_is_displayed_on_buzz_newsfeed() {
-        userActionsStepsImpl.postValidation();
-        logger.info("Post is displayed on Buzz Newsfeed");
-    }
-
-    @Given("user is on Buzz board")
-    public void user_is_on_buzz_board() {
-        userActionsStepsImpl.validateBuzzboard(appBuzzboard);
-        logger.info("User is on Buzz board");
-    }
-
-    @When("user clicks on three dots button")
-    public void user_clicks_on_three_dots_button() {
-        userActionsStepsImpl.clickThreeDots();
-    }
-
-    @And("user clicks on Delete Post option")
-    public void user_clicks_on_delete_post_option() {
-        userActionsStepsImpl.deletePost();
-    }
-
-    @Then("top up is displayed")
-    public void top_up_is_displayed() {
-        userActionsStepsImpl.validateTopUpMessage();
-    }
-
-    @When("user clicks Yes,Delete button")
-    public void user_clicks_yes_delete_button() {
-        userActionsStepsImpl.clickYesDelete();
-    }
-
-    @Then("post is successfully deleted")
-    public void post_is_successfully_deleted() {
-        userActionsStepsImpl.validationSuccessMessage();
-        logger.info("Post is successfully deleted");
-    }
-
-    @When("user clicks userdropdown meniu")
-    public void user_clicks_userdropdown_meniu() {
-        userActionsStepsImpl.clickUserDropDown();
-    }
-
-    @And("user clicks Change Password button")
-    public void user_clicks_change_password_button() {
-        userActionsStepsImpl.clickChangePasswordButton();
-    }
-
-    @Then("update password page is displayed")
-    public void update_password_page_is_displayed() {
-        userActionsStepsImpl.validateChangePasswordPage(appPasswordBoard);
-        logger.info("Update password page is displayed");
-    }
-
-    @When("user clicks on Current Password insert bar")
-    public void user_clicks_on_current_password_insert_bar() {
-        userActionsStepsImpl.clickCurrentPasswordField();
-    }
-
-    @When("user insert current password")
-    public void user_insert_current_password() {
-        userActionsStepsImpl.insertOldPassword(oldPassword);
-        logger.info("User inserted current (old) password");
-    }
-
-    @And("user clicks on Password insert bar")
-    public void user_clicks_on_password_insert_bar() {
-        userActionsStepsImpl.clickPasswordField();
-    }
-
-    @And("user insert new password")
-    public void user_insert_new_password() {
-        userActionsStepsImpl.insertNewPassword(newPassword);
-    }
-
-    @And("user clicks on Confirm Password insert bar")
-    public void user_clicks_on_confirm_password_insert_bar() {
-        userActionsStepsImpl.clickConfirmPassword();
-    }
-
-    @And("user insert new password again")
-    public void user_insert_new_password_again() {
-        userActionsStepsImpl.insertConfirmPassword(newPassword);
-        logger.info("User inserted new password again");
-    }
-
-    @And("user clicks on Save button")
-    public void user_clicks_on_save_button() {
-        userActionsStepsImpl.clickSaveButton();
-    }
-
-    @Then("password is updated")
-    public void password_is_updated() {
-        userActionsStepsImpl.validationSuccessMessage();
-        logger.info("Password is updated");
-    }
-
-    @And("user insert current new password")
-    public void user_insert_current_new_password() {
-        userActionsStepsImpl.insertOldPassword(newPassword);
-        logger.info("User inserted current new password");
-    }
-
-    @And("user insert old password")
-    public void user_insert_old_password() {
-        userActionsStepsImpl.insertNewPassword(oldPassword);
-    }
-
-    @And("user insert old password again")
-    public void user_insert_old_password_again() {
-        userActionsStepsImpl.insertConfirmPassword(oldPassword);
-        logger.info("User inserted old password again");
-    }
-
-    @Then("old password is restored")
-    public void old_password_is_restored() {
-        userActionsStepsImpl.validationSuccessMessage();
-        logger.info("Old password is restored");
-    }
-
-    @When("user clicks Logout button")
-    public void user_clicks_logout_button() {
-        userActionsStepsImpl.clickLogOutButton();
-    }
-
-    @Then("user logged out")
-    public void user_logged_out() {
-        userActionsStepsImpl.navigateToLoginPage(appURL);
-        logger.info("User logged out");
-    }
+//
+//    @When("user enters their credentials")
+//    public void userEntersTheirCredentials() {
+//        userActionsStepsImpl.enterCredentials(username, oldPassword);
+//    }
+//
+//    @And("user clicks Login button")
+//    public void user_clicks_login_button() {
+//        userActionsStepsImpl.clickLoginButton();
+//    }
+//
+//    @Then("user is redirected to the dashboard")
+//    public void user_is_redirected_to_the_dashboard() {
+//        userActionsStepsImpl.validateDashboard(appDashboard);
+//        logger.info("User is redirected to the dashboard");
+//    }
+//
+//    @Given("user is logged in")
+//    public void user_is_logged_in() {
+//        userActionsStepsImpl.userLoggedIn();
+//    }
+//
+//    @When("user clicks Buzz meniu")
+//    public void user_clicks_Buzz_meniu() {
+//        userActionsStepsImpl.clickBuzzButton();
+//    }
+//
+//    @Then("Buzz page is displayed")
+//    public void buzz_page_is_displayed() {
+//        userActionsStepsImpl.validateBuzzboard(appBuzzboard);
+//        logger.info("Buzz page is displayed");
+//    }
+//
+//    @When("user clicks on text input bar")
+//    public void user_clicks_on_text_input_bar() {
+//        userActionsStepsImpl.clickPostInput();
+//    }
+//
+//    @And("user insert the text {string}")
+//    public void user_insert_the_text(String string) {
+//        userActionsStepsImpl.insertText(string);
+//    }
+//
+//    @And("user clicks Post button")
+//    public void user_clicks_Post_button() {
+//        userActionsStepsImpl.clickPostButton();
+//    }
+//
+//    @Then("post is displayed on Buzz Newsfeed")
+//    public void post_is_displayed_on_buzz_newsfeed() {
+//        userActionsStepsImpl.postValidation();
+//        logger.info("Post is displayed on Buzz Newsfeed");
+//    }
+//
+//    @Given("user is on Buzz board")
+//    public void user_is_on_buzz_board() {
+//        userActionsStepsImpl.validateBuzzboard(appBuzzboard);
+//        logger.info("User is on Buzz board");
+//    }
+//
+//    @When("user clicks on three dots button")
+//    public void user_clicks_on_three_dots_button() {
+//        userActionsStepsImpl.clickThreeDots();
+//    }
+//
+//    @And("user clicks on Delete Post option")
+//    public void user_clicks_on_delete_post_option() {
+//        userActionsStepsImpl.deletePost();
+//    }
+//
+//    @Then("top up is displayed")
+//    public void top_up_is_displayed() {
+//        userActionsStepsImpl.validateTopUpMessage();
+//    }
+//
+//    @When("user clicks Yes,Delete button")
+//    public void user_clicks_yes_delete_button() {
+//        userActionsStepsImpl.clickYesDelete();
+//    }
+//
+//    @Then("post is successfully deleted")
+//    public void post_is_successfully_deleted() {
+//        userActionsStepsImpl.validationSuccessMessage();
+//        logger.info("Post is successfully deleted");
+//    }
+//
+//    @When("user clicks userdropdown meniu")
+//    public void user_clicks_userdropdown_meniu() {
+//        userActionsStepsImpl.clickUserDropDown();
+//    }
+//
+//    @And("user clicks Change Password button")
+//    public void user_clicks_change_password_button() {
+//        userActionsStepsImpl.clickChangePasswordButton();
+//    }
+//
+//    @Then("update password page is displayed")
+//    public void update_password_page_is_displayed() {
+//        userActionsStepsImpl.validateChangePasswordPage(appPasswordBoard);
+//        logger.info("Update password page is displayed");
+//    }
+//
+//    @When("user clicks on Current Password insert bar")
+//    public void user_clicks_on_current_password_insert_bar() {
+//        userActionsStepsImpl.clickCurrentPasswordField();
+//    }
+//
+//    @When("user insert current password")
+//    public void user_insert_current_password() {
+//        userActionsStepsImpl.insertOldPassword(oldPassword);
+//        logger.info("User inserted current (old) password");
+//    }
+//
+//    @And("user clicks on Password insert bar")
+//    public void user_clicks_on_password_insert_bar() {
+//        userActionsStepsImpl.clickPasswordField();
+//    }
+//
+//    @And("user insert new password")
+//    public void user_insert_new_password() {
+//        userActionsStepsImpl.insertNewPassword(newPassword);
+//    }
+//
+//    @And("user clicks on Confirm Password insert bar")
+//    public void user_clicks_on_confirm_password_insert_bar() {
+//        userActionsStepsImpl.clickConfirmPassword();
+//    }
+//
+//    @And("user insert new password again")
+//    public void user_insert_new_password_again() {
+//        userActionsStepsImpl.insertConfirmPassword(newPassword);
+//        logger.info("User inserted new password again");
+//    }
+//
+//    @And("user clicks on Save button")
+//    public void user_clicks_on_save_button() {
+//        userActionsStepsImpl.clickSaveButton();
+//    }
+//
+//    @Then("password is updated")
+//    public void password_is_updated() {
+//        userActionsStepsImpl.validationSuccessMessage();
+//        logger.info("Password is updated");
+//    }
+//
+//    @And("user insert current new password")
+//    public void user_insert_current_new_password() {
+//        userActionsStepsImpl.insertOldPassword(newPassword);
+//        logger.info("User inserted current new password");
+//    }
+//
+//    @And("user insert old password")
+//    public void user_insert_old_password() {
+//        userActionsStepsImpl.insertNewPassword(oldPassword);
+//    }
+//
+//    @And("user insert old password again")
+//    public void user_insert_old_password_again() {
+//        userActionsStepsImpl.insertConfirmPassword(oldPassword);
+//        logger.info("User inserted old password again");
+//    }
+//
+//    @Then("old password is restored")
+//    public void old_password_is_restored() {
+//        userActionsStepsImpl.validationSuccessMessage();
+//        logger.info("Old password is restored");
+//    }
+//
+//    @When("user clicks Logout button")
+//    public void user_clicks_logout_button() {
+//        userActionsStepsImpl.clickLogOutButton();
+//    }
+//
+//    @Then("user logged out")
+//    public void user_logged_out() {
+//        userActionsStepsImpl.navigateToLoginPage(appURL);
+//        logger.info("User logged out");
+//    }
 }

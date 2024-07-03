@@ -1,4 +1,4 @@
-package performance.upskilling.atf.hooks;
+package performance.upskilling.atf.ui.hooks;
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
@@ -6,9 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 
-public class TestHooks {
+public class UIHooks {
 
-    private static final Logger logger = LogManager.getLogger(TestHooks.class);
+    private static final Logger logger = LogManager.getLogger(UIHooks.class);
     // TODO webdriver in singlton, failfast to stop the test if exception
     // TODO parametrised the hooks, study in test-materials
     // TODO remove some of the try/catch if necessary
