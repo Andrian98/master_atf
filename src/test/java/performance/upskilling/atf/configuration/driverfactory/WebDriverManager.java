@@ -9,19 +9,14 @@ public class WebDriverManager {
     private static WebDriver driver;
     private static final Logger logger = LogManager.getLogger(WebDriverManager.class);
 
-    // TODO Delete system proprieties
     // TODO Choose the driver /chrome/mozilla/Edge
     // TODO No generic exceptions
     public static WebDriver getDriver() {
         if (driver == null) {
             try {
-                logger.debug("Setting system property for ChromeDriver");
-                // System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-
                 logger.debug("Initializing ChromeDriver");
                 driver = new ChromeDriver();
                 driver.manage().window().maximize();
-
                 logger.info("ChromeDriver initialized and window maximized");
             } catch (Exception e) {
                 logger.error("Error initializing ChromeDriver: {}", e);

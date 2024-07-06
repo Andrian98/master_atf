@@ -22,17 +22,32 @@
         <junit-jupiter.version>5.10.2</junit-jupiter.version>
         <java-hamcrest.version>2.2</java-hamcrest.version>
         <json.version>20240303</json.version>
+        <assertj-core.version>3.26.0</assertj-core.version>
+        <jsoup.version>1.17.2</jsoup.version>
     </properties>
 
     <dependencies>
-        <!-- JSON -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <!-- Assertj dependency -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JSON dependency -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>${json.version}</version>
         </dependency>
 
-        <!-- JUnit dependency for testing -->
+        <!-- JUnit dependency-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

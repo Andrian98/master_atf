@@ -2,21 +2,17 @@ package performance.upskilling.atf.ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class UserActionsStepsImpl {
-
-    private static final Logger logger = LogManager.getLogger(UserActionsStepsImpl.class);
-
+public class RegistrationPageImpl {
+    private static final Logger logger = LogManager.getLogger(RegistrationPageImpl.class);
     public WebDriver driver;
     public static WebDriverWait wait;
-    // TODO page object model
-    // TODO loggers management
+    // TODO check study materials related to xpath to optimise here, page factory, singleton.
 
     By firstNameField = By.id("customer.firstName");
     By lastNameField = By.id("customer.lastName");
@@ -31,19 +27,20 @@ public class UserActionsStepsImpl {
     By clickRegisterButton = By.xpath("(//input[@class='button'])[2]");
     By validateUserCreation = By.xpath("//p[text()='Your account was created successfully. You are now logged in.']");
 
-    public UserActionsStepsImpl(WebDriver driver) {
+    public RegistrationPageImpl(WebDriver driver) {
         this.driver = driver;
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
-    public void registrationPage(String registrationPage) {
+    public void navigateToRegistrationPage(String registrationPage) {
         logger.debug("Validating Registration URL: {}", registrationPage);
-        driver.get(registrationPage);
+        driver.navigate().to(registrationPage);
         logger.info("Registration URL validated");
     }
 
     public void insertRegisterDetails(String firstName, String lastName, String address, String city, String state, String zip, String ssn, String username, String password, String confirmPassword) {
-        logger.debug("Entering register credentials");
+        //TODO try to use map with values and then take what is needed
+        logger.info("Entering register credentials");
         wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameField));
         driver.findElement(firstNameField).sendKeys(firstName);
         driver.findElement(lastNameField).sendKeys(lastName);
@@ -63,7 +60,7 @@ public class UserActionsStepsImpl {
         driver.findElement(clickRegisterButton).click();
     }
 
-    public void validateUserCreation(){
+    public void validateUserCreation() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(validateUserCreation));
         logger.info("New user is created");
     }

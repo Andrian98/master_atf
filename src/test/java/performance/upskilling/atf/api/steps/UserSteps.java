@@ -5,19 +5,24 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.api.actions.UserActions;
+import performance.upskilling.atf.api.dtos.response.UserResponse;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
+import performance.upskilling.atf.util.TestUtils;
 
 import java.util.List;
 import java.util.Map;
 
 public class UserSteps {
     private static final UserActions userActions = new UserActions();
+    private static final UserResponse userResponse = new UserResponse();
+    private static final TestUtils testUtils = new TestUtils();
 
-    //TODO Implement the assertions in the steps
-
-    @Given("user can access home page")
-    public void userCanAccessHomePage() {
+    //TODO do not do assertion in the GIVEN
+    @Given("user navigates to home page")
+    public void userNavigatesToHomePage() {
         userActions.accessPage(PropertiesManager.getURL());
+        String actualTitle = testUtils.extractPageTitle(PropertiesManager.getURL());
+        testUtils.assertPageText("ParaBank | Welcome | Online Banking", actualTitle);
     }
 
     @When("user logs in with the following credentials")
@@ -27,11 +32,14 @@ public class UserSteps {
         String password = data.get(0).get("password");
 
         userActions.userLogin(username, password);
+        String actualText = testUtils.extractPageTitle(PropertiesManager.getOverviewURL());
+        testUtils.assertPageText("ParaBank | Error", actualText);
     }
 
-    @Then("register total balance")
-    public void registerTotalBalance() {
+    @Then("user successfully logged in")
+    public void userSuccessfullyLoggedIn() {
         //TODO implement the step
+        //TODO Assertion should be here at THEN
     }
 
 }

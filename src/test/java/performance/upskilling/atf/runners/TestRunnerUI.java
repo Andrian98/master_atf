@@ -8,9 +8,10 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/resources/features/ui/"},
-        glue = {"performance.upskilling.atf.ui", "performance.upskilling.atf.ui.hooks"},
+        glue = {"performance.upskilling.atf.ui", "performance.upskilling.atf.hooks"},
         plugin = {"pretty", "html:target/cucumber-reports"},
-        tags = "@User_Register"
+        tags = "@User_Register",
+        stepNotifications = true
 )
 
 public class TestRunnerUI {
