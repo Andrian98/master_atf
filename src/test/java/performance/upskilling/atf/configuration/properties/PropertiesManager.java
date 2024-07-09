@@ -24,8 +24,8 @@ public class PropertiesManager {
         }
     }
 
-    public static String getURL(){
-      return   properties.getProperty("url");
+    public static String getIndexURL(){
+      return   properties.getProperty("index.url");
     }
 
     public static String getOverviewURL(){return   properties.getProperty("overview.url");}

@@ -2,6 +2,8 @@ package performance.upskilling.atf.api.actions;
 
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
@@ -12,25 +14,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserActions {
     private static final Logger logger = LogManager.getLogger();
-    //TODO assertion should not be in the GIVEN or in the method that is used in GIVEN, you can catch an exception
-    //TODO separate the Request and the Response in method.
+    public static RequestSpecification request;
+    public static Response response;
+
     public void accessPage(String url) {
-        logger.debug("Accessing page {}", url);
-         RestAssured.given()
-                .get(url)
-                .then()
-                .assertThat().statusCode(SC_OK);
+        try {
+            request = RestAssured.given();
+            response = request.get(url);
+        } catch (Exception e) {
+            logger.error("Could not access the url {} ", url + response.getStatusCode(), e);
+        }
         logger.info("Successfully accessed page {}", url);
     }
 
-    public void userLogin(String username, String password) {
+    public Response userLogin(String username, String password) {
         logger.debug("Login with Username {}", username);
-        RestAssured.given()
+        request = RestAssured.given()
                 .queryParam("username", username)
-                .queryParam("password", password)
-                .post(PropertiesManager.getLoginURL())
-                .then()
-                .assertThat().statusCode(SC_MOVED_TEMPORARILY);
-        logger.info("Successfully logged in with Username {} ", username);
+                .queryParam("password", password);
+        response = request.post(PropertiesManager.getLoginURL());
+        logger.info("BODY that was submit {}", response.getBody().toString());
+        // Check if the response is a redirect
+        if (response.statusCode() == 302) {
+            String redirectUrl = response.getHeader("Location");
+            logger.debug("Redirect URL: {}", redirectUrl);
+
+            response = RestAssured.given().get(redirectUrl);
+        }
+        return response;
     }
 }

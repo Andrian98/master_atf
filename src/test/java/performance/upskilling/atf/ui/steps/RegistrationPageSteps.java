@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class RegistrationPageSteps {
 
-    private static final Logger logger = LogManager.getLogger(RegistrationPageSteps.class);
     public static WebDriver driver = WebDriverManager.getDriver();
     public static RegistrationPageImpl registrationPageImpl = new RegistrationPageImpl(driver);
     public static String registerURL = PropertiesManager.getRegisterURL();
@@ -29,22 +28,8 @@ public class RegistrationPageSteps {
 
     @When("user fills out the registration form with the following details")
     public void userFillsOutTheRegistrationFormWithTheFollowingDetails(DataTable dataTable) {
-        //TODO to make a method for the list, send a map as parameter to the method
-        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-        for (Map<String, String> user : data) {
-            String firstName = user.get("First Name");
-            String lastName = user.get("Last Name");
-            String address = user.get("Address");
-            String city = user.get("City");
-            String state = user.get("State");
-            String zipCode = user.get("Zip Code");
-            String ssn = user.get("SSN");
-            String username = user.get("Username");
-            String password = user.get("Password");
-            String confirmPassword = user.get("Confirm");
-
-            registrationPageImpl.insertRegisterDetails(firstName, lastName, address, city, state, zipCode, ssn, username, password, confirmPassword);
-        }
+        Map<String, String> userDetails = dataTable.transpose().asMap();
+        registrationPageImpl.insertRegisterDetails(userDetails);
     }
 
     @When("user clicks register button")

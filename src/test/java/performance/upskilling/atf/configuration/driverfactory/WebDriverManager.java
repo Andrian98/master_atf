@@ -7,28 +7,27 @@ import org.apache.logging.log4j.Logger;
 
 public class WebDriverManager {
     private static WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(WebDriverManager.class);
+    private static final Logger logger = LogManager.getLogger();
 
     // TODO Choose the driver /chrome/mozilla/Edge
     // TODO No generic exceptions
     public static WebDriver getDriver() {
         if (driver == null) {
             try {
-                logger.debug("Initializing ChromeDriver");
                 driver = new ChromeDriver();
                 driver.manage().window().maximize();
                 logger.info("ChromeDriver initialized and window maximized");
             } catch (Exception e) {
-                logger.error("Error initializing ChromeDriver: {}", e);
+                logger.error("Error initializing ChromeDriver: ", e);
             }
         }
         return driver;
     }
-// TODO study the difference between close/exit/quit
+
+    // TODO study the difference between close/exit/quit
     public static void quitDriver() {
         if (driver != null) {
             try {
-                logger.debug("Quitting ChromeDriver");
                 driver.quit();
                 driver = null;
                 logger.info("ChromeDriver quit successfully");

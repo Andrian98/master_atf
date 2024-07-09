@@ -1,3 +1,4 @@
+@UI
 Feature: User actions on the application
 
   @User_Register

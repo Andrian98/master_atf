@@ -4,42 +4,43 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.api.actions.UserActions;
-import performance.upskilling.atf.api.dtos.response.UserResponse;
+import performance.upskilling.atf.api.dtos.response.LoginResponse;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.util.TestUtils;
 
-import java.util.List;
 import java.util.Map;
 
 public class UserSteps {
+    private static final Logger logger = LogManager.getLogger();
     private static final UserActions userActions = new UserActions();
-    private static final UserResponse userResponse = new UserResponse();
+    private static LoginResponse loginResponse;
     private static final TestUtils testUtils = new TestUtils();
+    private static Response response;
 
-    //TODO do not do assertion in the GIVEN
-    @Given("user navigates to home page")
-    public void userNavigatesToHomePage() {
-        userActions.accessPage(PropertiesManager.getURL());
-        String actualTitle = testUtils.extractPageTitle(PropertiesManager.getURL());
-        testUtils.assertPageText("ParaBank | Welcome | Online Banking", actualTitle);
+
+    @Given("server is up")
+    public void serverIsUp() {
+        //TODO specify that is not access page but getRequest...
+        userActions.accessPage(PropertiesManager.getIndexURL());
     }
 
     @When("user logs in with the following credentials")
     public void userLogsInWithTheFollowingCredentials(DataTable dataTable) {
-        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-        String username = data.get(0).get("username");
-        String password = data.get(0).get("password");
-
-        userActions.userLogin(username, password);
-        String actualText = testUtils.extractPageTitle(PropertiesManager.getOverviewURL());
-        testUtils.assertPageText("ParaBank | Error", actualText);
+        Map<String, String> data = dataTable.asMaps().get(0);
+        response = userActions.userLogin(data.get("username"), data.get("password"));
+        logger.info("Successfully logged in with Username: {}", data.get("username"));
     }
 
     @Then("user successfully logged in")
     public void userSuccessfullyLoggedIn() {
-        //TODO implement the step
-        //TODO Assertion should be here at THEN
+        //TODO in case like this there are no need for a method assert can be here, also in log put actual and expected
+        loginResponse = new LoginResponse(response.getBody().asString());
+        testUtils.assertPageText("ParaBank | Accounts Overview", loginResponse.getTitle());
+        logger.info("Successfully logged in");
     }
 
 }
