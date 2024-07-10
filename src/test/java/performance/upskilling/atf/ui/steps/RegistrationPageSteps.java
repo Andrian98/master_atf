@@ -15,9 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RegistrationPageSteps {
-
-    public static WebDriver driver = WebDriverManager.getDriver();
-    public static RegistrationPageImpl registrationPageImpl = new RegistrationPageImpl(driver);
+    public static RegistrationPageImpl registrationPageImpl = new RegistrationPageImpl(WebDriverManager.getDriver());
     public static String registerURL = PropertiesManager.getRegisterURL();
 
 

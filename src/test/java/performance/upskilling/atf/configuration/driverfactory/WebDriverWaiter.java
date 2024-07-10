@@ -1,6 +1,7 @@
 package performance.upskilling.atf.configuration.driverfactory;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +19,7 @@ public class WebDriverWaiter {
                 logger.debug("Initializing WebDriverWait with timeout of {} seconds", DEFAULT_TIMEOUT);
                 wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT));
                 logger.info("WebDriverWait initialized with default timeout");
-            } catch (Exception e) {
+            } catch (WebDriverException e) {
                 logger.error("Error initializing WebDriverWait: {}", e.getMessage());
             }
         }
