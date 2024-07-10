@@ -8,8 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
-import static org.apache.http.HttpStatus.SC_MOVED_TEMPORARILY;
-import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserActions {
@@ -17,7 +15,7 @@ public class UserActions {
     public static RequestSpecification request;
     public static Response response;
 
-    public void accessPage(String url) {
+    public void getRequest(String url) {
         try {
             request = RestAssured.given();
             response = request.get(url);

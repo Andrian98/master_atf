@@ -2,8 +2,6 @@ package performance.upskilling.atf.api.dtos.response;
 
 
 public class UserResponse {
-    //TODO Requests and Response need to be object of the response and requests make it with setter and getter where you send a body and then you can take from it what you need like name, email etc.
-
     private String id;
     private String balance;
     private String type;

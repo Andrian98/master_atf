@@ -11,8 +11,7 @@ import performance.upskilling.atf.util.TestUtils;
 public class Hooks {
 
     private static final Logger logger = LogManager.getLogger();
-    // TODO webdriver in singlton, failfast to stop the test if exception
-    // TODO parametrised the hooks, study in test-materials
+    //TODO parametrised the hooks, study in test-materials
 
     @Before("@API")
     public static void beforeAPITest() {

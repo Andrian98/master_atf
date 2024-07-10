@@ -24,8 +24,7 @@ public class UserSteps {
 
     @Given("server is up")
     public void serverIsUp() {
-        //TODO specify that is not access page but getRequest...
-        userActions.accessPage(PropertiesManager.getIndexURL());
+        userActions.getRequest(PropertiesManager.getIndexURL());
     }
 
     @When("user logs in with the following credentials")
@@ -37,7 +36,7 @@ public class UserSteps {
 
     @Then("user successfully logged in")
     public void userSuccessfullyLoggedIn() {
-        //TODO in case like this there are no need for a method assert can be here, also in log put actual and expected
+        //TODO in case like this there are no need for a method assert here(review)
         loginResponse = new LoginResponse(response.getBody().asString());
         testUtils.assertPageText("ParaBank | Accounts Overview", loginResponse.getTitle());
         logger.info("Successfully logged in");
