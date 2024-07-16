@@ -29,5 +29,7 @@ public class PropertiesManager {
 
     public static String getBrowser(){ return properties.getProperty("browser"); }
 
+    public static Integer getDefaultTimeOut(){ return Integer.parseInt(properties.getProperty("defaultTimeOut")); }
+
 
 }

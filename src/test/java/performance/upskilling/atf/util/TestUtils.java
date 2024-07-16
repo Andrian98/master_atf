@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import static performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter.wait;
 
 
@@ -26,7 +27,7 @@ public class TestUtils {
 
     public void assertPageText(String expectedText, String actualText) {
         Assertions.assertThat(actualText).isEqualTo(expectedText);
-        logger.info("Actual text found: {}. Expected text is: {}", actualText, expectedText);
+        logger.info("\nActual text found: {}. \nExpected text is: {}.", actualText, expectedText);
     }
 
     public void sendKeysToWebElement(WebElement webElement, String keysToSend) {
@@ -34,6 +35,6 @@ public class TestUtils {
         webElement.clear();
 
         webElement.sendKeys(keysToSend);
-        logger.info("Send {} keys to {} WebElement", keysToSend, webElement);
+        logger.debug("Send {} keys to {} WebElement", keysToSend, webElement);
     }
 }

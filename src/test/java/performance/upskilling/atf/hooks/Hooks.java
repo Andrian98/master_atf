@@ -8,20 +8,26 @@ import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.util.TestUtils;
 
+import static performance.upskilling.atf.configuration.driverfactory.WebDriverManager.driver;
+
 public class Hooks {
 
     private static final Logger logger = LogManager.getLogger();
-    //TODO parametrised the hooks, study in test-materials
 
     @Before("@API")
     public static void beforeAPITest() {
         TestUtils.setRestAssured(PropertiesManager.getIndexURL());
     }
 
-    @Before("@UI")
+    @Before(order = 1, value = "@UI")
     public void launchBrowser() {
         logger.info("Starting the UI test.");
-            WebDriverManager.getDriver();
+        WebDriverManager.getDriver();
+    }
+
+    @Before(order = 2, value = "@UI")
+    public static void getDesktopSize() {
+        WebDriverManager.getMonitorResolution();
     }
 
     @After("@UI")

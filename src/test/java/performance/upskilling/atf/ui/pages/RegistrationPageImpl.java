@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
 import performance.upskilling.atf.util.TestUtils;
+
 import java.util.Map;
 
 public class RegistrationPageImpl {
@@ -46,12 +47,13 @@ public class RegistrationPageImpl {
     }
 
     public void clickRegisterButton() {
-        registrationPageElements.getElement("clickRegisterButton").click();
+        registrationPageElements.getClickRegisterButton().click();
         logger.info("Clicked on register button");
     }
 
-    public void validateUserCreation() {
-        registrationPageElements.getElement("validateUserCreation");
-        logger.info("{}", registrationPageElements.getElement("validateUserCreation").getText());
+    public String validateUserCreation() {
+        String actualMessage = registrationPageElements.getValidateUserCreation().getText();
+        logger.info("{}", actualMessage);
+        return actualMessage;
     }
 }

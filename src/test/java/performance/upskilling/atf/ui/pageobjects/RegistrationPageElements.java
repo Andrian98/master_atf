@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class RegistrationPageElements {
     @FindBy(xpath = "//p[text()='Your account was created successfully. You are now logged in.']")
     private WebElement validateUserCreation;
 
-    private Map<String, WebElement> elementsMap;
+    private final Map<String, WebElement> elementsMap;
 
     public RegistrationPageElements() {
         this.driver = WebDriverManager.getDriver();
@@ -69,11 +70,17 @@ public class RegistrationPageElements {
         elementsMap.put("Username", usernameField);
         elementsMap.put("Password", passwordField);
         elementsMap.put("Confirm", confirmField);
-        elementsMap.put("clickRegisterButton", clickRegisterButton);
-        elementsMap.put("validateUserCreation", validateUserCreation);
     }
 
     public WebElement getElement(String fieldName) {
         return elementsMap.get(fieldName);
+    }
+
+    public WebElement getValidateUserCreation() {
+        return validateUserCreation;
+    }
+
+    public WebElement getClickRegisterButton() {
+        return clickRegisterButton;
     }
 }

@@ -10,55 +10,46 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 public class WebDriverManager {
-    private static WebDriver driver;
+    public static WebDriver driver;
     private static final Logger logger = LogManager.getLogger();
-
-    private WebDriverManager() {}
+    private static final String browser = PropertiesManager.getBrowser();
 
     public static WebDriver getDriver() {
-        String browser = PropertiesManager.getBrowser();
-        // First check without synchronization
         if (driver == null) {
-            // Synchronize on the class object to ensure only one thread can enter
-            synchronized (WebDriverManager.class) {
-                // Second check inside the synchronized block
-                if (driver == null) {
-                    try {
-                        switch (browser.toLowerCase()) {
-                            case "chrome":
-                                driver = new ChromeDriver();
-                                logger.info("Driver CHROME was started.");
-                                break;
-                            case "firefox":
-                                driver = new FirefoxDriver();
-                                logger.info("Driver FIREFOX was started.");
-                                break;
-                            case "edge":
-                                driver = new EdgeDriver();
-                                logger.info("Driver EDGE was started.");
-                                break;
-                            default:
-                                logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
-                                driver = new ChromeDriver();
-                        }
-                        driver.manage().window().maximize();
-                        logger.info("WebDriver initialized and window maximized");
-                    } catch (WebDriverException e) {
-                        logger.error("Error initializing WebDriver: ", e);
-                    }
-                }
+            switch (browser.toLowerCase()) {
+                case "chrome":
+                    driver = new ChromeDriver();
+                    logger.info("Driver CHROME was started.");
+                    break;
+                case "firefox":
+                    driver = new FirefoxDriver();
+                    logger.info("Driver FIREFOX was started.");
+                    break;
+                case "edge":
+                    driver = new EdgeDriver();
+                    logger.info("Driver EDGE was started.");
+                    break;
+                default:
+                    logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
+                    driver = new ChromeDriver();
             }
+            logger.info("WebDriver initialized and window maximized");
         }
         return driver;
+    }
+
+    public static void getMonitorResolution(){
+        driver.manage().window().maximize();
+        logger.info("Driver window maximized");
     }
 
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;
-            logger.info("ChromeDriver quit successfully");
+            logger.info("WebDriver quit successfully");
         } else {
-            logger.error("ChromeDriver was already closed or not initialized.");
+            logger.error("WebDriver was already closed or not initialized.");
         }
     }
 }
