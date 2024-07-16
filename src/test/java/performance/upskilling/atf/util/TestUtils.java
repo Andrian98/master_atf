@@ -27,7 +27,7 @@ public class TestUtils {
 
     public void assertPageText(String expectedText, String actualText) {
         Assertions.assertThat(actualText).isEqualTo(expectedText);
-        logger.info("\nActual text found: {}. \nExpected text is: {}.", actualText, expectedText);
+        logger.info("\nActual text found: {} \nExpected text is: {}", actualText, expectedText);
     }
 
     public void sendKeysToWebElement(WebElement webElement, String keysToSend) {

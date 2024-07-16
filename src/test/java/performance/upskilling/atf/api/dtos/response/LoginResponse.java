@@ -1,22 +1,47 @@
 package performance.upskilling.atf.api.dtos.response;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 
 public class LoginResponse {
-    private String title;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String ssn;
+    private Address address;
 
-    public LoginResponse(String response) {
-        Document doc = Jsoup.parse(response);
-        this.title = doc.select("title").text();
+    public int getId() {
+        return id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginResponse{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", ssn='" + ssn + '\'' +
+                '}';
     }
 }
