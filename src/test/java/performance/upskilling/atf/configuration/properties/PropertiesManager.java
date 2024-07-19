@@ -31,5 +31,9 @@ public class PropertiesManager {
 
     public static Integer getDefaultTimeOut(){ return Integer.parseInt(properties.getProperty("defaultTimeOut")); }
 
+    public static String getUserAccountsURL(){ return properties.getProperty("userAccounts.url"); }
+
+    public static String getCreateAccountURL(){ return properties.getProperty("createAccount.url"); }
+
 
 }

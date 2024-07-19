@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features/api/"},
         glue = {"performance.upskilling.atf.api", "performance.upskilling.atf.hooks"},
         plugin = {"pretty", "html:target/cucumber-reports"},
-        tags = "@Login",
+        tags = "@Login or @NewAccount",
         stepNotifications = true
 )
 
