@@ -10,7 +10,7 @@ import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 
 public class UserRequests {
-    public static final Logger logger = LogManager.getLogger(UserRequests.class);
+    public static final Logger logger = LogManager.getLogger();
     private final RequestSpecification request;
     private Response response;
 
@@ -31,6 +31,7 @@ public class UserRequests {
 
     public Response postRequest(String url, String queryParams) {
         response = request.post(url + "?" + queryParams);
+        logger.debug("Successfully post the request {}", url + "?" + queryParams);
         if (response.getStatusCode() >= 400) {
             logger.error("Could not send the post request to url {}, with body {}", url + response.getStatusCode(), response.getBody().asString());
         } else {

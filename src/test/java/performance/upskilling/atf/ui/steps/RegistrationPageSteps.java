@@ -26,14 +26,13 @@ public class RegistrationPageSteps {
 
     @Given("user is on registration page")
     public void userIsOnRegistrationPage() {
-        registrationPageImpl.navigateToRegistrationPage(registerURL);
+        testUtils.navigateTo(registerURL);
     }
 
     @When("user is registered filling out the registration form with the following details")
     public void userIsRegisteredFillingOutTheRegistrationFormWithTheFollowingDetails(DataTable dataTable) {
         Map<String, String> userDetails = dataTable.transpose().asMap();
         registrationPageImpl.insertRegisterDetails(userDetails);
-
         registrationPageImpl.clickRegisterButton();
     }
 

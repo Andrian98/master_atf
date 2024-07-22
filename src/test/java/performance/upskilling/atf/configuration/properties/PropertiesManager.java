@@ -35,5 +35,13 @@ public class PropertiesManager {
 
     public static String getCreateAccountURL(){ return properties.getProperty("createAccount.url"); }
 
+    public static String getRequestLoanURL(){ return properties.getProperty("requestLoan.url"); }
+
+    public static String getTransferUrl(){ return properties.getProperty("transfer.url"); }
+
+    public static String getUsername(){ return properties.getProperty("username"); }
+
+    public static String getPassword(){ return properties.getProperty("password"); }
+
 
 }

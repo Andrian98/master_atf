@@ -16,7 +16,7 @@ public class Hooks {
 
     @Before("@API")
     public static void beforeAPITest() {
-        TestUtils.setRestAssured(PropertiesManager.getIndexURL());
+        TestUtils.setRestAssured(PropertiesManager.getLoginURL());
     }
 
     @Before(order = 1, value = "@UI")

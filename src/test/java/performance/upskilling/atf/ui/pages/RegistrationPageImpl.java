@@ -23,12 +23,6 @@ public class RegistrationPageImpl {
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
-    public void navigateToRegistrationPage(String registrationPage) {
-        logger.debug("Validating Registration URL: {}", registrationPage);
-        driver.navigate().to(registrationPage);
-        logger.info("Registration URL validated");
-    }
-
     public void insertRegisterDetails(Map<String, String> userDetails) {
         logger.info("Entering register credentials");
 

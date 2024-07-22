@@ -19,8 +19,8 @@ public class UserActions {
     private static final Logger logger = LogManager.getLogger();
     public static Response response;
     public static UserRequests userRequests = new UserRequests();
-    public static UserResponse userResponse = new UserResponse();
     public static List<UserResponse> userResponses;
+    public static int fromAccountId;
 
     public UserActions() {
         RestAssured.defaultParser = Parser.JSON;
@@ -56,9 +56,10 @@ public class UserActions {
         return userResponses;
     }
 
+    //TODO list a called twice here
     public void printUserAccounts() {
         List<UserResponse> userResponses = getCustomerAccounts();
-
+//TODO one validation can be removed empty
         if (userResponses != null && !userResponses.isEmpty()) {
             for (UserResponse userResponse : userResponses) {
                 logger.debug("Response: {}", userResponse);
@@ -68,21 +69,24 @@ public class UserActions {
         }
     }
 
-    public String buildQueryParams(){
+    public String buildQueryParams(int customerId) {
         logger.info("Building query parameters");
-        int customerId = userResponses.get(0).getCustomerId();
         int newAccountType = 0;
-        int fromAccountId = userResponses.get(0).getId();
+        fromAccountId = userResponses.get(0).getId();
 
         return String.format("customerId=%d&newAccountType=%d&fromAccountId=%d", customerId, newAccountType, fromAccountId);
     }
 
-    public UserResponse createNewAccount() {
+    public UserResponse createNewAccount(int customerId) {
         logger.info("Creating new account.");
 
-        response = userRequests.postRequest(PropertiesManager.getCreateAccountURL(),buildQueryParams());
+        response = userRequests.postRequest(PropertiesManager.getCreateAccountURL(), buildQueryParams(customerId));
         logger.debug("Response that was received: {}", response.getBody().asString());
         return response.then().extract().body().as(UserResponse.class);
+    }
+
+    public int getFromAccountId() {
+        return fromAccountId;
     }
 
 }
