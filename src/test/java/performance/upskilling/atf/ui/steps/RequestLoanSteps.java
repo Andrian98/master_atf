@@ -4,23 +4,22 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pages.RequestLoanImpl;
-import performance.upskilling.atf.util.TestUtils;
+import performance.upskilling.atf.util.TestCustomActions;
 
 import java.util.Map;
 
 public class RequestLoanSteps {
-    public static TestUtils testUtils = new TestUtils();
+    public static TestCustomActions testCustomActions = new TestCustomActions();
     public static String requestLoanURL = PropertiesManager.getRequestLoanURL();
     public static RequestLoanImpl requestLoanImpl = new RequestLoanImpl(WebDriverManager.getDriver());
 
 
     @Given("user is on request loan page")
     public void userIsOnRequestLoanPage() {
-        testUtils.navigateTo(requestLoanURL);
+        testCustomActions.navigateTo(requestLoanURL);
     }
 
 

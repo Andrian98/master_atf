@@ -46,10 +46,13 @@ public class RegistrationPageElements {
     private WebElement confirmField;
 
     @FindBy(xpath = "(//input[@class='button'])[2]")
-    private WebElement clickRegisterButton;
+    private WebElement registerButton;
 
     @FindBy(xpath = "//p[text()='Your account was created successfully. You are now logged in.']")
     private WebElement validateUserCreation;
+
+    @FindBy(linkText = "Log Out")
+    private WebElement logOutButton;
 
     private final Map<String, WebElement> elementsMap;
 
@@ -80,7 +83,11 @@ public class RegistrationPageElements {
         return validateUserCreation;
     }
 
-    public WebElement getClickRegisterButton() {
-        return clickRegisterButton;
+    public WebElement getRegisterButton() {
+        return registerButton;
+    }
+
+    public WebElement getLogOutButton() {
+        return logOutButton;
     }
 }

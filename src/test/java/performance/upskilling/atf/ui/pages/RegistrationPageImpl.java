@@ -7,7 +7,7 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
-import performance.upskilling.atf.util.TestUtils;
+import performance.upskilling.atf.util.TestCustomActions;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class RegistrationPageImpl {
     private static final Logger logger = LogManager.getLogger();
     public WebDriver driver;
     public static WebDriverWait wait;
-    private static final TestUtils testUtils = new TestUtils();
+    private static final TestCustomActions testCustomActions = new TestCustomActions();
     private final RegistrationPageElements registrationPageElements = new RegistrationPageElements();
 
     public RegistrationPageImpl(WebDriver driver) {
@@ -24,7 +24,6 @@ public class RegistrationPageImpl {
     }
 
     public void insertRegisterDetails(Map<String, String> userDetails) {
-        logger.info("Entering register credentials");
 
         for (Map.Entry<String, String> entry : userDetails.entrySet()) {
             String fieldName = entry.getKey();
@@ -32,7 +31,7 @@ public class RegistrationPageImpl {
 
             WebElement webElement = registrationPageElements.getElement(fieldName);
             if (webElement != null) {
-                testUtils.sendKeysToWebElement(webElement, value);
+                testCustomActions.sendKeysToWebElement(webElement, value);
             } else {
                 logger.error("Element with field name '{}' not found.", fieldName);
             }
@@ -40,10 +39,10 @@ public class RegistrationPageImpl {
         logger.info("User entered register credentials");
     }
 
-    public void clickRegisterButton() {
-        registrationPageElements.getClickRegisterButton().click();
-        logger.info("Clicked on register button");
-    }
+//    public void clickRegisterButton() {
+//        registrationPageElements.getRegisterButton().click();
+//        logger.info("Clicked on register button");
+//    }
 
     public String validateUserCreation() {
         String actualMessage = registrationPageElements.getValidateUserCreation().getText();

@@ -43,5 +43,7 @@ public class PropertiesManager {
 
     public static String getPassword(){ return properties.getProperty("password"); }
 
+    public static String getAdminURL(){ return properties.getProperty("admin.url"); }
+
 
 }

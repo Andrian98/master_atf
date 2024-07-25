@@ -8,13 +8,13 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.LoginPageElements;
 import performance.upskilling.atf.ui.pageobjects.OverviewPageElements;
-import performance.upskilling.atf.util.TestUtils;
+import performance.upskilling.atf.util.TestCustomActions;
 
 public class LoginPageImpl {
     public WebDriver driver;
     public static WebDriverWait wait;
     public static final Logger logger = LogManager.getLogger();
-    private static final TestUtils testUtils = new TestUtils();
+    private static final TestCustomActions TEST_CUSTOM_ACTIONS = new TestCustomActions();
     private final LoginPageElements loginPageElements = new LoginPageElements();
     public static OverviewPageElements overviewPageElements = new OverviewPageElements();
 
@@ -27,8 +27,8 @@ public class LoginPageImpl {
 //TODO separate methods but called in one method userLogin
     public void userLogin() {
         logger.info("User logs in");
-        testUtils.sendKeysToWebElement(loginPageElements.getUsername(), PropertiesManager.getUsername());
-        testUtils.sendKeysToWebElement(loginPageElements.getPassword(), PropertiesManager.getPassword());
+        TEST_CUSTOM_ACTIONS.sendKeysToWebElement(loginPageElements.getUsername(), PropertiesManager.getUsername());
+        TEST_CUSTOM_ACTIONS.sendKeysToWebElement(loginPageElements.getPassword(), PropertiesManager.getPassword());
 
         logger.info("User inserted his credentials");
     }

@@ -1,24 +1,22 @@
 @UI
 Feature: User actions on the application
 
-  #TODO Do I need to put it in separate features
+  #TODO Need to put it in separate features
 
   @User_Register
   Scenario: Successful user registration
     Given user is on registration page
-    When user is registered filling out the registration form with the following details
+    When user populates form with the following details
       | First Name | Last Name | Address | City | State | Zip Code | SSN  | Username  | Password     | Confirm      |
       | perf       | user      | town    | town | CA    | 2222     | 2222 | perf-user | perf-user123 | perf-user123 |
-    Then webElement with message "Your account was created successfully. You are now logged in." is displayed
-#TODO message is displayed is better that the webElement
-  #TODO user populates the form with the ... for the When
+    Then message "Your account was created successfully. You are now logged in." is displayed
 
   @Login_UI
   Scenario: User successfully logged in
     Given user is on main page
     When user enters his credentials
     Then user is logged in
-#TODO about the credentials to be mentioned valid or not
+  #TODO about the credentials to be mentioned valid or not
 
   @Loan_Apply
   Scenario: Successfully apply for a loan

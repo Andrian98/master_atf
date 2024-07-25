@@ -17,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserActions {
     private static final Logger logger = LogManager.getLogger();
-    public static Response response;
-    public static UserRequests userRequests = new UserRequests();
-    public static List<UserResponse> userResponses;
-    public static int fromAccountId;
+    public Response response;
+    public UserRequests userRequests = new UserRequests();
+    public List<UserResponse> userResponses;
+    public int fromAccountId;
 
     public UserActions() {
         RestAssured.defaultParser = Parser.JSON;
@@ -30,37 +30,31 @@ public class UserActions {
         userRequests.getRequest(url);
     }
 
-    public void userLogin(String username, String password) {
+    public Response sentUserLoginRequest(String username, String password) {
         logger.debug("Login with Username {}", username);
         String loginURL = String.format("%s/%s/%s", PropertiesManager.getLoginURL(), username, password);
-
         response = userRequests.getRequest(loginURL);
         logger.debug("Response that was received {}", response.getBody().asString());
+        return response;
     }
 
-    public LoginResponse getLoginResponse() {
+    public LoginResponse getLoginResponse(String username, String password) {
+        sentUserLoginRequest(username, password);
         logger.info("Get login response");
         return response.then().extract().body().as(LoginResponse.class);
     }
 
-    public void userAccounts(Integer customerId) {
-        logger.info("Getting user account details");
-        String userAccountsURL = String.format("%s%s/accounts", PropertiesManager.getUserAccountsURL(), customerId);
+    public void getCustomerAccounts(Integer validCustomerId) {
+        logger.info("Get customer account details");
+        String userAccountsURL = String.format("%s%s/accounts", PropertiesManager.getUserAccountsURL(), validCustomerId);
 
         response = userRequests.getRequest(userAccountsURL);
-    }
-
-    public List<UserResponse> getCustomerAccounts() {
-        logger.info("Get customer account details");
         userResponses = response.jsonPath().getList("", UserResponse.class);
-        return userResponses;
     }
 
-    //TODO list a called twice here
+    //TODO this method can be implemented in the new scenario where numbers of the accounts will be validated
     public void printUserAccounts() {
-        List<UserResponse> userResponses = getCustomerAccounts();
-//TODO one validation can be removed empty
-        if (userResponses != null && !userResponses.isEmpty()) {
+        if (userResponses != null) {
             for (UserResponse userResponse : userResponses) {
                 logger.debug("Response: {}", userResponse);
             }
@@ -69,20 +63,18 @@ public class UserActions {
         }
     }
 
-    public String buildQueryParams(int customerId) {
+    public String buildQueryParams(int customCustomerId) {
         logger.info("Building query parameters");
         int newAccountType = 0;
         fromAccountId = userResponses.get(0).getId();
 
-        return String.format("customerId=%d&newAccountType=%d&fromAccountId=%d", customerId, newAccountType, fromAccountId);
+        return String.format("customerId=%d&newAccountType=%d&fromAccountId=%d", customCustomerId, newAccountType, fromAccountId);
     }
 
-    public UserResponse createNewAccount(int customerId) {
-        logger.info("Creating new account.");
-
-        response = userRequests.postRequest(PropertiesManager.getCreateAccountURL(), buildQueryParams(customerId));
+    public Response createNewAccount(int customCustomerId) {
+        response = userRequests.postRequest(PropertiesManager.getCreateAccountURL(), buildQueryParams(customCustomerId));
         logger.debug("Response that was received: {}", response.getBody().asString());
-        return response.then().extract().body().as(UserResponse.class);
+        return response;
     }
 
     public int getFromAccountId() {

@@ -5,17 +5,14 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import performance.upskilling.atf.configuration.properties.PropertiesManager;
-import performance.upskilling.atf.ui.pageobjects.LoginPageElements;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static performance.upskilling.atf.configuration.driverfactory.WebDriverManager.driver;
 import static performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter.wait;
 
-//TODO change the class name to the TestCustomActions ...
-public class TestUtils {
+public class TestCustomActions {
     private static final Logger logger = LogManager.getLogger();
 
     public static void setRestAssured(String url) {
@@ -27,9 +24,9 @@ public class TestUtils {
         RestAssured.requestSpecification = requestSpecBuilder.build();
         logger.info("RestAssured set up");
     }
-//TODO try to use Hamcrest assertions instead of the Assertj
+
     public void assertPageText(String expectedText, String actualText) {
-        Assertions.assertThat(actualText).isEqualTo(expectedText);
+        assertThat(actualText, equalTo(expectedText));
         logger.info("\nActual text: {} \nExpected text: {}", actualText, expectedText);
     }
 
@@ -47,4 +44,9 @@ public class TestUtils {
         logger.info("Provided URL are validated");
     }
 
+    public void clickButton(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        logger.debug("Clicked on {} button", element);
+    }
 }

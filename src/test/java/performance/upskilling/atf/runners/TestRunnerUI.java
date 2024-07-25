@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features/ui/"},
         glue = {"performance.upskilling.atf.ui", "performance.upskilling.atf.hooks"},
         plugin = {"pretty", "html:target/cucumber-reports"},
-        tags = "@User_Register",
+        tags = "@UI",
         stepNotifications = true
 )
 

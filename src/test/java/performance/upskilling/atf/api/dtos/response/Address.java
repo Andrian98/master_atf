@@ -7,7 +7,6 @@ public class Address {
     private String state;
     private String zipCode;
 
-    // Getters
     public String getStreet() {
         return street;
     }
