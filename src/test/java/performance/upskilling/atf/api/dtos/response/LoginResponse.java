@@ -9,6 +9,19 @@ public class LoginResponse {
     private String ssn;
     private Address address;
 
+    // Default constructor
+    public LoginResponse() {
+    }
+
+    public LoginResponse(Address address, String ssn, String phoneNumber, String lastName, String firstName, int id) {
+        this.address = address;
+        this.ssn = ssn;
+        this.phoneNumber = phoneNumber;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
@@ -44,4 +57,6 @@ public class LoginResponse {
                 ", ssn='" + ssn + '\'' +
                 '}';
     }
+
+
 }

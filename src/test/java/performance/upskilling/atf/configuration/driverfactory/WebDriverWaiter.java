@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class WebDriverWaiter {
     private static final int defaultTimeOut = PropertiesManager.getDefaultTimeOut(); // Default timeout in seconds
-    public static WebDriverWait wait;
+    private static WebDriverWait wait;
     private static final Logger logger = LogManager.getLogger();
 
     public static WebDriverWait getWaiter(WebDriver driver) {

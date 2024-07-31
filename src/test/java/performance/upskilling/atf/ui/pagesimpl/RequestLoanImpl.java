@@ -1,9 +1,10 @@
-package performance.upskilling.atf.ui.pages;
+package performance.upskilling.atf.ui.pagesimpl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.ui.pageobjects.LoanPageElements;
 import performance.upskilling.atf.util.TestCustomActions;
@@ -18,8 +19,8 @@ public class RequestLoanImpl {
     public WebDriver driver;
     public static WebDriverWait wait;
 
-    public RequestLoanImpl(WebDriver driver) {
-        this.driver = driver;
+    public RequestLoanImpl() {
+        this.driver = WebDriverManager.getDriver();
         wait = WebDriverWaiter.getWaiter(driver);
     }
 

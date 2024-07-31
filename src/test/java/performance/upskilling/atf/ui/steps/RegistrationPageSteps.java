@@ -6,22 +6,21 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
-import performance.upskilling.atf.ui.pages.RegistrationPageImpl;
+import performance.upskilling.atf.ui.pagesimpl.RegistrationPageImpl;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.util.TestCustomActions;
 
 import java.util.Map;
 
 public class RegistrationPageSteps {
-    public static RegistrationPageImpl registrationPageImpl = new RegistrationPageImpl(WebDriverManager.getDriver());
-    public static String registerURL = PropertiesManager.getRegisterURL();
+    public static RegistrationPageImpl registrationPageImpl = new RegistrationPageImpl();
     public static TestCustomActions testCustomActions = new TestCustomActions();
     public RegistrationPageElements registrationPageElements = new RegistrationPageElements();
 
 
     @Given("user is on registration page")
     public void userIsOnRegistrationPage() {
-        testCustomActions.navigateTo(registerURL);
+        testCustomActions.navigateTo(PropertiesManager.getRegisterURL());
     }
 
     @When("user populates form with the following details")

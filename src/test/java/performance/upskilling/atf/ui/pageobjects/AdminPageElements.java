@@ -48,8 +48,6 @@ public class AdminPageElements {
         this.driver = WebDriverManager.getDriver();
         this.wait = WebDriverWaiter.getWaiter(driver);
         PageFactory.initElements(driver, this);
-
-
     }
 
     public WebElement getDatabaseInitialize() {

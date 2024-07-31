@@ -1,7 +1,6 @@
 @API
 Feature: User activity on account page
 
-  #TODO to make a runner in the way so it would register and validate the preconditions (user created etc.)
   @NewAccount
   Scenario: User create new account
     Given data for account creation

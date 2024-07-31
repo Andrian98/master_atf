@@ -1,7 +1,8 @@
-package performance.upskilling.atf.ui.pages;
+package performance.upskilling.atf.ui.pagesimpl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 
 public class TransferFundsImpl {
@@ -9,8 +10,8 @@ public class TransferFundsImpl {
     public static WebDriverWait wait;
 
 
-    public TransferFundsImpl(WebDriver driver) {
-        this.driver = driver;
+    public TransferFundsImpl() {
+        this.driver = WebDriverManager.getDriver();
         wait = WebDriverWaiter.getWaiter(driver);
     }
 }

@@ -7,10 +7,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static performance.upskilling.atf.configuration.driverfactory.WebDriverManager.driver;
-import static performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter.wait;
+
 
 public class TestCustomActions {
     private static final Logger logger = LogManager.getLogger();
@@ -31,7 +33,7 @@ public class TestCustomActions {
     }
 
     public void sendKeysToWebElement(WebElement webElement, String keysToSend) {
-        wait.until(ExpectedConditions.visibilityOf(webElement));
+        WebDriverWaiter.getWaiter(WebDriverManager.getDriver()).until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
 
         webElement.sendKeys(keysToSend);
@@ -40,12 +42,12 @@ public class TestCustomActions {
 
     public void navigateTo(String url) {
         logger.debug("Validating provided URL: {}", url);
-        driver.navigate().to(url);
+        WebDriverManager.getDriver().navigate().to(url);
         logger.info("Provided URL are validated");
     }
 
     public void clickButton(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        WebDriverWaiter.getWaiter(WebDriverManager.getDriver()).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         logger.debug("Clicked on {} button", element);
     }

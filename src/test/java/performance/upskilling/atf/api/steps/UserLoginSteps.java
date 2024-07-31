@@ -19,8 +19,6 @@ public class UserLoginSteps {
     private static final Logger logger = LogManager.getLogger();
     private static LoginResponse loginResponse;
     public Response response;
-    private static final String username = PropertiesManager.getUsername();
-    private static final String password = PropertiesManager.getPassword();
 
     @Given("server is ready to accept API request")
     public void serverIsReadyToAcceptAPIRequest() {
@@ -28,8 +26,8 @@ public class UserLoginSteps {
         logger.info("server is ready to accept API request");
     }
 
-    @When("user logs in with the following credentials")
-    public void userLogsInWithTheFollowingCredentials() {
+    @When("user logs in with the username {string} and password {string}")
+    public void userLogsInWithTheFollowingCredentials(String username, String password) {
         loginResponse = userActions.getLoginResponse(username, password);
         logger.info("Successfully logged in with Username: {}", username);
     }

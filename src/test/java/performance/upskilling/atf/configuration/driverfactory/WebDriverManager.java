@@ -10,10 +10,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 public class WebDriverManager {
-    public static WebDriver driver;
+    private static WebDriver driver;
     private static final Logger logger = LogManager.getLogger();
     private static final String browser = PropertiesManager.getBrowser();
 
+    //TODO change the switch method here to something else
     public static WebDriver getDriver() {
         if (driver == null) {
             switch (browser.toLowerCase()) {
@@ -33,7 +34,7 @@ public class WebDriverManager {
                     logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
                     driver = new ChromeDriver();
             }
-            logger.info("WebDriver initialized and window maximized");
+            logger.info("WebDriver initialized");
         }
         return driver;
     }

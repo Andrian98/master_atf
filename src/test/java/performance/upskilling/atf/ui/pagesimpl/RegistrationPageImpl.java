@@ -1,8 +1,9 @@
-package performance.upskilling.atf.ui.pages;
+package performance.upskilling.atf.ui.pagesimpl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,10 +17,10 @@ public class RegistrationPageImpl {
     public WebDriver driver;
     public static WebDriverWait wait;
     private static final TestCustomActions testCustomActions = new TestCustomActions();
-    private final RegistrationPageElements registrationPageElements = new RegistrationPageElements();
+    public RegistrationPageElements registrationPageElements = new RegistrationPageElements();
 
-    public RegistrationPageImpl(WebDriver driver) {
-        this.driver = driver;
+    public RegistrationPageImpl() {
+        this.driver = WebDriverManager.getDriver();
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
@@ -38,11 +39,6 @@ public class RegistrationPageImpl {
         }
         logger.info("User entered register credentials");
     }
-
-//    public void clickRegisterButton() {
-//        registrationPageElements.getRegisterButton().click();
-//        logger.info("Clicked on register button");
-//    }
 
     public String validateUserCreation() {
         String actualMessage = registrationPageElements.getValidateUserCreation().getText();

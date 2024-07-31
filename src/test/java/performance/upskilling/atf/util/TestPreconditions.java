@@ -1,7 +1,11 @@
 package performance.upskilling.atf.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.AdminPageElements;
@@ -12,10 +16,11 @@ public class TestPreconditions {
     public static WebDriverWait wait;
     public static TestCustomActions testCustomActions = new TestCustomActions();
     private static final AdminPageElements adminPageElements = new AdminPageElements();
-    private static final RegistrationPageElements registrationPageElements = new RegistrationPageElements();
+    public RegistrationPageElements registrationPageElements = new RegistrationPageElements();
+    private static final Logger logger = LogManager.getLogger();
 
-    public TestPreconditions(WebDriver driver) {
-        this.driver = driver;
+    public TestPreconditions() {
+        this.driver = WebDriverManager.getDriver();
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
@@ -25,6 +30,7 @@ public class TestPreconditions {
 
     public void validateAdminSetUp(){
         accessAdminURL();
+        wait.until(ExpectedConditions.visibilityOf(adminPageElements.getCleanDataBase()));
         adminPageElements.getCleanDataBase().click();
         adminPageElements.getDatabaseInitialize().click();
         adminPageElements.getDataAccessModeJDBC().click();
@@ -36,9 +42,10 @@ public class TestPreconditions {
         adminPageElements.getMinBalance().clear();
         adminPageElements.getMinBalance().sendKeys("100.00");
         adminPageElements.getSubmitButton().click();
+        logger.info("Preconditions executed.");
     }
 
-    public void userRegistration (){
+    public void userRegistration(){
         registrationPageElements.getElement("First Name").sendKeys("perf");
         registrationPageElements.getElement("Last Name").sendKeys("user");
         registrationPageElements.getElement("Address").sendKeys("town");
@@ -51,5 +58,4 @@ public class TestPreconditions {
         registrationPageElements.getElement("Confirm").sendKeys("perf-user123");
         testCustomActions.clickButton(registrationPageElements.getRegisterButton());
     }
-
 }

@@ -1,9 +1,10 @@
-package performance.upskilling.atf.ui.pages;
+package performance.upskilling.atf.ui.pagesimpl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.LoginPageElements;
@@ -18,13 +19,13 @@ public class LoginPageImpl {
     private final LoginPageElements loginPageElements = new LoginPageElements();
     public static OverviewPageElements overviewPageElements = new OverviewPageElements();
 
-    public LoginPageImpl(WebDriver driver) {
-        this.driver = driver;
+    public LoginPageImpl() {
+        this.driver = WebDriverManager.getDriver();
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
     //TODO put the elements in the Impl class for the better performance
-//TODO separate methods but called in one method userLogin
+    //TODO separate methods but called in one method userLogin
     public void userLogin() {
         logger.info("User logs in");
         TEST_CUSTOM_ACTIONS.sendKeysToWebElement(loginPageElements.getUsername(), PropertiesManager.getUsername());
