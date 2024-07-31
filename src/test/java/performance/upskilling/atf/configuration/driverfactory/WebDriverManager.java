@@ -17,22 +17,14 @@ public class WebDriverManager {
     //TODO change the switch method here to something else
     public static WebDriver getDriver() {
         if (driver == null) {
-            switch (browser.toLowerCase()) {
-                case "chrome":
-                    driver = new ChromeDriver();
-                    logger.info("Driver CHROME was started.");
-                    break;
-                case "firefox":
-                    driver = new FirefoxDriver();
-                    logger.info("Driver FIREFOX was started.");
-                    break;
-                case "edge":
-                    driver = new EdgeDriver();
-                    logger.info("Driver EDGE was started.");
-                    break;
-                default:
-                    logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
-                    driver = new ChromeDriver();
+            try{
+            BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
+            driver = browserType.createDriver();
+            logger.debug("Driver {} was started.", browserType.name());
+
+            } catch (IllegalArgumentException e) {
+                logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
+                driver = BrowserType.CHROME.createDriver();
             }
             logger.info("WebDriver initialized");
         }

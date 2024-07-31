@@ -9,9 +9,8 @@ Feature: User actions in the application
       | Down Payment | 30  |
     Then new account number is provided
 
-  #TODO tag for the negative scenario, tag for the package
-  #TODO pay attention to the GIven And and WHen
   @Failed_Transfer_Funds
+  @Negative_Scenario
   Scenario: Transfer funds from one account to another
     Given user is on transfer funds page
     And user selected From account and To account

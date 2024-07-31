@@ -39,7 +39,6 @@ public class Hooks {
         WebDriverManager.getMonitorResolution();
     }
     //TODO scenario context for preconditions
-    //TODO better to use logger in the methods
 
     @Before(value = "@API")
     public void beforeAPITest() {
