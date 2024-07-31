@@ -51,4 +51,10 @@ public class TestCustomActions {
         element.click();
         logger.debug("Clicked on {} button", element);
     }
+
+    public String getTextFromPage(WebElement element) {
+        WebDriverWaiter.getWaiter(WebDriverManager.getDriver()).until(ExpectedConditions.visibilityOf(element));
+        logger.debug("Text '{}' is displayed", element);
+        return element.getText();
+    }
 }

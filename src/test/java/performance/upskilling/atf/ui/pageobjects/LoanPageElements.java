@@ -29,7 +29,7 @@ public class LoanPageElements {
     private WebElement applyLoanButton;
 
     @FindBy(xpath = "//p[text()='Congratulations, your loan has been approved.']")
-    private WebElement validationLoanText;
+    private WebElement loanText;
 
     @FindBy(id = "newAccountId")
     private WebElement newAccountId;
@@ -40,8 +40,6 @@ public class LoanPageElements {
         PageFactory.initElements(driver, this);
     }
 
-    //TODO make the buttons clickable
-    //TODO try to make a common method for click
     public WebElement getApplyLoanButton() {
         return applyLoanButton;
     }
@@ -58,16 +56,11 @@ public class LoanPageElements {
         return loanAmountField;
     }
 
-    //TODO make a custom method in for this king of the validation
-    //TODO Made waiters only in the step where is needed
-    //TODO Pay attention in the naming of the methods to be elemente if it's element and to be text if it's text
-    public WebElement getValidationLoanText() {
-        wait.until(ExpectedConditions.visibilityOf(validationLoanText));
-        return validationLoanText;
+    public WebElement getLoanText() {
+        return loanText;
     }
 
     public WebElement getNewAccountId() {
         return newAccountId;
     }
-
 }

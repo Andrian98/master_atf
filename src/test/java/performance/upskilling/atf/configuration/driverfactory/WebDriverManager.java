@@ -14,7 +14,6 @@ public class WebDriverManager {
     private static final Logger logger = LogManager.getLogger();
     private static final String browser = PropertiesManager.getBrowser();
 
-    //TODO change the switch method here to something else
     public static WebDriver getDriver() {
         if (driver == null) {
             try{
