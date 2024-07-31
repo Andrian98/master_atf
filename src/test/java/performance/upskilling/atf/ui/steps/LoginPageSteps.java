@@ -3,7 +3,6 @@ package performance.upskilling.atf.ui.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pagesimpl.LoginPageImpl;
 import performance.upskilling.atf.util.TestCustomActions;
@@ -19,8 +18,8 @@ public class LoginPageSteps {
         testCustomActions.navigateTo(loginURL);
     }
 
-    @When("user enters his credentials")
-    public void userEntersHisCredentials() {
+    @When("user enters valid credentials")
+    public void userEntersValidCredentials() {
         loginPageImp.userLogin();
         loginPageImp.userClickSubmit();
     }

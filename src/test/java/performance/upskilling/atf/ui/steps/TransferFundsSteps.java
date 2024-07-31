@@ -16,8 +16,8 @@ public class TransferFundsSteps {
 
     }
 
-    @When("user enters an invalid amount to transfer")
-    public void userEntersAnInvalidAmountToTransfer() {
+    @When("user enters invalid amount to transfer")
+    public void userEntersInvalidAmountToTransfer() {
 
     }
 
