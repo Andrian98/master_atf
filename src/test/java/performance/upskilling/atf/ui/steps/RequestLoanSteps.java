@@ -4,7 +4,6 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pagesimpl.RequestLoanImpl;
 import performance.upskilling.atf.util.TestCustomActions;
@@ -26,7 +25,7 @@ public class RequestLoanSteps {
     @When("user applies for a loan with the following details")
     public void userAppliesForALoanWithTheFollowingDetails(DataTable dataTable) {
         Map<String, String> data = dataTable.asMap();
-        requestLoanImpl.insertLoanDetails(data);
+        requestLoanImpl.populateLoanFields(data);
         requestLoanImpl.clickApplyNowButton();
     }
 

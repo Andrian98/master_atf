@@ -15,7 +15,7 @@ public class LoginPageImpl {
     public WebDriver driver;
     public static WebDriverWait wait;
     public static final Logger logger = LogManager.getLogger();
-    private static final TestCustomActions TEST_CUSTOM_ACTIONS = new TestCustomActions();
+    private static final TestCustomActions testCustomActions = new TestCustomActions();
     private final LoginPageElements loginPageElements = new LoginPageElements();
     public static OverviewPageElements overviewPageElements = new OverviewPageElements();
 
@@ -25,24 +25,20 @@ public class LoginPageImpl {
     }
 
     //TODO put the elements in the Impl class for the better performance
-    //TODO separate methods but called in one method userLogin
     public void userLogin() {
-        logger.info("User logs in");
-        TEST_CUSTOM_ACTIONS.sendKeysToWebElement(loginPageElements.getUsername(), PropertiesManager.getUsername());
-        TEST_CUSTOM_ACTIONS.sendKeysToWebElement(loginPageElements.getPassword(), PropertiesManager.getPassword());
-
-        logger.info("User inserted his credentials");
+        testCustomActions.sendKeysToWebElement(loginPageElements.getUsername(), PropertiesManager.getUsername());
+        testCustomActions.sendKeysToWebElement(loginPageElements.getPassword(), PropertiesManager.getPassword());
+        logger.info("User inserted valid credentials");
     }
 
     public void userClickSubmit() {
-        loginPageElements.getSubmit().click();
-        logger.info("User clicked submit");
+        testCustomActions.clickButton(loginPageElements.getSubmit());
+        logger.info("User clicked on submit button");
     }
 
-    //TODO use the assert only from the Assert library (assert was here)
     public void validateWelcomeMessage() {
-        overviewPageElements.getWelcomeMessage().isDisplayed();
-        logger.info("Welcome message displayed");
+        String welcomeMessage = testCustomActions.getTextFromPage(overviewPageElements.getWelcomeMessage());
+        logger.debug("{} message displayed", welcomeMessage);
     }
 
 }

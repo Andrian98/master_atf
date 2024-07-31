@@ -23,7 +23,6 @@ public class OverviewPageElements {
     }
 
     public WebElement getWelcomeMessage() {
-        wait.until(ExpectedConditions.visibilityOf(welcomeMessage));
         return welcomeMessage;
     }
 }

@@ -24,18 +24,14 @@ public class RequestLoanImpl {
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
-
-    public void insertLoanDetails(Map<String, String> loanData) {
-//TODO to put logger after the actions in the methods
-//TODO change the name of the method to populateField ... something like that
+    public void populateLoanFields(Map<String, String> loanData) {
         testCustomActions.sendKeysToWebElement(loanPageElements.getLoanAmountField(), loanData.get("Loan Amount"));
         testCustomActions.sendKeysToWebElement(loanPageElements.getDownPaymentField(), loanData.get("Down Payment"));
-
         logger.info("User entered loan details");
     }
 
     public void clickApplyNowButton() {
-        loanPageElements.getApplyLoanButton().click();
+        testCustomActions.clickButton(loanPageElements.getApplyLoanButton());
         logger.info("Clicks apply now button");
     }
 

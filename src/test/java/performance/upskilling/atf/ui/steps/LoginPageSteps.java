@@ -9,13 +9,11 @@ import performance.upskilling.atf.util.TestCustomActions;
 
 public class LoginPageSteps {
     public static TestCustomActions testCustomActions = new TestCustomActions();
-    public static String loginURL = PropertiesManager.getIndexURL();
     public static LoginPageImpl loginPageImp = new LoginPageImpl();
-
 
     @Given("user is on main page")
     public void userIsOnMainPage() {
-        testCustomActions.navigateTo(loginURL);
+        testCustomActions.navigateTo(PropertiesManager.getIndexURL());
     }
 
     @When("user enters valid credentials")
