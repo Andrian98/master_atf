@@ -3,12 +3,16 @@ package performance.upskilling.atf.ui.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import performance.upskilling.atf.configuration.properties.PropertiesManager;
+import performance.upskilling.atf.util.TestCustomActions;
 
 public class TransferFundsSteps {
 
+    private static final TestCustomActions testCustomActions = new TestCustomActions();
+
     @Given("user is on transfer funds page")
     public void userIsOnTransferFundsPage() {
-
+        testCustomActions.navigateTo(PropertiesManager.getTransferUrl());
     }
 
     @When("user selected From account and To account")
