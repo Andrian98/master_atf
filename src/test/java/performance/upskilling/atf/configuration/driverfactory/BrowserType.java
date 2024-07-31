@@ -2,29 +2,39 @@ package performance.upskilling.atf.configuration.driverfactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public enum BrowserType {
     CHROME {
         @Override
         public WebDriver createDriver() {
-            return new ChromeDriver(); // Instantiate ChromeDriver
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--incognito");
+            options.addArguments("--disable-cache");
+            return new ChromeDriver(options);
         }
     },
     FIREFOX {
         @Override
         public WebDriver createDriver() {
-            return new FirefoxDriver(); // Instantiate FirefoxDriver
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("-private");
+            return new FirefoxDriver(options);
         }
     },
     EDGE {
         @Override
         public WebDriver createDriver() {
-            return new EdgeDriver(); // Instantiate EdgeDriver
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("--inprivate");
+            options.addArguments("--disable-cache");
+            return new EdgeDriver(options);
         }
     };
 
-    // Abstract method to be implemented by each enum constant
     public abstract WebDriver createDriver();
 }

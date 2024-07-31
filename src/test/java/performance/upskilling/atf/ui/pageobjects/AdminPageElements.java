@@ -12,7 +12,6 @@ public class AdminPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    // Database initialize element "database" was here initially
     @FindBy(xpath = "//button[@name='action']")
     private WebElement databaseInitialize;
 
@@ -20,10 +19,13 @@ public class AdminPageElements {
     private WebElement cleanDataBase;
 
     // JMS service status
-    @FindBy(xpath = "//b[contains(text(),'JMS service status')]/following-sibling::span[contains(text(),'Running')]")
+    @FindBy(xpath = "//td[@align='right']/following-sibling::td")
     private WebElement jmsServiceStatus;
 
-    @FindBy(xpath = "//input[@value='jdbc']")
+    @FindBy(xpath = "(//input[@type='submit'])[2]")
+    private WebElement jmsServiceStatusButton;
+
+    @FindBy(xpath = "//input[@checked='checked']")
     private WebElement dataAccessModeJDBC;
 
     @FindBy(id = "soapEndpoint")
@@ -41,7 +43,7 @@ public class AdminPageElements {
     @FindBy(name = "minimumBalance")
     private WebElement minBalance;
 
-    @FindBy(xpath = "//input[@type='submit']")
+    @FindBy(xpath = "(//input[@type='submit'])[3]")
     private WebElement submitButton;
 
     public AdminPageElements() {
@@ -88,5 +90,9 @@ public class AdminPageElements {
 
     public WebElement getSubmitButton() {
         return submitButton;
+    }
+
+    public WebElement getJmsServiceStatusButton() {
+        return jmsServiceStatusButton;
     }
 }

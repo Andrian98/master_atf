@@ -1,13 +1,12 @@
 @API
 Feature: User activity on the login page
 
-  @Login
   Scenario: User logs in
     Given server is ready to accept API request
     When user logs in with the username "perf-user" and password "perf-user123"
     Then user successfully logged in
 
-  @InvalidLogin
+  @Invalid_Login
   Scenario Outline: User logs in with invalid username
     Given server is ready to accept API request
     When user logs in with the "<username>" and "<password>"

@@ -1,14 +1,12 @@
 @API
 Feature: User activity on account page
 
-  @NewAccount
   Scenario: User create new account
     Given data for account creation
     When user sends a POST request to create account
     Then request returns a success status code
 
-  @InvalidAccount
-  @Negative_Scenario_API
+  @Invalid_Account
   Scenario: User cannot create an account with the invalid id
     Given data for account creation
     When user sends a POST request to create Account with customerId "12345"

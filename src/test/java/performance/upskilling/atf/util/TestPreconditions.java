@@ -28,20 +28,22 @@ public class TestPreconditions {
         testCustomActions.navigateTo(PropertiesManager.getAdminURL());
     }
 
-    public void validateAdminSetUp(){
+    public void validateAdminSetUp() throws InterruptedException {
         accessAdminURL();
-        wait.until(ExpectedConditions.visibilityOf(adminPageElements.getCleanDataBase()));
-        adminPageElements.getCleanDataBase().click();
-        adminPageElements.getDatabaseInitialize().click();
-        adminPageElements.getDataAccessModeJDBC().click();
+        testCustomActions.clickButton(adminPageElements.getCleanDataBase());
+        testCustomActions.clickButton(adminPageElements.getDatabaseInitialize());
+        if(adminPageElements.getJmsServiceStatus().getText().contains("Stopped")){
+            testCustomActions.clickButton(adminPageElements.getJmsServiceStatusButton());
+        }
+        testCustomActions.clickButton(adminPageElements.getDataAccessModeJDBC());
         adminPageElements.getSoapEndpoint().clear();
         adminPageElements.getRestEndpoint().clear();
         adminPageElements.getEndpoint().clear();
         adminPageElements.getInitBalance().clear();
-        adminPageElements.getInitBalance().sendKeys("515.50");
+        adminPageElements.getInitBalance().sendKeys("5150.50");
         adminPageElements.getMinBalance().clear();
         adminPageElements.getMinBalance().sendKeys("100.00");
-        adminPageElements.getSubmitButton().click();
+        testCustomActions.clickButton(adminPageElements.getSubmitButton());
         logger.info("Preconditions executed.");
     }
 

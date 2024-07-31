@@ -1,7 +1,6 @@
 @UI
-  Feature: User creation and login functionality
+  Feature: User registration and login functionality
 
-    @User_Register
     Scenario: Successful user registration
       Given user is on registration page
       When user populates form with the following details
@@ -9,7 +8,6 @@
         | perf       | user      | town    | town | CA    | 2222     | 2222 | perf-user1 | perf-user123 | perf-user123 |
       Then message "Your account was created successfully. You are now logged in." is displayed
 
-    @Login_UI
     Scenario: User successfully logged in
       Given user is on main page
       When user enters valid credentials
