@@ -18,7 +18,7 @@ public class Hooks {
     private static Boolean uiTestExecution = false;
 
     @BeforeAll()
-    public static void setPreconditions() throws InterruptedException {
+    public static void setPreconditions(){
         testPreconditions.validateAdminSetUp();
         testCustomActions.navigateTo(PropertiesManager.getRegisterURL());
         testPreconditions.userRegistration();

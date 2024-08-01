@@ -8,9 +8,8 @@ Feature: User apply for loan and transfer funds
       | Down Payment | 10 |
     Then new account number is provided
 
-  @Failed_Transfer_Funds
   Scenario: Transfer funds from one account to another
     Given user is on transfer funds page
     And user selected From account and To account
-    When user enters invalid amount to transfer
-    Then transfer fails with an error message corresponding to the invalid amount
+    When user enters valid amount to transfer
+    Then transfer successfully completed

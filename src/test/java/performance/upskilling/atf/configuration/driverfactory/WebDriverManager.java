@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 public class WebDriverManager {
@@ -31,8 +33,12 @@ public class WebDriverManager {
     }
 
     public static void getMonitorResolution(){
-        driver.manage().window().maximize();
-        logger.info("Driver window maximized");
+        if(driver == null){
+            throw new WebDriverException("Driver is not initialized");
+        }else {
+            driver.manage().window().maximize();
+            logger.info("Driver window maximized");
+        }
     }
 
     public static void quitDriver() {

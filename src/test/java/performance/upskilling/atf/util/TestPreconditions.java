@@ -28,7 +28,7 @@ public class TestPreconditions {
         testCustomActions.navigateTo(PropertiesManager.getAdminURL());
     }
 
-    public void validateAdminSetUp() throws InterruptedException {
+    public void validateAdminSetUp(){
         accessAdminURL();
         testCustomActions.clickButton(adminPageElements.getCleanDataBase());
         testCustomActions.clickButton(adminPageElements.getDatabaseInitialize());

@@ -4,11 +4,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
+import performance.upskilling.atf.ui.pageobjects.TransferPageElements;
 import performance.upskilling.atf.util.TestCustomActions;
 
 public class TransferFundsSteps {
 
     private static final TestCustomActions testCustomActions = new TestCustomActions();
+    private static final TransferPageElements transferPageElements = new TransferPageElements();
 
     @Given("user is on transfer funds page")
     public void userIsOnTransferFundsPage() {
@@ -17,16 +19,18 @@ public class TransferFundsSteps {
 
     @When("user selected From account and To account")
     public void userSelectedFromAccountAndToAccount() {
-
+        testCustomActions.selectFromDropDown(transferPageElements.getFromAccountId());
+        testCustomActions.selectFromDropDown(transferPageElements.getToAccountId());
     }
 
-    @When("user enters invalid amount to transfer")
-    public void userEntersInvalidAmountToTransfer() {
-
+    @When("user enters valid amount to transfer")
+    public void userEntersValidAmountToTransfer() {
+        testCustomActions.sendKeysToWebElement(transferPageElements.getAmount(),"50000");
+        testCustomActions.clickButton(transferPageElements.getSubmit());
     }
 
-    @Then("transfer fails with an error message corresponding to the invalid amount")
-    public void transferFailsWithAnErrorMessageCorrespondingToTheInvalidAmount() {
-
+    @Then("transfer successfully completed")
+    public void transferSuccessfullyCompleted() {
+        testCustomActions.assertPageText("Transfer Complete!",transferPageElements.getTransferSuccessMessage().getText());
     }
 }

@@ -7,8 +7,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
+
+import java.util.List;
+import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -56,5 +60,18 @@ public class TestCustomActions {
         WebDriverWaiter.getWaiter(WebDriverManager.getDriver()).until(ExpectedConditions.visibilityOf(element));
         logger.debug("Text '{}' is displayed", element);
         return element.getText();
+    }
+
+    public void selectFromDropDown(WebElement element) {
+        Select dropdown = new Select(element);
+        List<WebElement> options = dropdown.getOptions();
+        if (!options.isEmpty()) {
+            Random random = new Random();
+            int index = random.nextInt(options.size());
+            dropdown.selectByIndex(index);
+        } else {
+            logger.error("No options available in the dropdown.");
+        }
+        logger.info("Selected Account from the dropdown.");
     }
 }
