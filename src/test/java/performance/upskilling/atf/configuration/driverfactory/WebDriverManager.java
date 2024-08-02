@@ -1,42 +1,53 @@
 package performance.upskilling.atf.configuration.driverfactory;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 public class WebDriverManager {
     private static WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(WebDriverManager.class);
+    private static final Logger logger = LogManager.getLogger();
+    private static final String browser = PropertiesManager.getBrowser();
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            try {
-                logger.debug("Setting system property for ChromeDriver");
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+            try{
+            BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
+            driver = browserType.createDriver();
+            logger.debug("Driver {} was started.", browserType.name());
 
-                logger.debug("Initializing ChromeDriver");
-                driver = new ChromeDriver();
-                driver.manage().window().maximize();
-
-                logger.info("ChromeDriver initialized and window maximized");
-            } catch (Exception e) {
-                logger.error("Error initializing ChromeDriver: {}", e.getMessage());
+            } catch (IllegalArgumentException e) {
+                logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
+                driver = BrowserType.CHROME.createDriver();
             }
+            logger.info("WebDriver initialized");
         }
         return driver;
     }
 
+    public static void getMonitorResolution(){
+        if(driver == null){
+            throw new WebDriverException("Driver is not initialized");
+        }else {
+            driver.manage().window().maximize();
+            logger.info("Driver window maximized");
+        }
+    }
+
     public static void quitDriver() {
         if (driver != null) {
-            try {
-                logger.debug("Quitting ChromeDriver");
-                driver.quit();
-                driver = null;
-                logger.info("ChromeDriver quit successfully");
-            } catch (Exception e) {
-                logger.error("Error quitting ChromeDriver: {}", e.getMessage());
-            }
+            driver.quit();
+            driver = null;
+            logger.info("WebDriver quit successfully");
+        } else {
+            logger.error("WebDriver was already closed or not initialized.");
         }
     }
 }
