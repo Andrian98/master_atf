@@ -12,10 +12,6 @@ pipeline {
         booleanParam(name: 'SAVE_RESULTS', defaultValue: false, description: 'Want to save results?')
     }
 
-    tools {
-        maven 'Maven' // Ensure Maven is installed and configured in Jenkins
-    }
-
     stages {
         stage('Setup Maven') {
             steps {
