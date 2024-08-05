@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Check if Maven is installed
-                    def mvnVersion = sh(script: 'mvn -version', returnStatus: true)
+                    def mvnVersion = bat(script: 'mvn -version', returnStatus: true)
                     if (mvnVersion != 0) {
                         // Install Maven if not found
                         bat '''
