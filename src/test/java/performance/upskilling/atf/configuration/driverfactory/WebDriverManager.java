@@ -1,5 +1,7 @@
 package performance.upskilling.atf.configuration.driverfactory;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +12,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class WebDriverManager {
     private static WebDriver driver;
@@ -48,6 +57,23 @@ public class WebDriverManager {
             logger.info("WebDriver quit successfully");
         } else {
             logger.error("WebDriver was already closed or not initialized.");
+        }
+    }
+
+    public static void takeScreenShot() {
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
+
+        String timestamp = new SimpleDateFormat("HHmmss_ddMMyyyy").format(new Date());
+        String screenshotDir = "evidence/screenshots";
+        String screenshotPath = screenshotDir + File.separator + "screenshot_" + timestamp + ".png";
+
+        try {
+            Files.createDirectories(Paths.get(screenshotDir));
+            Files.copy(srcFile.toPath(), Paths.get(screenshotPath));
+            logger.info("Screenshot saved at {}", screenshotPath);
+        } catch (IOException e) {
+            logger.error("Failed to save screenshot: {}", e.getMessage());
         }
     }
 }

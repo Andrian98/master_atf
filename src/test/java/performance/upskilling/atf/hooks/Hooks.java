@@ -27,7 +27,7 @@ public class Hooks {
         logger.info("Browser closed after setting preconditions for tests.");
     }
 
-    @Before(value = "@UI")
+    @Before("@UI")
     public void launchBrowserForPreconditions() {
         WebDriverManager.getDriver();
         uiTestExecution = true;
@@ -44,6 +44,12 @@ public class Hooks {
     public void beforeAPITest() {
         TestCustomActions.setRestAssured(PropertiesManager.getLoginURL());
         logger.info("Started the API test.");
+    }
+
+    @AfterStep("@UI")
+    public static void testEvidence(Scenario scenario) {
+        WebDriverManager.takeScreenShot();
+        logger.info("Screenshot saved in evidence.");
     }
 
     @AfterAll
