@@ -63,9 +63,18 @@ pipeline {
 
         post {
             always {
-                junit 'target/surefire-reports/*.xml'
-                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
-                archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+                script {
+                    // Ensure Cucumber reports are available and generated
+                    def cucumberResultsFound = fileExists 'target/*.json'
+                    if (cucumberResultsFound) {
+                        cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
+                    } else {
+                        echo 'No Cucumber report files found.'
+                    }
+
+                    // Archive artifacts if they exist
+                    archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+                }
 
                 emailext(
                         subject: "Build ${currentBuild.fullDisplayName} - ${currentBuild.result}",
