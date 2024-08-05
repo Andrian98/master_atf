@@ -39,11 +39,16 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Test execution') {
             steps {
                 script {
-                    def runner = params.RUNNER
-                    bat "mvn test -Dtest=runners.${runner}"
+                    try {
+                        def runner = params.RUNNER
+                        bat "mvn test -Dtest=runners.${runner}"
+                    } catch (err) {
+                        currentBuild.result = 'FAILURE'
+                        echo err
+                    }
                 }
             }
         }
