@@ -19,7 +19,7 @@ pipeline {
                     // Check if Maven is set
                     def mvnVersion = bat(script: 'mvn -version', returnStatus: true)
                     if (mvnVersion != 0) {
-                        echo "Maven not found. Set up Maven."
+                        error "Maven not found. Set up Maven."
                     } else {
                         echo "Maven is set."
                     }
