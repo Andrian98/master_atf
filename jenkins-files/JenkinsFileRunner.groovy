@@ -16,65 +16,59 @@ pipeline {
         stage('Setup Maven') {
             steps {
                 script {
-                    // Check if Maven is installed
+                    // Check if Maven is set
                     def mvnVersion = bat(script: 'mvn -version', returnStatus: true)
                     if (mvnVersion != 0) {
-                        // Install Maven if not found
-                        bat '''
-                            echo "Maven not found. Installing Maven..."
-                            wget https://downloads.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
-                            unzip apache-maven-3.8.6-bin.zip -d /opt
-                            ln -s /opt/apache-maven-3.8.6/bin/mvn /usr/bin/mvn
-                        '''
+                        echo "Maven not found. Set up Maven."
                     } else {
-                        echo "Maven is already installed."
+                        echo "Maven is set."
                     }
                 }
             }
         }
 
-            stage('Checkout') {
-                steps {
-                    git branch: 'performance_atf', url: 'https://github.com/Andrian98/master_atf.git'
-                }
-            }
-
-            stage('Build') {
-                steps {
-                    bat 'mvn clean install'
-                }
-            }
-
-            stage('Test') {
-                steps {
-                    script {
-                        def runner = params.RUNNER
-                        bat "mvn test -Dtest=${runner}"
-                    }
-                }
-            }
-
-            stage('Generate Reports') {
-                steps {
-                    cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
-                }
+        stage('Checkout') {
+            steps {
+                git branch: 'performance_atf', url: 'https://github.com/Andrian98/master_atf.git'
             }
         }
 
-        post {
-            always {
+        stage('Build') {
+            steps {
+                bat 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
                 script {
-                    // Ensure Cucumber reports are available and generated
-                    def cucumberResultsFound = fileExists 'target/*.json'
-                    if (cucumberResultsFound) {
-                        cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
-                    } else {
-                        echo 'No Cucumber report files found.'
-                    }
-
-                    // Archive artifacts if they exist
-                    archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+                    def runner = params.RUNNER
+                    bat "mvn test -Dtest=${runner}"
                 }
+            }
+        }
+
+        stage('Generate Reports') {
+            steps {
+                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
             }
         }
     }
+
+    post {
+        always {
+            script {
+                // Ensure Cucumber reports are available and generated
+                def cucumberResultsFound = fileExists 'target/*.json'
+                if (cucumberResultsFound) {
+                    cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
+                } else {
+                    echo 'No Cucumber report files found.'
+                }
+
+                // Archive artifacts if they exist
+                archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+            }
+        }
+    }
+}
