@@ -43,14 +43,14 @@ pipeline {
             steps {
                 script {
                     def runner = params.RUNNER
-                    bat "mvn test -Dtest=${runner}"
+                    bat "mvn test -Dtest=runners.${runner}"
                 }
             }
         }
 
         stage('Generate Reports') {
             steps {
-                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
+                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/*.json'
             }
         }
     }
@@ -61,7 +61,7 @@ pipeline {
                 // Ensure Cucumber reports are available and generated
                 def cucumberResultsFound = fileExists 'target/*.json'
                 if (cucumberResultsFound) {
-                    cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/cucumber-reports/*.json'
+                    cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/*.json'
                 } else {
                     echo 'No Cucumber report files found.'
                 }
