@@ -75,13 +75,6 @@ pipeline {
                     // Archive artifacts if they exist
                     archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
                 }
-
-                emailext(
-                        subject: "Build ${currentBuild.fullDisplayName} - ${currentBuild.result}",
-                        body: "Check Jenkins for the detailed results of the build.",
-                        to: 'andrian.moisei@endava.com', // recipient email address
-                        recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
-                )
             }
         }
     }
