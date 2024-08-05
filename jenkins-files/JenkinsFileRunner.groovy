@@ -23,7 +23,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master-atf', url: 'https://github.com/Andrian98/master_atf.git'
+                git branch: 'performance_atf', url: 'https://github.com/Andrian98/master_atf.git'
             }
         }
 
