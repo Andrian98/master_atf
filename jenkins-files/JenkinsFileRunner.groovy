@@ -47,8 +47,10 @@ pipeline {
 
             stage('Test') {
                 steps {
-                    def runner = params.RUNNER
-                    sh "mvn test -Dtest=${runner}"
+                    script {
+                        def runner = params.RUNNER
+                        sh "mvn test -Dtest=${runner}"
+                    }
                 }
             }
 
