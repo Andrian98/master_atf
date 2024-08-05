@@ -20,7 +20,7 @@ pipeline {
                     def mvnVersion = sh(script: 'mvn -version', returnStatus: true)
                     if (mvnVersion != 0) {
                         // Install Maven if not found
-                        sh '''
+                        bat '''
                             echo "Maven not found. Installing Maven..."
                             wget https://downloads.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
                             unzip apache-maven-3.8.6-bin.zip -d /opt
@@ -49,7 +49,7 @@ pipeline {
                 steps {
                     script {
                         def runner = params.RUNNER
-                        sh "mvn test -Dtest=${runner}"
+                        bat "mvn test -Dtest=${runner}"
                     }
                 }
             }
