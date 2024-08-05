@@ -16,10 +16,6 @@ pipeline {
         maven 'Maven' // Ensure Maven is installed and configured in Jenkins
     }
 
-    environment {
-        // Set any necessary environment variables
-    }
-
     stages {
         stage('Checkout') {
             steps {
