@@ -45,6 +45,7 @@ pipeline {
                     try {
                         def runner = params.RUNNER
                         bat "mvn test -Dtest=runners.${runner}"
+                        bat 'mvn test --debug -Dtest=runners.${runner}'
                     } catch (err) {
                         currentBuild.result = 'FAILURE'
                         echo err

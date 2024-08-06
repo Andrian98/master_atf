@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/features/api/"},
         glue = {"performance.upskilling.atf.api", "performance.upskilling.atf.hooks"},
-        plugin = {"pretty", "html:target/cucumber-reports"},
+        plugin = {"pretty", "html:target/test-reports/reportAPI"},
         tags = "@API",
         stepNotifications = true
 )

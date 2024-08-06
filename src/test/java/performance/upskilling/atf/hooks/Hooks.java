@@ -2,6 +2,7 @@ package performance.upskilling.atf.hooks;
 
 import io.cucumber.java.*;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
 import org.openqa.selenium.WebDriver;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +10,7 @@ import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.steps.RegistrationPageSteps;
 import performance.upskilling.atf.util.TestCustomActions;
 import performance.upskilling.atf.util.TestPreconditions;
+import performance.upskilling.atf.util.TestUtils;
 
 
 public class Hooks {
@@ -18,7 +20,8 @@ public class Hooks {
     private static Boolean uiTestExecution = false;
 
     @BeforeAll()
-    public static void setPreconditions(){
+    public static void setPreconditions() {
+        TestUtils.createEvidenceDirectory();
         testPreconditions.validateAdminSetUp();
         testCustomActions.navigateTo(PropertiesManager.getRegisterURL());
         testPreconditions.userRegistration();
@@ -48,16 +51,19 @@ public class Hooks {
 
     @AfterStep("@UI")
     public static void testEvidence(Scenario scenario) {
-        WebDriverManager.takeScreenShot();
+        TestUtils.addScreenshotsToReport(scenario);
         logger.info("Screenshot saved in evidence.");
     }
 
     @AfterAll
     public static void afterAll() {
+
         if (uiTestExecution) {
             WebDriverManager.quitDriver();
         }
         logger.info("Browser closed. All tests executed.");
+        TestUtils.stopLogContext();
+        TestUtils.addEvidence();
     }
 
 }

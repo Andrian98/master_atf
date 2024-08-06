@@ -16,7 +16,7 @@ public class UserAccountSteps {
     private static final Logger logger = LogManager.getLogger();
     private final UserActions userActions = new UserActions();
     private int validCustomerId;
-    private static final String username = PropertiesManager.getUsername();
+    private static final String username = PropertiesManager.getUsernameAPI();
     private static final String password = PropertiesManager.getPassword();
     public Response response;
 

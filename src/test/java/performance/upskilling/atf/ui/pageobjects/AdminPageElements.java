@@ -25,7 +25,7 @@ public class AdminPageElements {
     @FindBy(xpath = "(//input[@type='submit'])[2]")
     private WebElement jmsServiceStatusButton;
 
-    @FindBy(xpath = "//input[@checked='checked']")
+    @FindBy(xpath = "//input[@value='jdbc']")
     private WebElement dataAccessModeJDBC;
 
     @FindBy(id = "soapEndpoint")
