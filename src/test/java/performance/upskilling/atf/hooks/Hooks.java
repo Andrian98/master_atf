@@ -2,12 +2,9 @@ package performance.upskilling.atf.hooks;
 
 import io.cucumber.java.*;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.LoggerContext;
-import org.openqa.selenium.WebDriver;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
-import performance.upskilling.atf.ui.steps.RegistrationPageSteps;
 import performance.upskilling.atf.util.TestCustomActions;
 import performance.upskilling.atf.util.TestPreconditions;
 import performance.upskilling.atf.util.TestUtils;

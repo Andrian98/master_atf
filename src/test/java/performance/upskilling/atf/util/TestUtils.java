@@ -26,7 +26,7 @@ public class TestUtils {
         TakesScreenshot takesScreenshot = (TakesScreenshot) WebDriverManager.getDriver();
         File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 
-        String timestamp = new SimpleDateFormat("HHmmss_ddMMyyyy").format(new Date());
+        String timestamp = new SimpleDateFormat("HHmmssSSS_ddMMyyyy").format(new Date());
         String screenshotDir = evidenceDir + "/screenshots";
         String screenshotPath = screenshotDir + File.separator + "screenshot_" + timestamp + ".png";
 
@@ -57,6 +57,7 @@ public class TestUtils {
     public static void addEvidence() {
         Path testReportsDir = Paths.get("target", "test-reports");
         try {
+
             if (Files.exists(testReportsDir) && Files.isDirectory(testReportsDir)) {
                 Files.list(testReportsDir).forEach(source -> {
                     Path destination = evidenceDir.resolve(source.getFileName());

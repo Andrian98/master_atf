@@ -1,7 +1,6 @@
 package performance.upskilling.atf.configuration.driverfactory;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
@@ -29,12 +28,8 @@ public class WebDriverManager {
     }
 
     public static void getMonitorResolution() {
-        if (driver == null) {
-            throw new WebDriverException("Driver is not initialized");
-        } else {
-            driver.manage().window().maximize();
+            getDriver().manage().window().maximize();
             logger.info("Driver window maximized");
-        }
     }
 
     public static void quitDriver() {
