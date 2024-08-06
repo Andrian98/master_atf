@@ -57,6 +57,7 @@ public class Hooks {
 
         if (uiTestExecution) {
             WebDriverManager.quitDriver();
+            uiTestExecution = false;
         }
         logger.info("Browser closed. All tests executed.");
         TestUtils.stopLogContext();

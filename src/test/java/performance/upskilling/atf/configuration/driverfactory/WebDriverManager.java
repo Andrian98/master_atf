@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
-
 public class WebDriverManager {
     private static WebDriver driver;
     private static final Logger logger = LogManager.getLogger();

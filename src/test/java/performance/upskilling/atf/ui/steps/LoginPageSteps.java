@@ -15,7 +15,7 @@ public class LoginPageSteps {
     public void userIsOnMainPage() {
         testCustomActions.navigateTo(PropertiesManager.getIndexURL());
     }
-
+//TODO put all the methods related in the POM
     @When("user enters valid credentials")
     public void userEntersValidCredentials() {
         loginPageElements.userLogin();

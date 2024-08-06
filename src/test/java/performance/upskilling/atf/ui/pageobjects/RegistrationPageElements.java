@@ -1,5 +1,7 @@
 package performance.upskilling.atf.ui.pageobjects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
+import performance.upskilling.atf.util.TestCustomActions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +17,8 @@ import java.util.Map;
 public class RegistrationPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
+    private static final Logger logger = LogManager.getLogger();
+    private static final TestCustomActions testCustomActions = new TestCustomActions();
 
     @FindBy(id = "customer.firstName")
     private WebElement firstNameField;
@@ -89,5 +94,27 @@ public class RegistrationPageElements {
 
     public WebElement getLogOutButton() {
         return logOutButton;
+    }
+
+    public void insertRegisterDetails(Map<String, String> userDetails) {
+
+        for (Map.Entry<String, String> entry : userDetails.entrySet()) {
+            String fieldName = entry.getKey();
+            String value = entry.getValue();
+
+            WebElement webElement = getElement(fieldName);
+            if (webElement != null) {
+                testCustomActions.sendKeysToWebElement(webElement, value);
+            } else {
+                logger.error("Element with field name '{}' not found.", fieldName);
+            }
+        }
+        logger.info("User entered register credentials");
+    }
+
+    public String validateUserCreation() {
+        String actualMessage = getValidateUserCreation().getText();
+        logger.info("{}", actualMessage);
+        return actualMessage;
     }
 }
