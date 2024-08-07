@@ -16,6 +16,11 @@ public class Hooks {
     private static final TestCustomActions testCustomActions = new TestCustomActions();
     private static Boolean uiTestExecution = false;
 
+    static {
+        // Register the shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread(TestUtils::addEvidence));
+    }
+
     @BeforeAll()
     public static void setPreconditions() {
         TestUtils.createEvidenceDirectory();
@@ -34,13 +39,13 @@ public class Hooks {
         logger.info("Launching browser for UI test.");
     }
 
-    @Before(value = "@UI")
+    @Before("@UI")
     public void getDesktopSizeForPreconditions() {
         WebDriverManager.getMonitorResolution();
     }
     //TODO scenario context for preconditions
 
-    @Before(value = "@API")
+    @Before("@API")
     public void beforeAPITest() {
         TestCustomActions.setRestAssured(PropertiesManager.getLoginURL());
         logger.info("Started the API test.");
@@ -57,11 +62,8 @@ public class Hooks {
 
         if (uiTestExecution) {
             WebDriverManager.quitDriver();
-            uiTestExecution = false;
         }
         logger.info("Browser closed. All tests executed.");
-        TestUtils.stopLogContext();
-        TestUtils.addEvidence();
     }
 
 }

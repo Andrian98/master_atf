@@ -53,6 +53,7 @@ public class UserActions {
     }
 
     //TODO this method can be implemented in the new scenario where numbers of the accounts will be validated
+    //TODO Scenario Context can be used in the new Account
     public void printUserAccounts() {
         if (userResponses != null) {
             for (UserResponse userResponse : userResponses) {

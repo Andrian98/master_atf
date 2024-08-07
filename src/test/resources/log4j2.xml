@@ -2,7 +2,7 @@
 <Configuration status="warn">
 
     <Properties>
-        <Property name="basePath">target/test-reports/logs</Property>
+        <Property name="basePath">target/working-directory/logs</Property>
         <Property name="LOG_PATTERN">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1}.%L - %msg%n</Property>
     </Properties>
 

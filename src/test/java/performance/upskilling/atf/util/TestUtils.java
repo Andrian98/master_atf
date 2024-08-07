@@ -48,6 +48,7 @@ public class TestUtils {
                 Path path = Paths.get(screenshotPath);
                 byte[] screenshot = Files.readAllBytes(path); // Read the screenshot file as bytes
                 scenario.attach(screenshot, "image/png", "Screenshot"); // Attach the screenshot to the scenario
+                logger.info("Screenshot attached ");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -55,7 +56,7 @@ public class TestUtils {
     }
 
     public static void addEvidence() {
-        Path testReportsDir = Paths.get("target", "test-reports");
+        Path testReportsDir = Paths.get("target", "working-directory");
         try {
 
             if (Files.exists(testReportsDir) && Files.isDirectory(testReportsDir)) {
@@ -78,6 +79,7 @@ public class TestUtils {
         evidenceDir = Paths.get("target", "evidence", timestamp);
         try {
             Files.createDirectories(evidenceDir);
+            logger.info("Evidence directory created");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,11 +89,5 @@ public class TestUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm");
         return LocalDateTime.now().format(formatter);
     }
-
-    public static void stopLogContext() {
-        LoggerContext context = (LoggerContext) LogManager.getContext(false);
-        context.stop();
-    }
-
 
 }
