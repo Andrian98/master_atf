@@ -28,6 +28,9 @@ public class LoginPageElements {
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement submit;
 
+    @FindBy(linkText = "Log Out")
+    private WebElement logOutButton;
+
     public LoginPageElements() {
         this.driver = WebDriverManager.getDriver();
         this.wait = WebDriverWaiter.getWaiter(driver);
@@ -45,6 +48,8 @@ public class LoginPageElements {
     public WebElement getSubmit() {
         return submit;
     }
+
+    public WebElement getLogOutButton() {return logOutButton;}
 
     public void userLogin() {
         testCustomActions.sendKeysToWebElement(getUsername(), PropertiesManager.getUsername());

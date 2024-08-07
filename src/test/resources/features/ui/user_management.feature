@@ -1,7 +1,8 @@
 @UI
 Feature: User apply for loan and transfer funds
   Background:
-        #TODO Given user is logged in
+    Given user is on main page
+    When user enters valid credentials
 
   Scenario: Successfully apply for a loan
     Given user is on request loan page
@@ -10,7 +11,6 @@ Feature: User apply for loan and transfer funds
       | Down Payment | 10 |
     Then new account number is provided
 
-#TODO Make each scenario to be independent
   Scenario: Transfer funds from one account to another
     Given user is on transfer funds page
     And user selected From account and To account

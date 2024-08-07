@@ -38,6 +38,9 @@ public class LoanPageElements {
     @FindBy(id = "newAccountId")
     private WebElement newAccountId;
 
+    @FindBy(linkText = "Log Out")
+    private WebElement logOutButton;
+
     public LoanPageElements() {
         this.driver = WebDriverManager.getDriver();
         this.wait = WebDriverWaiter.getWaiter(driver);
@@ -67,6 +70,8 @@ public class LoanPageElements {
     public WebElement getNewAccountId() {
         return newAccountId;
     }
+
+    public WebElement getLogOutButton() {return logOutButton;}
 
     public void populateLoanFields(Map<String, String> loanData) {
         testCustomActions.sendKeysToWebElement(getLoanAmountField(), loanData.get("Loan Amount"));

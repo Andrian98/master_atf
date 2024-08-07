@@ -32,5 +32,6 @@ public class TransferFundsSteps {
     @Then("transfer successfully completed")
     public void transferSuccessfullyCompleted() {
         testCustomActions.assertPageText("Transfer Complete!",transferPageElements.getTransferSuccessMessage().getText());
+        testCustomActions.clickButton(transferPageElements.getLogOutButton());
     }
 }

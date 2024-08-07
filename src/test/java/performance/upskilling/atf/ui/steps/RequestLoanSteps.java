@@ -32,6 +32,7 @@ public class RequestLoanSteps {
     public void newAccountNumberIsProvided() {
         loanPageElements.validateLoanRequest();
         loanPageElements.printNewAccountId();
+        testCustomActions.clickButton(loanPageElements.getLogOutButton());
     }
 
 }

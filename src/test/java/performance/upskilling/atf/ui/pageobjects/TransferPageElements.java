@@ -28,6 +28,9 @@ public class TransferPageElements {
     @FindBy(xpath = "//h1[text()='Transfer Complete!']")
     private WebElement transferSuccessMessage;
 
+    @FindBy(linkText = "Log Out")
+    private WebElement logOutButton;
+
     public TransferPageElements(){
         this.driver = WebDriverManager.getDriver();
         this.wait = WebDriverWaiter.getWaiter(driver);
@@ -49,6 +52,8 @@ public class TransferPageElements {
     public WebElement getSubmit() {
         return submit;
     }
+
+    public WebElement getLogOutButton() {return logOutButton;}
 
     public WebElement getTransferSuccessMessage() {
         wait.until(ExpectedConditions.visibilityOf(transferSuccessMessage));
