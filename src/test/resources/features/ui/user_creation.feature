@@ -1,6 +1,7 @@
 @UI
 Feature: User registration and login functionality
 
+  @User_Registration
   Scenario: Successful user registration
     Given user is on registration page
     When user populates form with the following details

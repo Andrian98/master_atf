@@ -1,6 +1,7 @@
 @UI
 Feature: User apply for loan and transfer funds
-  Background:
+
+  Background: User logged in
     Given user is on main page
     When user enters valid credentials
 
@@ -16,3 +17,9 @@ Feature: User apply for loan and transfer funds
     And user selected From account and To account
     When user enters valid amount to transfer
     Then transfer successfully completed
+@NewAccount
+  Scenario: Open new account
+    Given user is on open new account page
+    When user selects account type and existing account
+    And user clicks on open new account button
+    Then new account is created

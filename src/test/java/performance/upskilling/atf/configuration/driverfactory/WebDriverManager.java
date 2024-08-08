@@ -3,6 +3,7 @@ package performance.upskilling.atf.configuration.driverfactory;
 import org.openqa.selenium.WebDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import performance.upskilling.atf.configuration.enums.BrowserType;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 public class WebDriverManager {

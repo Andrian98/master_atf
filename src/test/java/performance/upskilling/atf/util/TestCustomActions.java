@@ -72,6 +72,6 @@ public class TestCustomActions {
         } else {
             logger.error("No options available in the dropdown.");
         }
-        logger.info("Selected Account from the dropdown.");
+        logger.info("Selected one option from the dropdown.");
     }
 }

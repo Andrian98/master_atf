@@ -45,7 +45,7 @@ public class PropertiesManager {
 
     public static String getAdminURL(){ return properties.getProperty("admin.url"); }
 
-    public static String getUsernameAPI(){ return properties.getProperty("usernameAPI"); }
+    public static String getOpenAccountURL(){ return properties.getProperty("openAccount.url"); }
 
 
 }
