@@ -10,12 +10,17 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.Date;
 
 public class TestUtils {
@@ -88,6 +93,41 @@ public class TestUtils {
     private static String generateTimestamp() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm");
         return LocalDateTime.now().format(formatter);
+    }
+
+    public static void cleanUpOldEvidence() {
+        Path dir = Paths.get("target", "evidence");
+        long thresholdMillis = Instant.now().minus(3, ChronoUnit.DAYS).toEpochMilli();
+
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+            for (Path entry : stream) {
+                if (Files.isDirectory(entry)) {
+                    BasicFileAttributes attrs = Files.readAttributes(entry, BasicFileAttributes.class);
+                    if (attrs.lastModifiedTime().toMillis() < thresholdMillis) {
+                        deleteDirectoryRecursively(entry);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Failed to clean up old evidence directory: {}", e.getMessage());
+        }
+    }
+
+    private static void deleteDirectoryRecursively(Path dir) throws IOException {
+        // Recursively delete contents of subdirectories
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+            for (Path entry : stream) {
+                if (Files.isDirectory(entry)) {
+                    deleteDirectoryRecursively(entry); // Recursive call for subdirectories
+                } else if (Files.isRegularFile(entry)) {
+                    Files.delete(entry); // Delete files
+                    logger.info("Deleted file: {}", entry);
+                }
+            }
+        }
+        // After all contents are deleted, delete the directory itself
+        Files.delete(dir);
+        logger.info("Deleted directory: {}", dir);
     }
 
 }

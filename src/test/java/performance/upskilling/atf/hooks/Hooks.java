@@ -24,6 +24,7 @@ public class Hooks {
     @BeforeAll()
     public static void setPreconditions() {
         TestUtils.createEvidenceDirectory();
+        TestUtils.cleanUpOldEvidence();
         testPreconditions.validateAdminSetUp();
         testCustomActions.navigateTo(PropertiesManager.getRegisterURL());
         testPreconditions.userIsRegistered();
