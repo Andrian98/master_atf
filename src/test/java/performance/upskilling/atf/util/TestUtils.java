@@ -55,7 +55,7 @@ public class TestUtils {
                 scenario.attach(screenshot, "image/png", "Screenshot"); // Attach the screenshot to the scenario
                 logger.info("Screenshot attached ");
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Failed to add screenshot: {}", e.getMessage());
             }
         }
     }
@@ -70,12 +70,12 @@ public class TestUtils {
                     try {
                         Files.move(source, destination);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        logger.error(e.getMessage());
                     }
                 });
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to move data in Evidence: {}", e.getMessage());
         }
     }
 
@@ -86,7 +86,7 @@ public class TestUtils {
             Files.createDirectories(evidenceDir);
             logger.info("Evidence directory created");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to create evidence directory: {}", e.getMessage());
         }
     }
 
