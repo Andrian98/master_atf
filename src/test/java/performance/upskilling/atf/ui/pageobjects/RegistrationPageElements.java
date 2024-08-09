@@ -53,7 +53,7 @@ public class RegistrationPageElements {
     @FindBy(xpath = "(//input[@class='button'])[2]")
     private WebElement registerButton;
 
-    @FindBy(xpath = "//p[text()='Your account was created successfully. You are now logged in.']")
+    @FindBy(xpath = "//div[@id='rightPanel']//p[1]")
     private WebElement validateUserCreation;
 
     @FindBy(linkText = "Log Out")

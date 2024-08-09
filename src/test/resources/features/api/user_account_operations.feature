@@ -6,7 +6,7 @@ Feature: User activity on account page
     When user sends a POST request to create account
     Then request returns a success status code
 
-  @Invalid_Account
+  @Negative_Scenario
   Scenario: User cannot create an account with the invalid id
     Given data for account creation
     When user sends a POST request to create Account with customerId "12345"

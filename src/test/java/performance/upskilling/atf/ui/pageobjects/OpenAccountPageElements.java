@@ -33,7 +33,7 @@ public class OpenAccountPageElements {
 
     @FindBy(id = "newAccountId")
     private WebElement newAccountId;
-    //TODO do not use the text in the find elements
+
     @FindBy(xpath = "//div[@id='openAccountResult']//p[1]")
     private WebElement congratulationMessage;
 

@@ -1,5 +1,6 @@
 package performance.upskilling.atf.ui.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,7 +13,7 @@ public class OpenAccountPageSteps {
     public static TestCustomActions testCustomActions = new TestCustomActions();
     public static OpenAccountPageElements openAccountPageElements = new OpenAccountPageElements();
 
-    @Given("user is on open new account page")
+    @And("user is on open new account page")
     public void userIsOnOpenNewAccountPage() {
         testCustomActions.navigateTo(PropertiesManager.getOpenAccountURL());
     }
@@ -23,7 +24,7 @@ public class OpenAccountPageSteps {
         openAccountPageElements.selectFromAccountId();
     }
 
-    @When("user clicks on open new account button")
+    @And("user clicks on open new account button")
     public void userClicksOnOpenNewAccountButton() {
         openAccountPageElements.clickOpenAccountButton();
     }

@@ -32,7 +32,7 @@ public class LoanPageElements {
     @FindBy(xpath = "//input[@value='Apply Now']")
     private WebElement applyLoanButton;
 
-    @FindBy(xpath = "//p[text()='Congratulations, your loan has been approved.']")
+    @FindBy(xpath = "//div[@id='loanRequestApproved']//p[1]")
     private WebElement loanText;
 
     @FindBy(id = "newAccountId")

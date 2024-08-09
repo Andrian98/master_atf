@@ -6,7 +6,7 @@ Feature: User activity on the login page
     When user logs in with the username "perf-user" and password "perf-user123"
     Then user successfully logged in
 
-  @Invalid_Login
+  @Negative_Scenario
   Scenario Outline: User logs in with invalid username
     Given server is ready to accept API request
     When user logs in with the "<username>" and "<password>"

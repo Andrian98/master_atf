@@ -28,4 +28,10 @@ public class LoginPageSteps {
         testCustomActions.clickButton(loginPageElements.getLogOutButton());
     }
 
+    @Given("user is logged in with valid credentials")
+    public void userIsLoggedInWithValidCredentials() {
+        testCustomActions.navigateTo(PropertiesManager.getIndexURL());
+        loginPageElements.userLogin();
+        loginPageElements.userClickSubmit();
+    }
 }

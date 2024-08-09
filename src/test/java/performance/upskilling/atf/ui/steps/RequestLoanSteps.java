@@ -1,6 +1,7 @@
 package performance.upskilling.atf.ui.steps;
 
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,7 +17,7 @@ public class RequestLoanSteps {
     public static LoanPageElements loanPageElements = new LoanPageElements();
 
 
-    @Given("user is on request loan page")
+    @And("user is on request loan page")
     public void userIsOnRequestLoanPage() {
         testCustomActions.navigateTo(requestLoanURL);
     }

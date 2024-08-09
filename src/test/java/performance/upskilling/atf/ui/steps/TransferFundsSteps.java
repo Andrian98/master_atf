@@ -1,5 +1,6 @@
 package performance.upskilling.atf.ui.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,12 +13,12 @@ public class TransferFundsSteps {
     private static final TestCustomActions testCustomActions = new TestCustomActions();
     private static final TransferPageElements transferPageElements = new TransferPageElements();
 
-    @Given("user is on transfer funds page")
+    @And("user is on transfer funds page")
     public void userIsOnTransferFundsPage() {
         testCustomActions.navigateTo(PropertiesManager.getTransferUrl());
     }
 
-    @When("user selected From account and To account")
+    @And("user selected From account and To account")
     public void userSelectedFromAccountAndToAccount() {
         testCustomActions.selectFromDropDown(transferPageElements.getFromAccountId());
         testCustomActions.selectFromDropDown(transferPageElements.getToAccountId());

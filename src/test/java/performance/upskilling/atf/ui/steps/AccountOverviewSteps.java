@@ -10,13 +10,18 @@ public class AccountOverviewSteps {
     public static TestCustomActions testCustomActions = new TestCustomActions();
 
 
-    @Given("user is on account overview page")
-    public void userIsOnAccountOverviewPage() {
+    @When("user navigated to account overview page")
+    public void userNavigatedToAccountOverviewPage() {
 
     }
 
     @Then("new accounts id are validated")
     public void newAccountsIdAreValidated() {
+
+    }
+
+    @And("user is on account overview page")
+    public void userIsOnAccountOverviewPage() {
 
     }
 
@@ -34,4 +39,5 @@ public class AccountOverviewSteps {
     public void newAccountAreSuccessfullyDeleted() {
 
     }
+
 }
