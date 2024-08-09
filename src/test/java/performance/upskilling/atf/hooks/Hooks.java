@@ -26,7 +26,7 @@ public class Hooks {
         TestUtils.createEvidenceDirectory();
         testPreconditions.validateAdminSetUp();
         testCustomActions.navigateTo(PropertiesManager.getRegisterURL());
-        testPreconditions.userRegistration();
+        testPreconditions.userIsRegistered();
 
         WebDriverManager.quitDriver();
         logger.info("Browser closed after setting preconditions for tests.");
@@ -43,7 +43,6 @@ public class Hooks {
     public void getDesktopSizeForPreconditions() {
         WebDriverManager.getMonitorResolution();
     }
-    //TODO scenario context for preconditions
 
     @Before("@API")
     public void beforeAPITest() {

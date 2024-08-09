@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ScenarioContext {
-
+//TODO to implement singleton in scenario context (study materials)
     private Map<String, Object> scenarioContext;
 
     public ScenarioContext(){
@@ -19,10 +19,6 @@ public class ScenarioContext {
 
     public Object getContext(Context key){
         return scenarioContext.get(key.toString());
-    }
-
-    public Boolean isContains(Context key){
-        return scenarioContext.containsKey(key.toString());
     }
 
 }

@@ -5,11 +5,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.enums.Context;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
-import performance.upskilling.atf.configuration.scenario_context.ScenarioContext;
 import performance.upskilling.atf.ui.pageobjects.OpenAccountPageElements;
 import performance.upskilling.atf.util.TestCustomActions;
 
-public class OpenAccountPage {
+public class OpenAccountPageSteps {
     public static TestCustomActions testCustomActions = new TestCustomActions();
     public static OpenAccountPageElements openAccountPageElements = new OpenAccountPageElements();
 
@@ -33,10 +32,6 @@ public class OpenAccountPage {
     public void newAccountIsCreated() {
         String actualText = testCustomActions.getTextFromPage(openAccountPageElements.getCongratulationMessage());
         testCustomActions.assertPageText("Congratulations, your account is now open.",actualText);
-        openAccountPageElements.addNewIdToContext();
-
-        String newAccountIdFromContext = openAccountPageElements.getScenarioContext().getContext(Context.NEW_ACCOUNT_ID).toString();
-        System.out.println("****NEW ACCOUNT ID from context: " + newAccountIdFromContext);
     }
 
 

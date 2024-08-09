@@ -3,7 +3,6 @@ package performance.upskilling.atf.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
@@ -46,8 +45,8 @@ public class TestPreconditions {
         testCustomActions.clickButton(adminPageElements.getSubmitButton());
         logger.info("Preconditions executed.");
     }
-
-    public void userRegistration(){
+    //TODO method is a action, rename this
+    public void userIsRegistered(){
         registrationPageElements.getElement("First Name").sendKeys("perf");
         registrationPageElements.getElement("Last Name").sendKeys("user");
         registrationPageElements.getElement("Address").sendKeys("town");

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
@@ -32,9 +33,9 @@ public class OpenAccountPageElements {
 
     @FindBy(id = "newAccountId")
     private WebElement newAccountId;
-
-    @FindBy(xpath = "//p[text()='Congratulations, your account is now open.']")
-    private WebElement congratulations;
+    //TODO do not use the text in the find elements
+    @FindBy(xpath = "//div[@id='openAccountResult']//p[1]")
+    private WebElement congratulationMessage;
 
     public OpenAccountPageElements() {
         this.driver = WebDriverManager.getDriver();
@@ -56,7 +57,7 @@ public class OpenAccountPageElements {
     }
 
     public WebElement getCongratulationMessage() {
-        return congratulations;
+        return congratulationMessage;
     }
 
     public ScenarioContext getScenarioContext() {
@@ -75,20 +76,19 @@ public class OpenAccountPageElements {
     public void selectFromAccountId() {
         testCustomActions.selectFromDropDown(getFromAccountId());
         logger.debug("Selected account id: {}", getFromAccountId().getText());
+
+        scenarioContext.setContext(Context.ACCOUNT_ID, getAccountType().getText());
+        logger.debug("Set to Context basic account id: {}", getAccountType().getText());
     }
 
+    //TODO in this method can be set the ID in the context
     public void clickOpenAccountButton() {
         testCustomActions.clickButton(getOpenAccountButton());
         logger.info("Clicked open account button");
-    }
 
-    public void addNewIdToContext(){
-        scenarioContext.setContext(Context.NEW_ACCOUNT_ID,getNewAccountId().getText());
-        logger.debug("New account id: {}", getNewAccountId().getText());
-    }
-
-    public void validateNewAccountID() {
-
+        wait.until(ExpectedConditions.visibilityOf(newAccountId));
+        scenarioContext.setContext(Context.NEW_ACCOUNT_ID, getNewAccountId().getText());
+        logger.debug("Set to Context new account id: {}", getNewAccountId().getText());
     }
 
 }

@@ -1,7 +1,7 @@
-@UI
+@UIII
 Feature: User perform activities with accounts
 
-  Background: User is logged in and two accounts are created
+  Background:
     Given user is on main page
     When user enters valid credentials
     And user is on open new account page
