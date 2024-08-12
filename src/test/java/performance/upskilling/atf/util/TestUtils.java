@@ -7,6 +7,7 @@ import org.apache.logging.log4j.core.LoggerContext;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
+import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +82,7 @@ public class TestUtils {
 
     public static void createEvidenceDirectory() {
         String timestamp = generateTimestamp();
-        evidenceDir = Paths.get("target", "evidence", timestamp);
+        evidenceDir = Paths.get(PropertiesManager.getEvidencePath(), timestamp);
         try {
             Files.createDirectories(evidenceDir);
             logger.info("Evidence directory created");
@@ -96,8 +97,8 @@ public class TestUtils {
     }
 
     public static void cleanUpOldEvidence() {
-        Path dir = Paths.get("target", "evidence");
-        long thresholdMillis = Instant.now().minus(3, ChronoUnit.DAYS).toEpochMilli();
+        Path dir = Paths.get(PropertiesManager.getEvidencePath());
+        long thresholdMillis = Instant.now().minus(PropertiesManager.getEvidenceRetentionPeriod(), ChronoUnit.DAYS).toEpochMilli();
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
             for (Path entry : stream) {

@@ -18,7 +18,7 @@ public class LoginPageElements {
     public static final Logger logger = LogManager.getLogger();
     private static final TestCustomActions testCustomActions = new TestCustomActions();
     public static OverviewPageElements overviewPageElements = new OverviewPageElements();
-//TODO maybe is possible to use id
+
     @FindBy(name = "username")
     private WebElement username;
 

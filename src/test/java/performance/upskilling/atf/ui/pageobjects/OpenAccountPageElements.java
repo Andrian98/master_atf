@@ -81,7 +81,6 @@ public class OpenAccountPageElements {
         logger.debug("Set to Context basic account id: {}", getAccountType().getText());
     }
 
-    //TODO in this method can be set the ID in the context
     public void clickOpenAccountButton() {
         testCustomActions.clickButton(getOpenAccountButton());
         logger.info("Clicked open account button");

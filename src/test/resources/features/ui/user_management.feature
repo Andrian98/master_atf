@@ -25,8 +25,3 @@ Feature: User apply for loan and transfer funds
     When user selects account type and existing account
     And user clicks on open new account button
     Then new account is created
-
-
-
-
-  #TODO to delete old evidence after a period of time
