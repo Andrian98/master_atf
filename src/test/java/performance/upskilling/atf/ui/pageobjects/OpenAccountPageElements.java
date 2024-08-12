@@ -18,7 +18,7 @@ public class OpenAccountPageElements {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext = ScenarioContext.getInstance();
     public static final Logger logger = LogManager.getLogger();
     private static final TestCustomActions testCustomActions = new TestCustomActions();
 
@@ -58,10 +58,6 @@ public class OpenAccountPageElements {
 
     public WebElement getCongratulationMessage() {
         return congratulationMessage;
-    }
-
-    public ScenarioContext getScenarioContext() {
-        return scenarioContext;
     }
 
     public WebElement getNewAccountId() {

@@ -23,15 +23,15 @@ public class TestPreconditions {
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
-    public void accessAdminURL(){
+    public void accessAdminURL() {
         testCustomActions.navigateTo(PropertiesManager.getAdminURL());
     }
 
-    public void validateAdminSetUp(){
+    public void validateAdminSetUp() {
         accessAdminURL();
         testCustomActions.clickButton(adminPageElements.getCleanDataBase());
         testCustomActions.clickButton(adminPageElements.getDatabaseInitialize());
-        if(adminPageElements.getJmsServiceStatus().getText().contains("Stopped")){
+        if (adminPageElements.getJmsServiceStatus().getText().contains("Stopped")) {
             testCustomActions.clickButton(adminPageElements.getJmsServiceStatusButton());
         }
         testCustomActions.clickButton(adminPageElements.getDataAccessModeJDBC());
@@ -45,8 +45,9 @@ public class TestPreconditions {
         testCustomActions.clickButton(adminPageElements.getSubmitButton());
         logger.info("Preconditions executed.");
     }
+
     //TODO method is a action, rename this
-    public void userIsRegistered(){
+    public void userIsRegistered() {
         registrationPageElements.getElement("First Name").sendKeys("perf");
         registrationPageElements.getElement("Last Name").sendKeys("user");
         registrationPageElements.getElement("Address").sendKeys("town");

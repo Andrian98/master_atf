@@ -6,11 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ScenarioContext {
-//TODO to implement singleton in scenario context (study materials)
+
+    private static ScenarioContext instance;
+
     private Map<String, Object> scenarioContext;
 
     public ScenarioContext(){
         scenarioContext = new HashMap<String, Object>();
+    }
+
+    public static synchronized ScenarioContext getInstance() {
+        if (instance == null) {
+            instance = new ScenarioContext();
+        }
+        return instance;
     }
 
     public void setContext(Context key, Object value) {
