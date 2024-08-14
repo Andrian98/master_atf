@@ -20,6 +20,7 @@ public class WebDriverManager {
 
             } catch (IllegalArgumentException e) {
                 logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
+                logger.error("Error Message {}", e.getMessage());
                 driver = BrowserType.CHROME.createDriver();
             }
             logger.info("WebDriver initialized");
