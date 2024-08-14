@@ -61,7 +61,7 @@ public class LoginPageElements {
         testCustomActions.clickButton(getSubmit());
         logger.info("User clicked on submit button");
     }
-
+//TODO need to be assert
     public void validateWelcomeMessage() {
         String welcomeMessage = testCustomActions.getTextFromPage(overviewPageElements.getWelcomeMessage());
         logger.debug("{} message displayed", welcomeMessage);

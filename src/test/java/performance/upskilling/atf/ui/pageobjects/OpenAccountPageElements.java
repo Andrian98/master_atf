@@ -37,11 +37,13 @@ public class OpenAccountPageElements {
     @FindBy(xpath = "//div[@id='openAccountResult']//p[1]")
     private WebElement congratulationMessage;
 
+    @FindBy(linkText = "Log Out")
+    private WebElement logOutButton;
+
     public OpenAccountPageElements() {
         this.driver = WebDriverManager.getDriver();
         this.wait = WebDriverWaiter.getWaiter(driver);
         PageFactory.initElements(driver, this);
-        scenarioContext = new ScenarioContext();
     }
 
     public WebElement getAccountType() {
@@ -64,6 +66,10 @@ public class OpenAccountPageElements {
         return newAccountId;
     }
 
+    public WebElement getLogOutButton() {
+        return logOutButton;
+    }
+
     public void selectAccountType() {
         testCustomActions.selectFromDropDown(getAccountType());
         logger.debug("Selected account type: {}", getAccountType().getText());
@@ -73,8 +79,8 @@ public class OpenAccountPageElements {
         testCustomActions.selectFromDropDown(getFromAccountId());
         logger.debug("Selected account id: {}", getFromAccountId().getText());
 
-        scenarioContext.setContext(Context.ACCOUNT_ID, getAccountType().getText());
-        logger.debug("Set to Context basic account id: {}", getAccountType().getText());
+        scenarioContext.setContext(Context.ACCOUNT_ID, getFromAccountId().getText());
+        logger.debug("Set to Context basic account id: {}", getFromAccountId().getText());
     }
 
     public void clickOpenAccountButton() {

@@ -20,11 +20,11 @@ public class PropertiesManager {
     }
 
     public static String getIndexURL() {
-        return properties.getProperty("index.url");
+        return properties.getProperty("index.api");
     }
 
     public static String getLoginURL() {
-        return properties.getProperty("login.url");
+        return properties.getProperty("login.api");
     }
 
     public static String getRegisterURL() {
@@ -40,11 +40,11 @@ public class PropertiesManager {
     }
 
     public static String getUserAccountsURL() {
-        return properties.getProperty("userAccounts.url");
+        return properties.getProperty("userAccounts.api");
     }
 
     public static String getCreateAccountURL() {
-        return properties.getProperty("createAccount.url");
+        return properties.getProperty("createAccount.api");
     }
 
     public static String getRequestLoanURL() {
@@ -77,6 +77,10 @@ public class PropertiesManager {
 
     public static String getEvidencePath(){
         return properties.getProperty("evidencePath");
+    }
+
+    public static String getAccountOverview(){
+        return properties.getProperty("accountOverview.url");
     }
 
 

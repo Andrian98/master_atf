@@ -32,7 +32,7 @@ public class TestCustomActions {
     }
 
     public void assertPageText(String expectedText, String actualText) {
-        assertThat(actualText, equalTo(expectedText));
+        assertThat("Text a matched ",actualText, equalTo(expectedText));
         logger.info("\nActual text: {} \nExpected text: {}", actualText, expectedText);
     }
 

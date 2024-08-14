@@ -25,3 +25,13 @@ Feature: User apply for loan and transfer funds
     When user selects account type and existing account
     And user clicks on open new account button
     Then new account is created
+
+  Scenario: User validates all accounts
+    When user navigated to account overview page
+    Then new accounts id are validated
+
+#    Scenario: User deletes new account
+#      And user is on account overview page
+#      When user selects the new account
+#      And user delete the new account
+#      Then new account are successfully deleted

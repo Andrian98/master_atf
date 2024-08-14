@@ -9,7 +9,7 @@ public class ScenarioContext {
 
     private static ScenarioContext instance;
 
-    private Map<String, Object> scenarioContext;
+    private final Map<String, Object> scenarioContext;
 
     public ScenarioContext(){
         scenarioContext = new HashMap<String, Object>();
@@ -26,8 +26,8 @@ public class ScenarioContext {
         scenarioContext.put(key.toString(), value);
     }
 
-    public Object getContext(Context key){
-        return scenarioContext.get(key.toString());
+    public <T> T getContext(Context key){
+        return (T) scenarioContext.get(key.toString());
     }
 
 }

@@ -33,6 +33,7 @@ public class OpenAccountPageSteps {
     public void newAccountIsCreated() {
         String actualText = testCustomActions.getTextFromPage(openAccountPageElements.getCongratulationMessage());
         testCustomActions.assertPageText("Congratulations, your account is now open.",actualText);
+        testCustomActions.clickButton(openAccountPageElements.getLogOutButton());
     }
 
 
