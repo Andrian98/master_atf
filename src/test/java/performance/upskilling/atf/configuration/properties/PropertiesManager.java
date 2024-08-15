@@ -75,11 +75,11 @@ public class PropertiesManager {
         return Integer.parseInt(properties.getProperty("evidenceRetentionPeriod"));
     }
 
-    public static String getEvidencePath(){
+    public static String getEvidencePath() {
         return properties.getProperty("evidencePath");
     }
 
-    public static String getAccountOverview(){
+    public static String getAccountOverview() {
         return properties.getProperty("accountOverview.url");
     }
 

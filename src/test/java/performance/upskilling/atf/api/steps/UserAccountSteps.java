@@ -13,12 +13,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class UserAccountSteps {
-    private static final Logger logger = LogManager.getLogger();
+    private final Logger logger = LogManager.getLogger();
     private final UserActions userActions = new UserActions();
     private int validCustomerId;
-    private static final String username = PropertiesManager.getUsername();
-    private static final String password = PropertiesManager.getPassword();
-    public Response response;
+    private final String username = PropertiesManager.getUsername();
+    private final String password = PropertiesManager.getPassword();
+    private Response response;
 
 
     @Given("data for account creation")

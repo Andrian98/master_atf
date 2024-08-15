@@ -17,8 +17,8 @@ import java.util.Map;
 public class RegistrationPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
-    private static final Logger logger = LogManager.getLogger();
-    private static final TestCustomActions testCustomActions = new TestCustomActions();
+    private final Logger logger = LogManager.getLogger();
+    private final TestCustomActions testCustomActions = new TestCustomActions();
 
     @FindBy(id = "customer.firstName")
     private WebElement firstNameField;
