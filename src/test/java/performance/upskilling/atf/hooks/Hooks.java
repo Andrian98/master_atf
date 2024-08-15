@@ -27,7 +27,7 @@ public class Hooks {
         TestUtils.cleanUpOldEvidence();
         testPreconditions.validateAdminSetUp();
         testCustomActions.navigateTo(PropertiesManager.getRegisterURL());
-        testPreconditions.userIsRegistered();
+        testPreconditions.registerNewUser();
 
         WebDriverManager.quitDriver();
         logger.info("Browser closed after setting preconditions for tests.");

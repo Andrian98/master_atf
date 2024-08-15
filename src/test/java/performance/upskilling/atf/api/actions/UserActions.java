@@ -16,11 +16,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserActions {
-    private static final Logger logger = LogManager.getLogger();
-    public Response response;
-    public UserRequests userRequests = new UserRequests();
-    public List<UserResponse> userResponses;
-    public int fromAccountId;
+    private final Logger logger = LogManager.getLogger();
+    private Response response;
+    private UserRequests userRequests = new UserRequests();
+    private List<UserResponse> userResponses;
+    private int fromAccountId;
 
     public UserActions() {
         RestAssured.defaultParser = Parser.JSON;
@@ -50,18 +50,6 @@ public class UserActions {
 
         response = userRequests.getRequest(userAccountsURL);
         userResponses = response.jsonPath().getList("", UserResponse.class);
-    }
-
-    //TODO this method can be implemented in the new scenario where numbers of the accounts will be validated
-    //TODO Scenario Context can be used in the new Account
-    public void printUserAccounts() {
-        if (userResponses != null) {
-            for (UserResponse userResponse : userResponses) {
-                logger.debug("Response: {}", userResponse);
-            }
-        } else {
-            logger.error("No accounts found for customer.");
-        }
     }
 
     public String buildQueryParams(int customCustomerId) {

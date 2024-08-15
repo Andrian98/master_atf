@@ -16,8 +16,8 @@ import java.util.Map;
 public class LoanPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
-    public static final Logger logger = LogManager.getLogger();
-    private static final TestCustomActions testCustomActions = new TestCustomActions();
+    private final Logger logger = LogManager.getLogger();
+    private final TestCustomActions testCustomActions = new TestCustomActions();
 
     @FindBy(id = "amount")
     private WebElement loanAmountField;
@@ -71,7 +71,9 @@ public class LoanPageElements {
         return newAccountId;
     }
 
-    public WebElement getLogOutButton() {return logOutButton;}
+    public WebElement getLogOutButton() {
+        return logOutButton;
+    }
 
     public void populateLoanFields(Map<String, String> loanData) {
         testCustomActions.sendKeysToWebElement(getLoanAmountField(), loanData.get("Loan Amount"));

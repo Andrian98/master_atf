@@ -11,12 +11,12 @@ import performance.upskilling.atf.ui.pageobjects.AdminPageElements;
 import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
 
 public class TestPreconditions {
-    public WebDriver driver;
-    public static WebDriverWait wait;
-    public static TestCustomActions testCustomActions = new TestCustomActions();
-    private static final AdminPageElements adminPageElements = new AdminPageElements();
-    public RegistrationPageElements registrationPageElements = new RegistrationPageElements();
-    private static final Logger logger = LogManager.getLogger();
+    private WebDriver driver;
+    private WebDriverWait wait;
+    private TestCustomActions testCustomActions = new TestCustomActions();
+    private final AdminPageElements adminPageElements = new AdminPageElements();
+    private RegistrationPageElements registrationPageElements = new RegistrationPageElements();
+    private final Logger logger = LogManager.getLogger();
 
     public TestPreconditions() {
         this.driver = WebDriverManager.getDriver();
@@ -46,8 +46,7 @@ public class TestPreconditions {
         logger.info("Preconditions executed.");
     }
 
-    //TODO method is a action, rename this
-    public void userIsRegistered() {
+    public void registerNewUser() {
         registrationPageElements.getElement("First Name").sendKeys("perf");
         registrationPageElements.getElement("Last Name").sendKeys("user");
         registrationPageElements.getElement("Address").sendKeys("town");

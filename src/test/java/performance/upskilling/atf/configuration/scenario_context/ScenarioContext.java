@@ -8,7 +8,6 @@ import java.util.Map;
 public class ScenarioContext {
 
     private static ScenarioContext instance;
-
     private final Map<String, Object> scenarioContext;
 
     public ScenarioContext(){

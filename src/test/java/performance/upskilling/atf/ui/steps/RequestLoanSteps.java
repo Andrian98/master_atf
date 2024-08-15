@@ -12,9 +12,9 @@ import performance.upskilling.atf.util.TestCustomActions;
 import java.util.Map;
 
 public class RequestLoanSteps {
-    public static TestCustomActions testCustomActions = new TestCustomActions();
-    public static String requestLoanURL = PropertiesManager.getRequestLoanURL();
-    public static LoanPageElements loanPageElements = new LoanPageElements();
+    private TestCustomActions testCustomActions = new TestCustomActions();
+    private String requestLoanURL = PropertiesManager.getRequestLoanURL();
+    private LoanPageElements loanPageElements = new LoanPageElements();
 
 
     @And("user is on request loan page")

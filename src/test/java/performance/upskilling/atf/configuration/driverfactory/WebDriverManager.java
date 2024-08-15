@@ -11,7 +11,7 @@ public class WebDriverManager {
     private static final Logger logger = LogManager.getLogger();
     private static final String browser = PropertiesManager.getBrowser();
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
         if (driver == null) {
             try {
                 BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());

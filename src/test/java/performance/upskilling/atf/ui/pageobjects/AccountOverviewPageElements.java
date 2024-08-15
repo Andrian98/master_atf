@@ -24,8 +24,8 @@ public class AccountOverviewPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public static final Logger logger = LogManager.getLogger();
-    private static final TestCustomActions testCustomActions = new TestCustomActions();
+    public final Logger logger = LogManager.getLogger();
+    private final TestCustomActions testCustomActions = new TestCustomActions();
 
     @FindBy(xpath = "//*[@id='showOverview']")
     private WebElement showOverview;
