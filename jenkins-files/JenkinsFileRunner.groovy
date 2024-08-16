@@ -44,7 +44,7 @@ pipeline {
                 script {
                     try {
                         def runner = params.RUNNER
-                        bat "mvn clean test -Dtest=runners.${runner}"
+                        bat "mvn test -Dtest=runners.${runner}"
                     } catch (err) {
                         currentBuild.result = 'FAILURE'
                         echo err
