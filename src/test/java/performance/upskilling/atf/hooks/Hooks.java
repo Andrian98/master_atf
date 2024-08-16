@@ -59,7 +59,6 @@ public class Hooks {
 
     @AfterAll
     public static void afterAll() {
-
         if (uiTestExecution) {
             WebDriverManager.quitDriver();
         }

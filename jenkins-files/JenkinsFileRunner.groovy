@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(
                 name: 'RUNNER',
-                choices: ['TestRunnerAPI', 'TestRunnerUI', 'GeneralRunner'],
+                choices: ['TestRunnerAPI', 'TestRunnerUI', 'TestGeneralRunner'],
                 description: 'Choose the test runner to execute'
         )
         booleanParam(name: 'Clean_Logs', defaultValue: false, description: 'Wll clean logs on the environment.')

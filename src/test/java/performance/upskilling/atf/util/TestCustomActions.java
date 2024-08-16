@@ -17,7 +17,6 @@ import java.util.Random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-
 public class TestCustomActions {
     private static final Logger logger = LogManager.getLogger();
 
