@@ -44,8 +44,7 @@ pipeline {
                 script {
                     try {
                         def runner = params.RUNNER
-                        bat "mvn test -Dtest=runners.${runner}"
-                        bat 'mvn test --debug -Dtest=runners.${runner}'
+                        bat "mvn clean test -Dtest=runners.${runner}"
                     } catch (err) {
                         currentBuild.result = 'FAILURE'
                         echo err
@@ -64,15 +63,13 @@ pipeline {
     post {
         always {
             script {
-                // Ensure Cucumber reports are available and generated
                 def cucumberResultsFound = fileExists 'target/*.json'
                 if (cucumberResultsFound) {
                     cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/*.json'
                 } else {
                     echo 'No Cucumber report files found.'
                 }
-
-                // Archive artifacts if they exist
+                // Archive artifacts
                 archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
             }
         }
