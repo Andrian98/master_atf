@@ -59,7 +59,7 @@ pipeline {
                         allowMissing         : true,
                         alwaysLinkToLastBuild: true,
                         keepAll              : true,
-                        reportDir            : 'target/evidence/*',
+                        reportDir            : 'target/evidence',
                         reportFiles          : '*.html', // Assuming all HTML files are relevant
                         reportName           : 'Test Report'
                 ])
