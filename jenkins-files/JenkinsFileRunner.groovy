@@ -51,16 +51,14 @@ pipeline {
     post {
         always {
             script {
-                // Find the exact directory with the dynamic date pattern under 'target/evidence/'
-                def reportDir
-                def evidenceDir = new File('target/evidence')
-                evidenceDir.eachDir { dir ->
-                    if (dir.name ==~ /\d{4}-\d{2}-\d{2}_\d{2}-\d{2}/) {
-                        reportDir = "target/evidence/${dir.name}"
-                    }
-                }
+                // Find the dynamic directory using a shell or batch command
+                def reportDir = bat(
+                        script: 'for /d %D in (target\\evidence\\*) do @echo %D',
+                        returnStdout: true
+                ).trim()
 
-                if (reportDir) {
+                // Check if reportDir contains the correct path
+                if (reportDir && fileExists(reportDir)) {
                     // Archive the HTML report
                     archiveArtifacts artifacts: "${reportDir}/*.html", allowEmptyArchive: true
 
