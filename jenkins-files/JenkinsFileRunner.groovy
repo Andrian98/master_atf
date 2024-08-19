@@ -68,7 +68,6 @@ pipeline {
     post {
         always {
             script {
-                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*/*.html'
                 echo 'Test successfully executed.'
             }
         }
