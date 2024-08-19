@@ -51,11 +51,11 @@ pipeline {
             }
         }
 
-        stage('Generate Reports') {
-            steps {
-                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*/*.html'
-            }
-        }
+//        stage('Generate Reports') {
+//            steps {
+//                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*/*.html'
+//            }
+//        }
 
         stage('Generate Reports version 2') {
             steps {
