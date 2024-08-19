@@ -52,17 +52,18 @@ pipeline {
         always {
             script {
                 // Archive the HTML report
-                archiveArtifacts artifacts: 'target', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/evidence/**/*.html', allowEmptyArchive: true
 
-                // Optional: Add a step to publish the HTML report if needed
+                // Publish the HTML report
                 publishHTML(target: [
                         allowMissing         : true,
                         alwaysLinkToLastBuild: true,
                         keepAll              : true,
-                        reportDir            : 'target/evidence',
-                        reportFiles          : '*.html', // Assuming all HTML files are relevant
+                        reportDir            : 'target/evidence/**/*', // Matches the dynamic directory
+                        reportFiles          : '*.html', // Matches the specific report file
                         reportName           : 'Test Report'
                 ])
+
                 echo 'Test successfully executed.'
             }
         }
