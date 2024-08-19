@@ -51,20 +51,32 @@ pipeline {
     post {
         always {
             script {
-                // Archive the HTML report
-                archiveArtifacts artifacts: 'target/evidence/**/*.html', allowEmptyArchive: true
+                // Find the exact directory with the dynamic date pattern under 'target/evidence/'
+                def reportDir = ''
+                def evidenceDir = new File('target/evidence')
+                evidenceDir.eachDir { dir ->
+                    if (dir.name ==~ /\d{4}-\d{2}-\d{2}_\d{2}-\d{2}/) {
+                        reportDir = "target/evidence/${dir.name}"
+                    }
+                }
 
-                // Publish the HTML report
-                publishHTML(target: [
-                        allowMissing         : true,
-                        alwaysLinkToLastBuild: true,
-                        keepAll              : true,
-                        reportDir            : 'target/evidence/**/*', // Matches the dynamic directory
-                        reportFiles          : '*.html', // Matches the specific report file
-                        reportName           : 'Test Report'
-                ])
+                if (reportDir) {
+                    // Archive the HTML report
+                    archiveArtifacts artifacts: "${reportDir}/*.html", allowEmptyArchive: true
 
-                echo 'Test successfully executed.'
+                    // Publish the HTML report
+                    publishHTML(target: [
+                            allowMissing         : true,
+                            alwaysLinkToLastBuild: true,
+                            keepAll              : true,
+                            reportDir            : reportDir,
+                            reportFiles          : 'reportAPI.html', // Use the exact HTML report file name
+                            reportName           : 'Test Report'
+                    ])
+                    echo 'Test successfully executed.'
+                } else {
+                    error "No report directory found in target/evidence/"
+                }
             }
         }
     }
