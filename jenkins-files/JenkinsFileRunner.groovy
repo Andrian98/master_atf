@@ -47,11 +47,10 @@ pipeline {
         }
 
         stage('Generate Reports') {
-            steps {
-                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*/*.html'
-            }
 
             steps {
+                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*/*.html'
+
                 // Archive the HTML report
                 archiveArtifacts artifacts: 'target/evidence/**/*.html', allowEmptyArchive: true
 
