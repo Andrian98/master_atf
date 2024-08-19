@@ -49,17 +49,17 @@ pipeline {
         stage('Generate Reports') {
 
             steps {
-                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*.html'
+                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*/*.html'
 
                 // Archive the HTML report
-                archiveArtifacts artifacts: 'target/evidence/*.html', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/evidence/*/*.html', allowEmptyArchive: true
 
                 // Optional: Add a step to publish the HTML report if needed
                 publishHTML(target: [
                         allowMissing         : true,
                         alwaysLinkToLastBuild: true,
                         keepAll              : true,
-                        reportDir            : 'target/evidence',
+                        reportDir            : 'target/evidence/*',
                         reportFiles          : '*.html', // Assuming all HTML files are relevant
                         reportName           : 'Test Report'
                 ])
