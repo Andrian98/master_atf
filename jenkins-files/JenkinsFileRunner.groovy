@@ -46,9 +46,11 @@ pipeline {
             }
         }
 
-        stage('Generate Reports') {
+    }
 
-            steps {
+    post {
+        always {
+            script {
                 // Archive the HTML report
                 archiveArtifacts artifacts: 'target/evidence/*/*.html', allowEmptyArchive: true
 
@@ -61,13 +63,6 @@ pipeline {
                         reportFiles          : '*.html', // Assuming all HTML files are relevant
                         reportName           : 'Test Report'
                 ])
-            }
-        }
-    }
-
-    post {
-        always {
-            script {
                 echo 'Test successfully executed.'
             }
         }
