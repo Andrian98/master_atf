@@ -52,7 +52,7 @@ pipeline {
         always {
             script {
                 // Archive the HTML report
-                archiveArtifacts artifacts: 'target/evidence/*/*.html', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target', allowEmptyArchive: true
 
                 // Optional: Add a step to publish the HTML report if needed
                 publishHTML(target: [
