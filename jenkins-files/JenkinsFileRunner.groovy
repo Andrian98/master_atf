@@ -52,7 +52,7 @@ pipeline {
         always {
             script {
                 // Find the exact directory with the dynamic date pattern under 'target/evidence/'
-                def reportDir = ''
+                def reportDir
                 def evidenceDir = new File('target/evidence')
                 evidenceDir.eachDir { dir ->
                     if (dir.name ==~ /\d{4}-\d{2}-\d{2}_\d{2}-\d{2}/) {
