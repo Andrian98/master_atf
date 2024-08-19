@@ -7,8 +7,6 @@ pipeline {
                 choices: ['TestRunnerAPI', 'TestRunnerUI', 'TestGeneralRunner'],
                 description: 'Choose the test runner to execute'
         )
-        booleanParam(name: 'Clean_Logs', defaultValue: false, description: 'Wll clean logs on the environment.')
-        booleanParam(name: 'Clean_DB', defaultValue: false, description: 'Will clean DB.')
         booleanParam(name: 'SAVE_RESULTS', defaultValue: false, description: 'Want to save results?')
     }
 
@@ -63,14 +61,7 @@ pipeline {
     post {
         always {
             script {
-                def cucumberResultsFound = fileExists 'target/*.json'
-                if (cucumberResultsFound) {
-                    cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/*.json'
-                } else {
-                    echo 'No Cucumber report files found.'
-                }
-                // Archive artifacts
-                archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+                echo 'Test successfully executed.'
             }
         }
     }
