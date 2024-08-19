@@ -50,39 +50,7 @@ pipeline {
 
     post {
         always {
-            script {
-                def reportDir = ''
-                def evidenceDir = 'target/evidence'
-                def dirs = sh(
-                        script: "ls -d ${evidenceDir}/*/",
-                        returnStdout: true
-                ).trim().split("\n")
-
-                for (dir in dirs) {
-                    if (dir =~ /\d{4}-\d{2}-\d{2}_\d{2}-\d{2}/) {
-                        reportDir = dir
-                        break
-                    }
-                }
-
-                if (reportDir) {
-                    // Archive the HTML report
-                    archiveArtifacts artifacts: "${reportDir}*.html", allowEmptyArchive: true
-
-                    // Publish the HTML report
-                    publishHTML(target: [
-                            allowMissing         : true,
-                            alwaysLinkToLastBuild: true,
-                            keepAll              : true,
-                            reportDir            : reportDir,
-                            reportFiles          : 'reportAPI.html', // Use the exact HTML report file name
-                            reportName           : 'Test Report'
-                    ])
-                    echo 'Test successfully executed.'
-                } else {
-                    error "No report directory found in target/evidence/"
-                }
-            }
+            echo 'Test successfully executed.'
         }
     }
 }
