@@ -51,16 +51,23 @@ pipeline {
     post {
         always {
             script {
-                // Find the dynamic directory using a shell or batch command
-                def reportDir = bat(
-                        script: 'for /d %D in (target\\evidence\\*) do @echo %D',
+                def reportDir = ''
+                def evidenceDir = 'target/evidence'
+                def dirs = sh(
+                        script: "ls -d ${evidenceDir}/*/",
                         returnStdout: true
-                ).trim()
+                ).trim().split("\n")
 
-                // Check if reportDir contains the correct path
-                if (reportDir && fileExists(reportDir)) {
+                for (dir in dirs) {
+                    if (dir =~ /\d{4}-\d{2}-\d{2}_\d{2}-\d{2}/) {
+                        reportDir = dir
+                        break
+                    }
+                }
+
+                if (reportDir) {
                     // Archive the HTML report
-                    archiveArtifacts artifacts: "${reportDir}/*.html", allowEmptyArchive: true
+                    archiveArtifacts artifacts: "${reportDir}*.html", allowEmptyArchive: true
 
                     // Publish the HTML report
                     publishHTML(target: [
