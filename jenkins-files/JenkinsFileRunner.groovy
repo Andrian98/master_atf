@@ -56,22 +56,22 @@ pipeline {
                 cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/evidence/*/*.html'
             }
         }
-    }
 
-    stage('Generate Reports version 2') {
-        steps {
-            // Archive the HTML report
-            archiveArtifacts artifacts: 'target/evidence/*/*.html', allowEmptyArchive: true
+        stage('Generate Reports version 2') {
+            steps {
+                // Archive the HTML report
+                archiveArtifacts artifacts: 'target/evidence/*/*.html', allowEmptyArchive: true
 
-            // Optional: Add a step to publish the HTML report if needed
-            publishHTML (target: [
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'target/evidence/*',
-                    reportFiles: '*.html', // Assuming all HTML files are relevant
-                    reportName: 'Test Report'
-            ])
+                // Optional: Add a step to publish the HTML report if needed
+                publishHTML(target: [
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : 'target/evidence/*',
+                        reportFiles          : '*.html', // Assuming all HTML files are relevant
+                        reportName           : 'Test Report'
+                ])
+            }
         }
     }
 
