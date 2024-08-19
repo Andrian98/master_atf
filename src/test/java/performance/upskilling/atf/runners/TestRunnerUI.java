@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         tags = "@UI",
         glue = {"performance.upskilling.atf.ui", "performance.upskilling.atf.hooks"},
         stepNotifications = true,
-        plugin = {"html:target/working-directory/reportUI"}
+        plugin = {"html:target/working-directory/reportUI.html"}
 )
 
 public class TestRunnerUI {
