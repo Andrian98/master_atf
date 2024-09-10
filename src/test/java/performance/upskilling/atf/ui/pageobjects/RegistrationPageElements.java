@@ -56,7 +56,7 @@ public class RegistrationPageElements {
     @FindBy(xpath = "//div[@id='rightPanel']//p[1]")
     private WebElement validateUserCreation;
 
-    @FindBy(linkText = "Log Out")
+    @FindBy(xpath = "//a[@href='logout.htm']")
     private WebElement logOutButton;
 
     private final Map<String, WebElement> elementsMap;

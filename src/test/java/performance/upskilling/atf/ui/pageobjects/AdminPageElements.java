@@ -37,6 +37,12 @@ public class AdminPageElements {
     @FindBy(id = "endpoint")
     private WebElement endpoint;
 
+    @FindBy(id = "loanProvider")
+    private WebElement loanProviderOption;
+
+    @FindBy(id = "loanProcessor")
+    private WebElement loanProcessorOption;
+
     @FindBy(name = "initialBalance")
     private WebElement initBalance;
 
@@ -94,5 +100,13 @@ public class AdminPageElements {
 
     public WebElement getJmsServiceStatusButton() {
         return jmsServiceStatusButton;
+    }
+
+    public WebElement getLoanProviderOption() {
+        return loanProviderOption;
+    }
+
+    public WebElement getLoanProcessorOption() {
+        return loanProcessorOption;
     }
 }

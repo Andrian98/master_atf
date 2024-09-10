@@ -38,7 +38,7 @@ public class LoanPageElements {
     @FindBy(id = "newAccountId")
     private WebElement newAccountId;
 
-    @FindBy(linkText = "Log Out")
+    @FindBy(xpath = "//a[@href='logout.htm']")
     private WebElement logOutButton;
 
     public LoanPageElements() {

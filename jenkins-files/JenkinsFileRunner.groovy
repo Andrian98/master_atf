@@ -7,7 +7,7 @@ pipeline {
                 choices: ['TestRunnerAPI', 'TestRunnerUI', 'TestGeneralRunner'],
                 description: 'Choose the test runner to execute'
         )
-        booleanParam(name: 'SAVE_RESULTS', defaultValue: false, description: 'Want to save results?')
+//        booleanParam(name: 'SAVE_RESULTS', defaultValue: false, description: 'Want to save results?')
     }
 
     stages {

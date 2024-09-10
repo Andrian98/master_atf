@@ -28,7 +28,7 @@ public class TransferPageElements {
     @FindBy(xpath = "//h1[text()='Transfer Complete!']")
     private WebElement transferSuccessMessage;
 
-    @FindBy(linkText = "Log Out")
+    @FindBy(xpath = "//a[@href='logout.htm']")
     private WebElement logOutButton;
 
     public TransferPageElements(){

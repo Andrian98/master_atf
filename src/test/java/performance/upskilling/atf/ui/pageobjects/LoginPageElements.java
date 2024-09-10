@@ -30,7 +30,7 @@ public class LoginPageElements {
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement submit;
 
-    @FindBy(linkText = "Log Out")
+    @FindBy(xpath = "//a[@href='logout.htm']")
     private WebElement logOutButton;
 
     public LoginPageElements() {

@@ -1,7 +1,6 @@
 package performance.upskilling.atf.ui.steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
@@ -20,8 +19,8 @@ public class TransferFundsSteps {
 
     @And("user selected From account and To account")
     public void userSelectedFromAccountAndToAccount() {
-        testCustomActions.selectFromDropDown(transferPageElements.getFromAccountId());
-        testCustomActions.selectFromDropDown(transferPageElements.getToAccountId());
+        testCustomActions.selectRandomFromDropDown(transferPageElements.getFromAccountId());
+        testCustomActions.selectRandomFromDropDown(transferPageElements.getToAccountId());
     }
 
     @When("user enters valid amount to transfer")

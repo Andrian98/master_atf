@@ -39,6 +39,8 @@ public class TestPreconditions {
         adminPageElements.getRestEndpoint().clear();
         adminPageElements.getEndpoint().clear();
         adminPageElements.getInitBalance().clear();
+        testCustomActions.selectOptionFromDropDown(adminPageElements.getLoanProviderOption(),"Web Service");
+        testCustomActions.selectOptionFromDropDown(adminPageElements.getLoanProcessorOption(),"Available Funds");
         adminPageElements.getInitBalance().sendKeys("5150.50");
         adminPageElements.getMinBalance().clear();
         adminPageElements.getMinBalance().sendKeys("100.00");

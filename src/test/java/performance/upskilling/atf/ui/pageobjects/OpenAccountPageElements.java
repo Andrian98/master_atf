@@ -37,7 +37,7 @@ public class OpenAccountPageElements {
     @FindBy(xpath = "//div[@id='openAccountResult']//p[1]")
     private WebElement congratulationMessage;
 
-    @FindBy(linkText = "Log Out")
+    @FindBy(xpath = "//a[@href='logout.htm']")
     private WebElement logOutButton;
 
     public OpenAccountPageElements() {
@@ -71,12 +71,12 @@ public class OpenAccountPageElements {
     }
 
     public void selectAccountType() {
-        testCustomActions.selectFromDropDown(getAccountType());
+        testCustomActions.selectRandomFromDropDown(getAccountType());
         logger.debug("Selected account type: {}", getAccountType().getText());
     }
 
     public void selectFromAccountId() {
-        testCustomActions.selectFromDropDown(getFromAccountId());
+        testCustomActions.selectRandomFromDropDown(getFromAccountId());
         logger.debug("Selected account id: {}", getFromAccountId().getText());
 
         scenarioContext.setContext(Context.ACCOUNT_ID, getFromAccountId().getText());
