@@ -48,7 +48,7 @@ public class AccountOverviewPageElements {
                 .map(WebElement::getText) // Extract text from each anchor tag
                 .collect(Collectors.toList());
     }
-
+//TODO add the account ID in the logger info what is present
     public void validationOfNewAccount() {
         String newAccountId = ScenarioContext.getInstance().getContext(Context.NEW_ACCOUNT_ID);
         if (newAccountId != null) {

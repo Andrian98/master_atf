@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
+import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
 import performance.upskilling.atf.util.TestCustomActions;
 import performance.upskilling.atf.util.TestPreconditions;
 import performance.upskilling.atf.util.TestUtils;
@@ -15,6 +16,7 @@ public class Hooks {
     private static final TestPreconditions testPreconditions = new TestPreconditions();
     private static final TestCustomActions testCustomActions = new TestCustomActions();
     private static Boolean uiTestExecution = false;
+    public RegistrationPageElements registrationPageElements = new RegistrationPageElements();
 
     static {
         // Register the shutdown hook
@@ -49,6 +51,11 @@ public class Hooks {
     public void beforeAPITest() {
         TestCustomActions.setRestAssured(PropertiesManager.getLoginURL());
         logger.info("Started the API test.");
+    }
+
+    @After("@UI")
+    public void afterUIScenarios(){
+        testCustomActions.clickButton(registrationPageElements.getLogOutButton());
     }
 
     @AfterStep("@UI")

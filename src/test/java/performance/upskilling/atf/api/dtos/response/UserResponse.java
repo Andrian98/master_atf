@@ -1,6 +1,6 @@
 package performance.upskilling.atf.api.dtos.response;
 
-
+//TODO remove all the comments nad the unused code
 public class UserResponse {
     private int id;
     private double balance;

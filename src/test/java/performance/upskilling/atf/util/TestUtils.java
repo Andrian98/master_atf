@@ -60,7 +60,7 @@ public class TestUtils {
             }
         }
     }
-
+//TODO Try to add logs i the cucumber reports
     public static void addEvidence() {
         Path testReportsDir = Paths.get("target", "working-directory");
         try {

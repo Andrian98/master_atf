@@ -25,7 +25,7 @@ public class UserRequests {
         }
         return response;
     }
-
+//TODO status code can be ENUM or as a variable
     public Response postRequest(String url, String queryParams) {
         response = request.post(url + "?" + queryParams);
         if (response.getStatusCode() >= 400) {

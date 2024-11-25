@@ -11,7 +11,9 @@ import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-
+//TODO Try to run the test from the terminal
+//TODO Variable to be with the uppercase ex."user_Actions"
+//TODO Try to use custom report not the default (Bonus task)
 public class UserAccountSteps {
     private final Logger logger = LogManager.getLogger();
     private final UserActions userActions = new UserActions();

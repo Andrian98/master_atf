@@ -14,7 +14,8 @@ import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+//TODO Provide some evidence of the hackerrank
+//TODO some simple examples like Map List ARRAY
 public class UserActions {
     private final Logger logger = LogManager.getLogger();
     private Response response;

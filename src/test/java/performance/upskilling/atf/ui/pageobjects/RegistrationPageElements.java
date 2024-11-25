@@ -19,7 +19,7 @@ public class RegistrationPageElements {
     private WebDriverWait wait;
     private final Logger logger = LogManager.getLogger();
     private final TestCustomActions testCustomActions = new TestCustomActions();
-
+//TODO provide name before the id
     @FindBy(id = "customer.firstName")
     private WebElement firstNameField;
 

@@ -20,7 +20,7 @@ public class ScenarioContext {
         }
         return instance;
     }
-
+//TODO Instead of the set should be SAVECOntext
     public void setContext(Context key, Object value) {
         scenarioContext.put(key.toString(), value);
     }
