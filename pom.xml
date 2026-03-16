@@ -13,22 +13,30 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>4.13.1</junit.version>
-        <junit-vintage-engine.version>5.10.2</junit-vintage-engine.version>
-        <selenium.version>4.21.0</selenium.version>
-        <cucumber-java.version>7.0.0</cucumber-java.version>
-        <cucumber-junit.version>7.0.0</cucumber-junit.version>
-        <log4j-core.version>2.23.1</log4j-core.version>
-        <rest-assured.version>5.4.0</rest-assured.version>
-        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+
+        <!-- Test frameworks -->
+        <junit.version>4.13.2</junit.version>
+        <junit-vintage-engine.version>5.13.4</junit-vintage-engine.version>
+        <junit-jupiter.version>5.13.4</junit-jupiter.version>
+
+        <!-- UI / BDD -->
+        <selenium.version>4.41.0</selenium.version>
+        <cucumber-java.version>7.34.3</cucumber-java.version>
+        <cucumber-junit.version>7.34.3</cucumber-junit.version>
+
+        <!-- Logging / API / assertions / parsing -->
+        <log4j-core.version>2.25.3</log4j-core.version>
+        <rest-assured.version>5.5.7</rest-assured.version>
         <java-hamcrest.version>2.2</java-hamcrest.version>
-        <json.version>20240303</json.version>
-        <assertj-core.version>3.26.0</assertj-core.version>
-        <jsoup.version>1.17.2</jsoup.version>
-        <jackson-databind.version>2.17.2</jackson-databind.version>
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.3.1</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.3.1</maven-failsafe-plugin.version>
+        <json.version>20251224</json.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
+        <jsoup.version>1.21.2</jsoup.version>
+        <jackson-databind.version>2.20.1</jackson-databind.version>
+
+        <!-- Maven plugins -->
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.5.5</maven-failsafe-plugin.version>
     </properties>
 
     <dependencies>
@@ -151,8 +159,5 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <!-- Add specific plugin executions here if needed -->
-        </plugins>
     </build>
 </project>
