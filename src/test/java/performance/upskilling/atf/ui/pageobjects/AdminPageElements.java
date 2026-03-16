@@ -25,7 +25,7 @@ public class AdminPageElements {
     @FindBy(xpath = "(//input[@type='submit'])[2]")
     private WebElement jmsServiceStatusButton;
 
-    @FindBy(xpath = "//input[@checked='checked']")
+    @FindBy(xpath = "//input[@value='jdbc']")
     private WebElement dataAccessModeJDBC;
 
     @FindBy(id = "soapEndpoint")
@@ -36,6 +36,12 @@ public class AdminPageElements {
 
     @FindBy(id = "endpoint")
     private WebElement endpoint;
+
+    @FindBy(id = "loanProvider")
+    private WebElement loanProviderOption;
+
+    @FindBy(id = "loanProcessor")
+    private WebElement loanProcessorOption;
 
     @FindBy(name = "initialBalance")
     private WebElement initBalance;
@@ -94,5 +100,13 @@ public class AdminPageElements {
 
     public WebElement getJmsServiceStatusButton() {
         return jmsServiceStatusButton;
+    }
+
+    public WebElement getLoanProviderOption() {
+        return loanProviderOption;
+    }
+
+    public WebElement getLoanProcessorOption() {
+        return loanProcessorOption;
     }
 }

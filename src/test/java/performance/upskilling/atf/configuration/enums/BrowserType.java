@@ -1,4 +1,4 @@
-package performance.upskilling.atf.configuration.driverfactory;
+package performance.upskilling.atf.configuration.enums;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

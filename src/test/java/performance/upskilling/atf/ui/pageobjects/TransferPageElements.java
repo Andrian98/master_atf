@@ -1,7 +1,5 @@
 package performance.upskilling.atf.ui.pageobjects;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +12,6 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 public class TransferPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
-    public static final Logger logger = LogManager.getLogger();
 
     @FindBy(id = "amount")
     private WebElement amount;
@@ -30,6 +27,9 @@ public class TransferPageElements {
 
     @FindBy(xpath = "//h1[text()='Transfer Complete!']")
     private WebElement transferSuccessMessage;
+
+    @FindBy(xpath = "//a[@href='logout.htm']")
+    private WebElement logOutButton;
 
     public TransferPageElements(){
         this.driver = WebDriverManager.getDriver();
@@ -52,6 +52,8 @@ public class TransferPageElements {
     public WebElement getSubmit() {
         return submit;
     }
+
+    public WebElement getLogOutButton() {return logOutButton;}
 
     public WebElement getTransferSuccessMessage() {
         wait.until(ExpectedConditions.visibilityOf(transferSuccessMessage));

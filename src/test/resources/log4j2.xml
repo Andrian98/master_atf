@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn">
-
+#TODO to undestrand better each element of the pattern
     <Properties>
-        <Property name="basePath">./logs</Property>
+        <Property name="basePath">target/working-directory/logs</Property>
         <Property name="LOG_PATTERN">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1}.%L - %msg%n</Property>
     </Properties>
 
@@ -12,15 +12,6 @@
         </Console>
         <RollingFile name="fileLogger" fileName="${basePath}/applog.log"
                      filePattern="${basePath}/applog-%d{yyyy-MM-dd}.log">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="19500KB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="10"/>
-        </RollingFile>
-
-        <RollingFile name="LatencyLogger" fileName="${basePath}/latency.log"
-                     filePattern="${basePath}/latency-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="19500KB"/>
@@ -43,10 +34,6 @@
         <Logger name="performance.upskilling.atf" level="debug" additivity="true">
             <appender-ref ref="fileLogger" level="debug"/>
             <appender-ref ref="errorLog" level="error"/>
-        </Logger>
-
-        <Logger name="LatencyLogger" level="info" additivity="true">
-            <appender-ref ref="LatencyLogger" level="debug"/>
         </Logger>
 
         <Root level="info" additivity="false">

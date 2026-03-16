@@ -11,14 +11,16 @@ import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-
+//TODO Try to run the test from the terminal
+//TODO Variable to be with the uppercase ex."user_Actions"
+//TODO Try to use custom report not the default (Bonus task)
 public class UserAccountSteps {
-    private static final Logger logger = LogManager.getLogger();
+    private final Logger logger = LogManager.getLogger();
     private final UserActions userActions = new UserActions();
     private int validCustomerId;
-    private static final String username = PropertiesManager.getUsername();
-    private static final String password = PropertiesManager.getPassword();
-    public Response response;
+    private final String username = PropertiesManager.getUsername();
+    private final String password = PropertiesManager.getPassword();
+    private Response response;
 
 
     @Given("data for account creation")

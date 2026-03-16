@@ -3,7 +3,6 @@ package performance.upskilling.atf.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
@@ -12,27 +11,27 @@ import performance.upskilling.atf.ui.pageobjects.AdminPageElements;
 import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
 
 public class TestPreconditions {
-    public WebDriver driver;
-    public static WebDriverWait wait;
-    public static TestCustomActions testCustomActions = new TestCustomActions();
-    private static final AdminPageElements adminPageElements = new AdminPageElements();
-    public RegistrationPageElements registrationPageElements = new RegistrationPageElements();
-    private static final Logger logger = LogManager.getLogger();
+    private WebDriver driver;
+    private WebDriverWait wait;
+    private TestCustomActions testCustomActions = new TestCustomActions();
+    private final AdminPageElements adminPageElements = new AdminPageElements();
+    private RegistrationPageElements registrationPageElements = new RegistrationPageElements();
+    private final Logger logger = LogManager.getLogger();
 
     public TestPreconditions() {
         this.driver = WebDriverManager.getDriver();
         wait = WebDriverWaiter.getWaiter(driver);
     }
 
-    public void accessAdminURL(){
+    public void accessAdminURL() {
         testCustomActions.navigateTo(PropertiesManager.getAdminURL());
     }
 
-    public void validateAdminSetUp(){
+    public void validateAdminSetUp() {
         accessAdminURL();
         testCustomActions.clickButton(adminPageElements.getCleanDataBase());
         testCustomActions.clickButton(adminPageElements.getDatabaseInitialize());
-        if(adminPageElements.getJmsServiceStatus().getText().contains("Stopped")){
+        if (adminPageElements.getJmsServiceStatus().getText().contains("Stopped")) {
             testCustomActions.clickButton(adminPageElements.getJmsServiceStatusButton());
         }
         testCustomActions.clickButton(adminPageElements.getDataAccessModeJDBC());
@@ -40,6 +39,8 @@ public class TestPreconditions {
         adminPageElements.getRestEndpoint().clear();
         adminPageElements.getEndpoint().clear();
         adminPageElements.getInitBalance().clear();
+        testCustomActions.selectOptionFromDropDown(adminPageElements.getLoanProviderOption(),"Web Service");
+        testCustomActions.selectOptionFromDropDown(adminPageElements.getLoanProcessorOption(),"Available Funds");
         adminPageElements.getInitBalance().sendKeys("5150.50");
         adminPageElements.getMinBalance().clear();
         adminPageElements.getMinBalance().sendKeys("100.00");
@@ -47,7 +48,7 @@ public class TestPreconditions {
         logger.info("Preconditions executed.");
     }
 
-    public void userRegistration(){
+    public void registerNewUser() {
         registrationPageElements.getElement("First Name").sendKeys("perf");
         registrationPageElements.getElement("Last Name").sendKeys("user");
         registrationPageElements.getElement("Address").sendKeys("town");

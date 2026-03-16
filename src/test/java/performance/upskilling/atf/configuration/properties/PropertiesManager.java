@@ -13,37 +13,75 @@ public class PropertiesManager {
 
     static {
         try (InputStream input = PropertiesManager.class.getClassLoader().getResourceAsStream("properties/test.properties")) {
-                properties.load(input);
+            properties.load(input);
         } catch (IOException e) {
             logger.error("Error loading properties file: {}", e.getMessage());
         }
     }
 
-    public static String getIndexURL(){
-      return properties.getProperty("index.url");
+    public static String getIndexURL() {
+        return properties.getProperty("index.api");
     }
 
-    public static String getLoginURL(){ return properties.getProperty("login.url"); }
+    public static String getLoginURL() {
+        return properties.getProperty("login.api");
+    }
 
-    public static String getRegisterURL() { return properties.getProperty("register.url"); }
+    public static String getRegisterURL() {
+        return properties.getProperty("register.url");
+    }
 
-    public static String getBrowser(){ return properties.getProperty("browser"); }
+    public static String getBrowser() {
+        return properties.getProperty("browser");
+    }
 
-    public static Integer getDefaultTimeOut(){ return Integer.parseInt(properties.getProperty("defaultTimeOut")); }
+    public static Integer getDefaultTimeOut() {
+        return Integer.parseInt(properties.getProperty("defaultTimeOut"));
+    }
 
-    public static String getUserAccountsURL(){ return properties.getProperty("userAccounts.url"); }
+    public static String getUserAccountsURL() {
+        return properties.getProperty("userAccounts.api");
+    }
 
-    public static String getCreateAccountURL(){ return properties.getProperty("createAccount.url"); }
+    public static String getCreateAccountURL() {
+        return properties.getProperty("createAccount.api");
+    }
 
-    public static String getRequestLoanURL(){ return properties.getProperty("requestLoan.url"); }
+    public static String getRequestLoanURL() {
+        return properties.getProperty("requestLoan.url");
+    }
 
-    public static String getTransferUrl(){ return properties.getProperty("transfer.url"); }
+    public static String getTransferUrl() {
+        return properties.getProperty("transfer.url");
+    }
 
-    public static String getUsername(){ return properties.getProperty("username"); }
+    public static String getUsername() {
+        return properties.getProperty("username");
+    }
 
-    public static String getPassword(){ return properties.getProperty("password"); }
+    public static String getPassword() {
+        return properties.getProperty("password");
+    }
 
-    public static String getAdminURL(){ return properties.getProperty("admin.url"); }
+    public static String getAdminURL() {
+        return properties.getProperty("admin.url");
+    }
+
+    public static String getOpenAccountURL() {
+        return properties.getProperty("openAccount.url");
+    }
+
+    public static Integer getEvidenceRetentionPeriod() {
+        return Integer.parseInt(properties.getProperty("evidenceRetentionPeriod"));
+    }
+
+    public static String getEvidencePath() {
+        return properties.getProperty("evidencePath");
+    }
+
+    public static String getAccountOverview() {
+        return properties.getProperty("accountOverview.url");
+    }
 
 
 }

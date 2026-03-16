@@ -9,7 +9,6 @@ public class LoginResponse {
     private String ssn;
     private Address address;
 
-    // Default constructor
     public LoginResponse() {
     }
 

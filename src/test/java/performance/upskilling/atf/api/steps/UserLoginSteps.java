@@ -1,6 +1,5 @@
 package performance.upskilling.atf.api.steps;
 
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,10 +14,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class UserLoginSteps {
-    private static final UserActions userActions = new UserActions();
-    private static final Logger logger = LogManager.getLogger();
-    private static LoginResponse loginResponse;
-    public Response response;
+    private final UserActions userActions = new UserActions();
+    private final Logger logger = LogManager.getLogger();
+    private LoginResponse loginResponse;
+    private Response response;
 
     @Given("server is ready to accept API request")
     public void serverIsReadyToAcceptAPIRequest() {

@@ -12,12 +12,14 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.util.TestCustomActions;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class LoginPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
-    public static final Logger logger = LogManager.getLogger();
-    private static final TestCustomActions testCustomActions = new TestCustomActions();
-    public static OverviewPageElements overviewPageElements = new OverviewPageElements();
+    private final Logger logger = LogManager.getLogger();
+    private final TestCustomActions testCustomActions = new TestCustomActions();
+    private final OverviewPageElements overviewPageElements = new OverviewPageElements();
 
     @FindBy(name = "username")
     private WebElement username;
@@ -27,6 +29,9 @@ public class LoginPageElements {
 
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement submit;
+
+    @FindBy(xpath = "//a[@href='logout.htm']")
+    private WebElement logOutButton;
 
     public LoginPageElements() {
         this.driver = WebDriverManager.getDriver();
@@ -46,6 +51,8 @@ public class LoginPageElements {
         return submit;
     }
 
+    public WebElement getLogOutButton() {return logOutButton;}
+
     public void userLogin() {
         testCustomActions.sendKeysToWebElement(getUsername(), PropertiesManager.getUsername());
         testCustomActions.sendKeysToWebElement(getPassword(), PropertiesManager.getPassword());
@@ -59,6 +66,7 @@ public class LoginPageElements {
 
     public void validateWelcomeMessage() {
         String welcomeMessage = testCustomActions.getTextFromPage(overviewPageElements.getWelcomeMessage());
+        assertThat("Welcome message ", welcomeMessage.contains("Welcome"));
         logger.debug("{} message displayed", welcomeMessage);
     }
 }

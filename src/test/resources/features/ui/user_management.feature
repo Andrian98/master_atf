@@ -1,15 +1,31 @@
 @UI
 Feature: User apply for loan and transfer funds
 
+  Background:
+    Given user is logged in with valid credentials
+
+  @Regression
   Scenario: Successfully apply for a loan
-    Given user is on request loan page
+    And user is on request loan page
     When user applies for a loan with the following details
       | Loan Amount  | 10 |
       | Down Payment | 10 |
     Then new account number is provided
 
+  @Regression
   Scenario: Transfer funds from one account to another
-    Given user is on transfer funds page
+    And user is on transfer funds page
     And user selected From account and To account
     When user enters valid amount to transfer
     Then transfer successfully completed
+
+  @Regression
+  Scenario: Open new account
+    And user is on open new account page
+    When user selects account type and existing account
+    And user clicks on open new account button
+    Then new account is created
+
+  Scenario: User validates all accounts
+    When user navigated to account overview page
+    Then new accounts id are validated

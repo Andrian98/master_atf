@@ -1,14 +1,9 @@
 package performance.upskilling.atf.configuration.driverfactory;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import performance.upskilling.atf.configuration.enums.BrowserType;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 public class WebDriverManager {
@@ -16,15 +11,16 @@ public class WebDriverManager {
     private static final Logger logger = LogManager.getLogger();
     private static final String browser = PropertiesManager.getBrowser();
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
         if (driver == null) {
-            try{
-            BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
-            driver = browserType.createDriver();
-            logger.debug("Driver {} was started.", browserType.name());
+            try {
+                BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
+                driver = browserType.createDriver();
+                logger.debug("Driver {} was started.", browserType.name());
 
             } catch (IllegalArgumentException e) {
                 logger.debug("Unsupported browser: {}. Using Chrome as default.", browser);
+                logger.error("Error Message {}", e.getMessage());
                 driver = BrowserType.CHROME.createDriver();
             }
             logger.info("WebDriver initialized");
@@ -32,13 +28,9 @@ public class WebDriverManager {
         return driver;
     }
 
-    public static void getMonitorResolution(){
-        if(driver == null){
-            throw new WebDriverException("Driver is not initialized");
-        }else {
-            driver.manage().window().maximize();
+    public static void getMonitorResolution() {
+            getDriver().manage().window().maximize();
             logger.info("Driver window maximized");
-        }
     }
 
     public static void quitDriver() {

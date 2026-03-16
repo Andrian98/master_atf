@@ -16,8 +16,7 @@ import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-
-
+//TODO rename the class like General actions
 public class TestCustomActions {
     private static final Logger logger = LogManager.getLogger();
 
@@ -32,7 +31,7 @@ public class TestCustomActions {
     }
 
     public void assertPageText(String expectedText, String actualText) {
-        assertThat(actualText, equalTo(expectedText));
+        assertThat("Text a matched ",actualText, equalTo(expectedText));
         logger.info("\nActual text: {} \nExpected text: {}", actualText, expectedText);
     }
 
@@ -62,7 +61,7 @@ public class TestCustomActions {
         return element.getText();
     }
 
-    public void selectFromDropDown(WebElement element) {
+    public void selectRandomFromDropDown(WebElement element) {
         Select dropdown = new Select(element);
         List<WebElement> options = dropdown.getOptions();
         if (!options.isEmpty()) {
@@ -72,6 +71,12 @@ public class TestCustomActions {
         } else {
             logger.error("No options available in the dropdown.");
         }
-        logger.info("Selected Account from the dropdown.");
+        logger.info("Selected one option from the dropdown.");
+    }
+
+    public void selectOptionFromDropDown(WebElement element, String option){
+        Select dropdown = new Select(element);
+        dropdown.selectByVisibleText(option);
+        logger.debug("Option {} was selected from dropdown {}.",option,element);
     }
 }

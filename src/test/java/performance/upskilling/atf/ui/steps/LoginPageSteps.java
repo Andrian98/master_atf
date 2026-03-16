@@ -25,6 +25,13 @@ public class LoginPageSteps {
     @Then("user is logged in")
     public void userIsLoggedIn() {
         loginPageElements.validateWelcomeMessage();
+        testCustomActions.clickButton(loginPageElements.getLogOutButton());
     }
 
+    @Given("user is logged in with valid credentials")
+    public void userIsLoggedInWithValidCredentials() {
+        testCustomActions.navigateTo(PropertiesManager.getIndexURL());
+        loginPageElements.userLogin();
+        loginPageElements.userClickSubmit();
+    }
 }
