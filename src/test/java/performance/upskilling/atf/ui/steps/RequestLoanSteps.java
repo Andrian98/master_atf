@@ -2,7 +2,6 @@ package performance.upskilling.atf.ui.steps;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
@@ -33,7 +32,6 @@ public class RequestLoanSteps {
     public void newAccountNumberIsProvided() {
         loanPageElements.validateLoanRequest();
         loanPageElements.printNewAccountId();
-        testCustomActions.clickButton(loanPageElements.getLogOutButton());
     }
 
 }

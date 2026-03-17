@@ -1,10 +1,8 @@
 package performance.upskilling.atf.ui.steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import performance.upskilling.atf.configuration.enums.Context;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.OpenAccountPageElements;
 import performance.upskilling.atf.util.TestCustomActions;
@@ -33,8 +31,6 @@ public class OpenAccountPageSteps {
     public void newAccountIsCreated() {
         String actualText = testCustomActions.getTextFromPage(openAccountPageElements.getCongratulationMessage());
         testCustomActions.assertPageText("Congratulations, your account is now open.",actualText);
-        testCustomActions.clickButton(openAccountPageElements.getLogOutButton());
     }
-
 
 }

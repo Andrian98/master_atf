@@ -25,10 +25,9 @@ public class RegistrationPageSteps {
         registrationPageElements.insertRegisterDetails(userDetails);
         testCustomActions.clickButton(registrationPageElements.getRegisterButton());
     }
-//TODO try to put the logout in the hooks of the UI
+
     @Then("message {string} is displayed")
     public void webElementWithMessageIsDisplayed(String expectedMessage) {
         testCustomActions.assertPageText(registrationPageElements.validateUserCreation(), expectedMessage);
-        testCustomActions.clickButton(registrationPageElements.getLogOutButton());
     }
 }
