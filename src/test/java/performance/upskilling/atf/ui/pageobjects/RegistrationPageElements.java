@@ -19,35 +19,35 @@ public class RegistrationPageElements {
     private WebDriverWait wait;
     private final Logger logger = LogManager.getLogger();
     private final TestCustomActions testCustomActions = new TestCustomActions();
-//TODO provide name before the id
-    @FindBy(id = "customer.firstName")
+
+    @FindBy(name = "customer.firstName")
     private WebElement firstNameField;
 
-    @FindBy(id = "customer.lastName")
+    @FindBy(name = "customer.lastName")
     private WebElement lastNameField;
 
-    @FindBy(id = "customer.address.street")
+    @FindBy(name = "customer.address.street")
     private WebElement addressField;
 
-    @FindBy(id = "customer.address.city")
+    @FindBy(name = "customer.address.city")
     private WebElement cityField;
 
-    @FindBy(id = "customer.address.state")
+    @FindBy(name = "customer.address.state")
     private WebElement stateField;
 
-    @FindBy(id = "customer.address.zipCode")
+    @FindBy(name = "customer.address.zipCode")
     private WebElement zipField;
 
-    @FindBy(id = "customer.ssn")
+    @FindBy(name = "customer.ssn")
     private WebElement ssnField;
 
-    @FindBy(id = "customer.username")
+    @FindBy(name = "customer.username")
     private WebElement usernameField;
 
-    @FindBy(id = "customer.password")
+    @FindBy(name = "customer.password")
     private WebElement passwordField;
 
-    @FindBy(id = "repeatedPassword")
+    @FindBy(name = "repeatedPassword")
     private WebElement confirmField;
 
     @FindBy(xpath = "(//input[@class='button'])[2]")
