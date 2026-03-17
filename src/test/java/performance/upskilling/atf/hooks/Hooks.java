@@ -56,6 +56,7 @@ public class Hooks {
     @After("@UI")
     public void afterUIScenarios(){
         testCustomActions.clickButton(registrationPageElements.getLogOutButton());
+        logger.info("User logged out successfully.");
     }
 
     @AfterStep("@UI")

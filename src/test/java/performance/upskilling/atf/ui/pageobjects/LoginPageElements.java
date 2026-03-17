@@ -51,8 +51,6 @@ public class LoginPageElements {
         return submit;
     }
 
-    public WebElement getLogOutButton() {return logOutButton;}
-
     public void userLogin() {
         testCustomActions.sendKeysToWebElement(getUsername(), PropertiesManager.getUsername());
         testCustomActions.sendKeysToWebElement(getPassword(), PropertiesManager.getPassword());
@@ -66,7 +64,7 @@ public class LoginPageElements {
 
     public void validateWelcomeMessage() {
         String welcomeMessage = testCustomActions.getTextFromPage(overviewPageElements.getWelcomeMessage());
-        assertThat("Welcome message ", welcomeMessage.contains("Welcome"));
+        assertThat("Welcome message", welcomeMessage.contains("Welcome"));
         logger.debug("{} message displayed", welcomeMessage);
     }
 }

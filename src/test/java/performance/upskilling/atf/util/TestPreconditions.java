@@ -30,6 +30,7 @@ public class TestPreconditions {
     public void validateAdminSetUp() {
         accessAdminURL();
         testCustomActions.clickButton(adminPageElements.getCleanDataBase());
+        adminPageElements.validateDatabaseCleanUp();
         testCustomActions.clickButton(adminPageElements.getDatabaseInitialize());
         if (adminPageElements.getJmsServiceStatus().getText().contains("Stopped")) {
             testCustomActions.clickButton(adminPageElements.getJmsServiceStatusButton());
@@ -45,7 +46,7 @@ public class TestPreconditions {
         adminPageElements.getMinBalance().clear();
         adminPageElements.getMinBalance().sendKeys("100.00");
         testCustomActions.clickButton(adminPageElements.getSubmitButton());
-        logger.info("Preconditions executed.");
+        logger.info("Preconditions successfully executed.");
     }
 
     public void registerNewUser() {
