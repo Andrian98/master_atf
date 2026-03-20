@@ -6,19 +6,19 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.LoanPageElements;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 import java.util.Map;
 
 public class RequestLoanSteps {
-    private TestCustomActions testCustomActions = new TestCustomActions();
+    private CoreInteractions coreInteractions = new CoreInteractions();
     private String requestLoanURL = PropertiesManager.getRequestLoanURL();
     private LoanPageElements loanPageElements = new LoanPageElements();
 
 
     @And("user is on request loan page")
     public void userIsOnRequestLoanPage() {
-        testCustomActions.navigateTo(requestLoanURL);
+        coreInteractions.navigateTo(requestLoanURL);
     }
 
     @When("user applies for a loan with the following details")

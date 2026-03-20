@@ -5,15 +5,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.OpenAccountPageElements;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 public class OpenAccountPageSteps {
-    public static TestCustomActions testCustomActions = new TestCustomActions();
+    public static CoreInteractions coreInteractions = new CoreInteractions();
     public static OpenAccountPageElements openAccountPageElements = new OpenAccountPageElements();
 
     @And("user is on open new account page")
     public void userIsOnOpenNewAccountPage() {
-        testCustomActions.navigateTo(PropertiesManager.getOpenAccountURL());
+        coreInteractions.navigateTo(PropertiesManager.getOpenAccountURL());
     }
 
     @When("user selects account type and existing account")
@@ -29,8 +29,8 @@ public class OpenAccountPageSteps {
 
     @Then("new account is created")
     public void newAccountIsCreated() {
-        String actualText = testCustomActions.getTextFromPage(openAccountPageElements.getCongratulationMessage());
-        testCustomActions.assertPageText("Congratulations, your account is now open.",actualText);
+        String actualText = coreInteractions.getTextFromPage(openAccountPageElements.getCongratulationMessage());
+        coreInteractions.assertPageText("Congratulations, your account is now open.",actualText);
     }
 
 }

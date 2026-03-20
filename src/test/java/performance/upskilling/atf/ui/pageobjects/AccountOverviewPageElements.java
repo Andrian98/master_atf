@@ -13,7 +13,7 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.enums.Context;
 import performance.upskilling.atf.configuration.scenario_context.ScenarioContext;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ public class AccountOverviewPageElements {
     private WebDriverWait wait;
 
     public final Logger logger = LogManager.getLogger();
-    private final TestCustomActions testCustomActions = new TestCustomActions();
+    private final CoreInteractions coreInteractions = new CoreInteractions();
 
     @FindBy(xpath = "//*[@id='showOverview']")
     private WebElement showOverview;

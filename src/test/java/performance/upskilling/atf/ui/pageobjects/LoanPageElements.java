@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ public class LoanPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
     private final Logger logger = LogManager.getLogger();
-    private final TestCustomActions testCustomActions = new TestCustomActions();
+    private final CoreInteractions coreInteractions = new CoreInteractions();
 
     @FindBy(id = "amount")
     private WebElement loanAmountField;
@@ -76,19 +76,19 @@ public class LoanPageElements {
     }
 
     public void populateLoanFields(Map<String, String> loanData) {
-        testCustomActions.sendKeysToWebElement(getLoanAmountField(), loanData.get("Loan Amount"));
-        testCustomActions.sendKeysToWebElement(getDownPaymentField(), loanData.get("Down Payment"));
+        coreInteractions.sendKeysToWebElement(getLoanAmountField(), loanData.get("Loan Amount"));
+        coreInteractions.sendKeysToWebElement(getDownPaymentField(), loanData.get("Down Payment"));
         logger.info("User entered loan details");
     }
 
     public void clickApplyNowButton() {
-        testCustomActions.clickButton(getApplyLoanButton());
+        coreInteractions.clickButton(getApplyLoanButton());
         logger.info("Clicks apply now button");
     }
 
     public void validateLoanRequest() {
-        String actualText = testCustomActions.getTextFromPage(getLoanText());
-        testCustomActions.assertPageText("Congratulations, your loan has been approved.", actualText);
+        String actualText = coreInteractions.getTextFromPage(getLoanText());
+        coreInteractions.assertPageText("Congratulations, your loan has been approved.", actualText);
         logger.info("Validated loan request");
     }
 

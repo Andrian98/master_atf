@@ -16,8 +16,8 @@ import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-//TODO rename the class like General actions
-public class TestCustomActions {
+
+public class CoreInteractions {
     private static final Logger logger = LogManager.getLogger();
 
     public static void setRestAssured(String url) {

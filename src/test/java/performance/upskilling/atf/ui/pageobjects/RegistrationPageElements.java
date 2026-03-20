@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class RegistrationPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
     private final Logger logger = LogManager.getLogger();
-    private final TestCustomActions testCustomActions = new TestCustomActions();
+    private final CoreInteractions coreInteractions = new CoreInteractions();
 
     @FindBy(name = "customer.firstName")
     private WebElement firstNameField;
@@ -104,7 +104,7 @@ public class RegistrationPageElements {
 
             WebElement webElement = getElement(fieldName);
             if (webElement != null) {
-                testCustomActions.sendKeysToWebElement(webElement, value);
+                coreInteractions.sendKeysToWebElement(webElement, value);
             } else {
                 logger.error("Element with field name '{}' not found.", fieldName);
             }
