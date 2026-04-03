@@ -12,7 +12,7 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.enums.Context;
 import performance.upskilling.atf.configuration.scenario_context.ScenarioContext;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 public class OpenAccountPageElements {
 
@@ -20,7 +20,7 @@ public class OpenAccountPageElements {
     private WebDriverWait wait;
     private ScenarioContext scenarioContext = ScenarioContext.getInstance();
     public final Logger logger = LogManager.getLogger();
-    private final TestCustomActions testCustomActions = new TestCustomActions();
+    private final CoreInteractions coreInteractions = new CoreInteractions();
 
     @FindBy(id = "type")
     private WebElement accountType;
@@ -71,12 +71,12 @@ public class OpenAccountPageElements {
     }
 
     public void selectAccountType() {
-        testCustomActions.selectRandomFromDropDown(getAccountType());
+        coreInteractions.selectRandomFromDropDown(getAccountType());
         logger.debug("Selected account type: {}", getAccountType().getText());
     }
 
     public void selectFromAccountId() {
-        testCustomActions.selectRandomFromDropDown(getFromAccountId());
+        coreInteractions.selectRandomFromDropDown(getFromAccountId());
         logger.debug("Selected account id: {}", getFromAccountId().getText());
 
         scenarioContext.setContext(Context.ACCOUNT_ID, getFromAccountId().getText());
@@ -84,7 +84,7 @@ public class OpenAccountPageElements {
     }
 
     public void clickOpenAccountButton() {
-        testCustomActions.clickButton(getOpenAccountButton());
+        coreInteractions.clickButton(getOpenAccountButton());
         logger.info("Clicked open account button");
 
         wait.until(ExpectedConditions.visibilityOf(newAccountId));

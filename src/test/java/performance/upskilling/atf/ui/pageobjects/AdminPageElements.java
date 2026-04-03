@@ -7,10 +7,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
+import performance.upskilling.atf.util.CoreInteractions;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AdminPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
+    private final Logger logger = LogManager.getLogger();
+    private final CoreInteractions coreInteractions = new CoreInteractions();
+    private final OverviewPageElements overviewPageElements = new OverviewPageElements();
 
     @FindBy(xpath = "//button[@name='action']")
     private WebElement databaseInitialize;
@@ -108,5 +115,11 @@ public class AdminPageElements {
 
     public WebElement getLoanProcessorOption() {
         return loanProcessorOption;
+    }
+
+    public void validateDatabaseCleanUp(){
+        String cleanUpMessage = coreInteractions.getTextFromPage(overviewPageElements.getCleanUpMessage());
+        assertThat("Database clean up was successful.", cleanUpMessage.contains("Database Cleaned"));
+        logger.debug("{} message displayed", cleanUpMessage);
     }
 }

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -18,7 +18,7 @@ public class LoginPageElements {
     private WebDriver driver;
     private WebDriverWait wait;
     private final Logger logger = LogManager.getLogger();
-    private final TestCustomActions testCustomActions = new TestCustomActions();
+    private final CoreInteractions coreInteractions = new CoreInteractions();
     private final OverviewPageElements overviewPageElements = new OverviewPageElements();
 
     @FindBy(name = "username")
@@ -51,22 +51,20 @@ public class LoginPageElements {
         return submit;
     }
 
-    public WebElement getLogOutButton() {return logOutButton;}
-
     public void userLogin() {
-        testCustomActions.sendKeysToWebElement(getUsername(), PropertiesManager.getUsername());
-        testCustomActions.sendKeysToWebElement(getPassword(), PropertiesManager.getPassword());
+        coreInteractions.sendKeysToWebElement(getUsername(), PropertiesManager.getUsername());
+        coreInteractions.sendKeysToWebElement(getPassword(), PropertiesManager.getPassword());
         logger.info("User inserted valid credentials");
     }
 
     public void userClickSubmit() {
-        testCustomActions.clickButton(getSubmit());
+        coreInteractions.clickButton(getSubmit());
         logger.info("User clicked on submit button");
     }
 
     public void validateWelcomeMessage() {
-        String welcomeMessage = testCustomActions.getTextFromPage(overviewPageElements.getWelcomeMessage());
-        assertThat("Welcome message ", welcomeMessage.contains("Welcome"));
+        String welcomeMessage = coreInteractions.getTextFromPage(overviewPageElements.getWelcomeMessage());
+        assertThat("Welcome message", welcomeMessage.contains("Welcome"));
         logger.debug("{} message displayed", welcomeMessage);
     }
 }

@@ -13,7 +13,7 @@ import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
 public class TestPreconditions {
     private WebDriver driver;
     private WebDriverWait wait;
-    private TestCustomActions testCustomActions = new TestCustomActions();
+    private CoreInteractions coreInteractions = new CoreInteractions();
     private final AdminPageElements adminPageElements = new AdminPageElements();
     private RegistrationPageElements registrationPageElements = new RegistrationPageElements();
     private final Logger logger = LogManager.getLogger();
@@ -24,28 +24,29 @@ public class TestPreconditions {
     }
 
     public void accessAdminURL() {
-        testCustomActions.navigateTo(PropertiesManager.getAdminURL());
+        coreInteractions.navigateTo(PropertiesManager.getAdminURL());
     }
 
     public void validateAdminSetUp() {
         accessAdminURL();
-        testCustomActions.clickButton(adminPageElements.getCleanDataBase());
-        testCustomActions.clickButton(adminPageElements.getDatabaseInitialize());
+        coreInteractions.clickButton(adminPageElements.getCleanDataBase());
+        adminPageElements.validateDatabaseCleanUp();
+        coreInteractions.clickButton(adminPageElements.getDatabaseInitialize());
         if (adminPageElements.getJmsServiceStatus().getText().contains("Stopped")) {
-            testCustomActions.clickButton(adminPageElements.getJmsServiceStatusButton());
+            coreInteractions.clickButton(adminPageElements.getJmsServiceStatusButton());
         }
-        testCustomActions.clickButton(adminPageElements.getDataAccessModeJDBC());
+        coreInteractions.clickButton(adminPageElements.getDataAccessModeJDBC());
         adminPageElements.getSoapEndpoint().clear();
         adminPageElements.getRestEndpoint().clear();
         adminPageElements.getEndpoint().clear();
         adminPageElements.getInitBalance().clear();
-        testCustomActions.selectOptionFromDropDown(adminPageElements.getLoanProviderOption(),"Web Service");
-        testCustomActions.selectOptionFromDropDown(adminPageElements.getLoanProcessorOption(),"Available Funds");
+        coreInteractions.selectOptionFromDropDown(adminPageElements.getLoanProviderOption(),"Web Service");
+        coreInteractions.selectOptionFromDropDown(adminPageElements.getLoanProcessorOption(),"Available Funds");
         adminPageElements.getInitBalance().sendKeys("5150.50");
         adminPageElements.getMinBalance().clear();
         adminPageElements.getMinBalance().sendKeys("100.00");
-        testCustomActions.clickButton(adminPageElements.getSubmitButton());
-        logger.info("Preconditions executed.");
+        coreInteractions.clickButton(adminPageElements.getSubmitButton());
+        logger.info("Preconditions successfully executed.");
     }
 
     public void registerNewUser() {
@@ -59,6 +60,6 @@ public class TestPreconditions {
         registrationPageElements.getElement("Username").sendKeys("perf-user");
         registrationPageElements.getElement("Password").sendKeys("perf-user123");
         registrationPageElements.getElement("Confirm").sendKeys("perf-user123");
-        testCustomActions.clickButton(registrationPageElements.getRegisterButton());
+        coreInteractions.clickButton(registrationPageElements.getRegisterButton());
     }
 }

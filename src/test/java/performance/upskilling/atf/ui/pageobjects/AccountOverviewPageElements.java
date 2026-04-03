@@ -13,7 +13,7 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverWaiter;
 import performance.upskilling.atf.configuration.enums.Context;
 import performance.upskilling.atf.configuration.scenario_context.ScenarioContext;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ public class AccountOverviewPageElements {
     private WebDriverWait wait;
 
     public final Logger logger = LogManager.getLogger();
-    private final TestCustomActions testCustomActions = new TestCustomActions();
+    private final CoreInteractions coreInteractions = new CoreInteractions();
 
     @FindBy(xpath = "//*[@id='showOverview']")
     private WebElement showOverview;
@@ -48,14 +48,14 @@ public class AccountOverviewPageElements {
                 .map(WebElement::getText) // Extract text from each anchor tag
                 .collect(Collectors.toList());
     }
-//TODO add the account ID in the logger info what is present
+
     public void validationOfNewAccount() {
         String newAccountId = ScenarioContext.getInstance().getContext(Context.NEW_ACCOUNT_ID);
         if (newAccountId != null) {
             List<String> accountIds = getNewAccountIDs();
             logger.debug("List of the accounts: {}", accountIds);
             assertThat("New account ID in the Account table",accountIds.contains(newAccountId));
-            logger.info("Account ID is present in the Account table");
+            logger.info("{} is present in the Account table",newAccountId);
         } else {
             logger.error("No new account ID found in the context.");
         }

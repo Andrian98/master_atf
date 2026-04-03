@@ -6,7 +6,7 @@ import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.RegistrationPageElements;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 import performance.upskilling.atf.util.TestPreconditions;
 import performance.upskilling.atf.util.TestUtils;
 
@@ -14,7 +14,7 @@ import performance.upskilling.atf.util.TestUtils;
 public class Hooks {
     private static final Logger logger = LogManager.getLogger();
     private static final TestPreconditions testPreconditions = new TestPreconditions();
-    private static final TestCustomActions testCustomActions = new TestCustomActions();
+    private static final CoreInteractions CORE_INTERACTIONS = new CoreInteractions();
     private static Boolean uiTestExecution = false;
     public RegistrationPageElements registrationPageElements = new RegistrationPageElements();
 
@@ -28,7 +28,7 @@ public class Hooks {
         TestUtils.createEvidenceDirectory();
         TestUtils.cleanUpOldEvidence();
         testPreconditions.validateAdminSetUp();
-        testCustomActions.navigateTo(PropertiesManager.getRegisterURL());
+        CORE_INTERACTIONS.navigateTo(PropertiesManager.getRegisterURL());
         testPreconditions.registerNewUser();
 
         WebDriverManager.quitDriver();
@@ -49,13 +49,14 @@ public class Hooks {
 
     @Before("@API")
     public void beforeAPITest() {
-        TestCustomActions.setRestAssured(PropertiesManager.getLoginURL());
+        CoreInteractions.setRestAssured(PropertiesManager.getLoginURL());
         logger.info("Started the API test.");
     }
 
     @After("@UI")
     public void afterUIScenarios(){
-        testCustomActions.clickButton(registrationPageElements.getLogOutButton());
+        CORE_INTERACTIONS.clickButton(registrationPageElements.getLogOutButton());
+        logger.info("User logged out successfully.");
     }
 
     @AfterStep("@UI")

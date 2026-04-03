@@ -5,15 +5,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 import performance.upskilling.atf.ui.pageobjects.LoginPageElements;
-import performance.upskilling.atf.util.TestCustomActions;
+import performance.upskilling.atf.util.CoreInteractions;
 
 public class LoginPageSteps {
-    public static TestCustomActions testCustomActions = new TestCustomActions();
+    public static CoreInteractions coreInteractions = new CoreInteractions();
     public static LoginPageElements loginPageElements = new LoginPageElements();
 
     @Given("user is on main page")
     public void userIsOnMainPage() {
-        testCustomActions.navigateTo(PropertiesManager.getIndexURL());
+        coreInteractions.navigateTo(PropertiesManager.getIndexURL());
     }
 
     @When("user enters valid credentials")
@@ -25,12 +25,11 @@ public class LoginPageSteps {
     @Then("user is logged in")
     public void userIsLoggedIn() {
         loginPageElements.validateWelcomeMessage();
-        testCustomActions.clickButton(loginPageElements.getLogOutButton());
     }
 
     @Given("user is logged in with valid credentials")
     public void userIsLoggedInWithValidCredentials() {
-        testCustomActions.navigateTo(PropertiesManager.getIndexURL());
+        coreInteractions.navigateTo(PropertiesManager.getIndexURL());
         loginPageElements.userLogin();
         loginPageElements.userClickSubmit();
     }
