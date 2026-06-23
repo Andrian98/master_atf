@@ -3,7 +3,6 @@ package performance.upskilling.atf.util;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.LoggerContext;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import performance.upskilling.atf.configuration.driverfactory.WebDriverManager;
@@ -21,7 +20,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Comparator;
 import java.util.Date;
 
 public class TestUtils {
@@ -130,5 +128,4 @@ public class TestUtils {
         Files.delete(dir);
         logger.info("Deleted directory: {}", dir);
     }
-
 }
