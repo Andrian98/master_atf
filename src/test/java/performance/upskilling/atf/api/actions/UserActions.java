@@ -1,6 +1,5 @@
 package performance.upskilling.atf.api.actions;
 
-
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
@@ -12,8 +11,6 @@ import performance.upskilling.atf.api.dtos.response.UserResponse;
 import performance.upskilling.atf.configuration.properties.PropertiesManager;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserActions {
     private final Logger logger = LogManager.getLogger();
