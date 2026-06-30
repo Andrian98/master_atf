@@ -23,6 +23,7 @@
         <selenium.version>4.41.0</selenium.version>
         <cucumber-java.version>7.34.3</cucumber-java.version>
         <cucumber-junit.version>7.34.3</cucumber-junit.version>
+        <opentelemetry.version>1.62.0</opentelemetry.version>
 
         <!-- Logging / API / assertions / parsing -->
         <log4j-core.version>2.25.4</log4j-core.version>
@@ -38,6 +39,18 @@
         <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.5.5</maven-failsafe-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-bom</artifactId>
+                <version>${opentelemetry.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Jackson Databind -->
