@@ -25,7 +25,7 @@
         <cucumber-junit.version>7.34.3</cucumber-junit.version>
 
         <!-- Logging / API / assertions / parsing -->
-        <log4j-core.version>2.25.3</log4j-core.version>
+        <log4j-core.version>2.25.4</log4j-core.version>
         <rest-assured.version>5.5.7</rest-assured.version>
         <java-hamcrest.version>2.2</java-hamcrest.version>
         <json.version>20251224</json.version>
